@@ -53,8 +53,9 @@ body {
 }
 .hero img {
   width: 100%;
-  height: 100vh;
+  height: 100vh; /* full screen height */
   object-fit: cover;
+  object-position: center bottom; /* shows middle/bottom of image */
   display: block;
 }
 .hero .overlay {
