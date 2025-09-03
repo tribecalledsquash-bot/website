@@ -83,22 +83,25 @@ body {
   font-size: 2rem;
 }
 
-/* Music Links with App Styles */
+/* Music Links with Oval Black Buttons */
 .links a {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin: 0.5rem;
-  padding: 0.75rem 1.25rem;
-  border-radius: 10px;
-  text-decoration: none;
-  color: #fff;
-  font-weight: bold;
-  font-size: 1rem;
-  transition: transform 0.2s;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+gap: 0.5rem;
+margin: 0.5rem;
+padding: 0.75rem 2rem;
+border-radius: 50px; /* Oval shape */
+text-decoration: none;
+color: #fff;
+font-weight: bold;
+font-size: 1rem;
+background-color: #000; /* Black color */
+transition: transform 0.2s, background-color 0.2s;
 }
 .links a:hover {
-  transform: scale(1.05);
+transform: scale(1.05);
+background-color: #333;
 }
 /* App-specific styles */
 .links a.spotify {
