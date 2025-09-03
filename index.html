@@ -1,105 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <title>My Website</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f0f0f0;
-    }
-
-    header {
-      background-color: #333;
-      color: white;
-      padding: 1rem;
-      text-align: center;
-    }
-
-    nav {
-      background-color: #444;
-      display: flex;
-      justify-content: center;
-      padding: 0.5rem;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 1rem;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    .about-section {
-      display: flex;
-      flex-wrap: wrap;
-      padding: 2rem;
-      background-color: #fff;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .about-text {
-      flex: 1;
-      min-width: 250px;
-      padding: 1rem;
-    }
-
-    .about-image {
-      flex: 1;
-      min-width: 250px;
-      padding: 1rem;
-      text-align: center;
-    }
-
-    .about-image img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-    }
-
-    footer {
-      background-color: #333;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-      margin-top: 2rem;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Squash</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Add Google Fonts for banner font -->
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-
-  <header>
-    <h1>Welcome to My Website</h1>
+  <!-- Fixed Navigation -->
+  <header class="navbar">
+    <h1 class="navbar-title">Squash</h1>
+    <nav>
+      <a href="#music">Music</a>
+      <a href="#about">About</a>
+      <a href="#media">Media</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
 
-  <nav>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-  </nav>
-
-  <section id="about" class="about-section">
-    <div class="about-text">
-      <h2>About Us</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac libero eu risus posuere facilisis. Sed non diam quis eros tempor ullamcorper. Nullam at urna id quam fermentum laoreet.</p>
-      <p>Phasellus a leo id arcu laoreet bibendum. Integer nec quam sit amet lectus tempor tincidunt. Suspendisse potenti.</p>
-    </div>
-    <div class="about-image">
-      <img src="your-image.jpg" alt="About Image">
+  <!-- Hero Section -->
+  <section class="hero">
+    <img src="0E7620E5-2ED8-4A22-A47A-F951CBDEC398.JPG" alt="Band Photo" />
+    <div class="overlay">
+      <h2>Welcome to Squash</h2>
     </div>
   </section>
 
-  <footer>
-    <p>&copy; 2025 My Website</p>
-  </footer>
+  <!-- Music Links -->
+  <section id="music" class="section">
+    <h2>Listen</h2>
+    <div class="links">
+      <a href="https://open.spotify.com/album/3iAGatLge2nioxcbvdWhTF" target="_blank">Spotify</a>
+      <a href="https://music.apple.com/album/1811306807" target="_blank">Apple Music</a>
+      <a href="https://www.youtube.com/channel/UCLs0-yVltyq0_zj5qhVx3Ow" target="_blank">YouTube</a>
+    </div>
+  </section>
 
+  <!-- About -->
+  <section id="about" class="section">
+    <h2>About Us</h2>
+    <p>
+      We are Squash, an indie-jam band from Boulder, CO. Our music blends the classic improvisational rock techniques with modern indie-rock songwriting. Created by two brothers in 2022, Squash aims t[...]
+    </p>
+  </section>
+
+  <!-- Media -->
+  <section id="media" class="section">
+    <h2>Media</h2>
+    <p>Photos and videos coming soon!</p>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section">
+    <h2>Contact</h2>
+    <p>Email us at: <a href="mailto:tribecalledsquash@gmail.com">yourband@email.com</a></p>
+    <div class="links">
+      <a href="https://instagram.com/instasquash" target="_blank">Instagram</a>
+      <a href="https://youtube.com/https://www.youtube.com/channel/UCLs0-yVltyq0_zj5qhVx3Ow" target="_blank">YouTube</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Squash. All Rights Reserved.</p>
+  </footer>
 </body>
-</html>
+</html>.
