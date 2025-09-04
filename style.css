@@ -151,3 +151,91 @@ body.media-page { background: rgb(7,76,200); color: #fff; }
   margin: 2rem auto;
   width: min(1200px, 92vw);
 }
+
+/* === Media page customizations === */
+
+/* Page background + base text colors */
+body.media-page { background: rgb(7,76,200); color: #fff; }
+.media-page .section, 
+.media-page h2, 
+.media-page p { color: #fff; }
+
+/* Keep captions readable on blue background */
+.media-page .media-item p { 
+  color: #111; 
+  background: #f4f4f4; 
+}
+
+/* Larger, side-by-side videos on desktop; responsive down to mobile */
+.media-gallery.media-gallery--wide {
+  max-width: 1400px;
+  grid-template-columns: repeat(3, minmax(340px, 1fr));
+  gap: 1.25rem;
+  margin: 0 auto;
+}
+
+/* Tablet: 2-up */
+@media (max-width: 1100px) {
+  .media-gallery.media-gallery--wide { 
+    grid-template-columns: repeat(2, minmax(320px, 1fr)); 
+  }
+}
+
+/* Mobile: stack */
+@media (max-width: 640px) {
+  .media-gallery.media-gallery--wide { 
+    grid-template-columns: 1fr; 
+  }
+}
+
+/* Divider between sections */
+.section-divider {
+  border: 0;
+  height: 2px;
+  background: rgba(255,255,255,0.65);
+  margin: 2rem auto;
+  width: min(1200px, 92vw);
+}
+
+/* Card polish + reveal animation (matches homepage style) */
+.media-item {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.media-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+}
+.media-item iframe {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border: none;
+  display: block;
+}
+
+/* Reveal states */
+.media-item.reveal { 
+  opacity: 0; 
+  transform: translateY(20px); 
+  transition: opacity .6s ease, transform .6s ease; 
+}
+.media-item.reveal.in { 
+  opacity: 1; 
+  transform: translateY(0); 
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .media-item.reveal { 
+    transition: none; 
+    opacity: 1 !important; 
+    transform: none !important; 
+  }
+}
+
