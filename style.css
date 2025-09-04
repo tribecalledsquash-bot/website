@@ -123,3 +123,31 @@ footer { background: #111; color: #fff; text-align: center; padding: 1rem; margi
 @media (prefers-reduced-motion: reduce) {
   .reveal { transition: none; opacity: 1 !important; transform: none !important; }
 }
+
+/* --- Media page customizations --- */
+body.media-page { background: rgb(7,76,200); color: #fff; }
+.media-page .section, .media-page h2, .media-page p { color: #fff; }
+.media-page .media-item p { color: #111; background: #f4f4f4; }
+
+/* Larger, side-by-side videos on desktop; adaptive breakpoints */
+.media-gallery.media-gallery--wide {
+  max-width: 1400px;
+  grid-template-columns: repeat(3, minmax(340px, 1fr));
+  gap: 1.25rem;
+  margin: 0 auto;
+}
+@media (max-width: 1100px) {
+  .media-gallery.media-gallery--wide { grid-template-columns: repeat(2, minmax(320px, 1fr)); }
+}
+@media (max-width: 640px) {
+  .media-gallery.media-gallery--wide { grid-template-columns: 1fr; }
+}
+
+/* Divider between sections on media page */
+.section-divider {
+  border: 0;
+  height: 2px;
+  background: rgba(255,255,255,0.65);
+  margin: 2rem auto;
+  width: min(1200px, 92vw);
+}
