@@ -3,13 +3,101 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Squash — Official Site</title>
+
+  <!-- Primary SEO -->
+  <title>Squash | Indie Rock Band in Boulder, CO – Live Shows & Music</title>
+  <meta name="description" content="Squash is a Boulder, Colorado indie rock band playing high-energy live shows across the Front Range. Listen to our music, see upcoming shows, and grab tickets." />
+  <link rel="canonical" href="https://www.squashband.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Squash | Indie Rock Band in Boulder, CO" />
+  <meta property="og:description" content="Boulder indie rock band Squash – music, shows, tickets, and media." />
+  <meta property="og:url" content="https://www.squashband.com/" />
+  <meta property="og:image" content="https://www.squashband.com/images/og-cover.jpg" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Squash | Indie Rock Band in Boulder, CO" />
+  <meta name="twitter:description" content="Catch Squash live around Boulder & Denver. Music, shows, and tickets." />
+  <meta name="twitter:image" content="https://www.squashband.com/images/og-cover.jpg" />
+
+  <!-- Favicons (optional; update paths) -->
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Schema.org JSON-LD: Music Group -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MusicGroup",
+    "name": "Squash",
+    "genre": ["Indie Rock", "Jam"],
+    "foundingLocation": {
+      "@type": "City",
+      "name": "Boulder, Colorado"
+    },
+    "url": "https://www.squashband.com/",
+    "image": "https://www.squashband.com/images/og-cover.jpg",
+    "logo": "https://www.squashband.com/images/logo.png",
+    "sameAs": [
+      "https://open.spotify.com/artist/xxxxxxxx", 
+      "https://music.apple.com/artist/xxxxxxxx",
+      "https://www.youtube.com/channel/UCLs0-yVltyq0_zj5qhVx3Ow",
+      "https://instagram.com/instasquash"
+    ]
+  }
+  </script>
+
+  <!-- Schema.org JSON-LD: Example Event (duplicate & edit per show) -->
+  <!--
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MusicEvent",
+    "name": "Squash Live at Fox Theatre",
+    "startDate": "2025-09-18T20:00",
+    "endDate": "2025-09-18T23:00",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "location": {
+      "@type": "Place",
+      "name": "Fox Theatre",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1135 13th St",
+        "addressLocality": "Boulder",
+        "addressRegion": "CO",
+        "postalCode": "80302",
+        "addressCountry": "US"
+      }
+    },
+    "performer": {
+      "@type": "MusicGroup",
+      "name": "Squash",
+      "url": "https://www.squashband.com/"
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.foxtheatre.com/event/squash-tickets",
+      "price": "20",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    }
+  }
+  </script>
+  -->
 </head>
 <body>
   <!-- Fixed Navigation -->
   <header class="navbar" role="banner">
-    <h1 class="site-title">Squash</h1>
+    <!-- Updated H1 for local relevance -->
+    <h1 class="site-title">Squash – Boulder Indie Rock Band</h1>
 
     <!-- Mobile menu button -->
     <button class="nav-toggle" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,9 +117,9 @@
 
   <!-- Hero Section -->
   <section class="hero" aria-label="Hero">
-    <img src="images/0E7620E5-2ED8-4A22-A47A-F951CBDEC398.JPG" alt="Band performing on stage" />
+    <img src="images/0E7620E5-2ED8-4A22-A47A-F951CBDEC398.JPG" alt="Squash, a Boulder indie rock band, performing live on stage" />
     <div class="overlay">
-      <h2 data-reveal>Welcome to Squash</h2>
+      <h2 data-reveal>Live Music in Boulder & Beyond</h2>
     </div>
   </section>
 
@@ -40,18 +128,16 @@
     <div class="listen-grid">
       <!-- Left: artwork / image -->
       <figure class="listen-artwork" data-reveal>
-        <img src="Squnction.jpg" alt="Squash album artwork / live photo" />
+        <img src="Squnction.jpg" alt="Squash album Squnction cover art and live photo" />
       </figure>
 
       <!-- Right: heading, album blurb, links -->
       <div class="listen-left" data-reveal>
         <h2 id="music-heading">Listen</h2>
         <p class="album-blurb">
-          Our first album "Squnction" is out now! Streaming on all platforms, this album ranges through the genre spectrum. From indie 
-          rock inspired songs like <em>Fifty Five Degrees</em> and <em>Save Your Words</em>, to the latin samba <em>El Zopenco</em>, among bluegrass and squankin' funk jams 
-          featured on <em>If You Want</em> and the title track. This debut record was produced, recorded, mixed and mastered by Mason Walker at The Moat 
-          studio in Boulder Colorado. We had loads of fun creating this album, and cannot wait to share even more of our music in the future. In the mean
-          time, check us out live to hear these songs, as well as plenty of new music not yet recorded!
+          Our first album <strong>Squnction</strong> is out now! We’re an indie rock band based in <strong>Boulder, Colorado</strong>, playing shows across the Front Range—Boulder, Denver, and beyond. From indie rock tracks like
+          <em>Fifty Five Degrees</em> and <em>Save Your Words</em> to the Latin samba <em>El Zopenco</em>, plus bluegrass and squankin’ funk jams on
+          <em>If You Want</em> and the title track—produced and recorded at The Moat Studio in Boulder. Catch us live for new, unreleased songs.
         </p>
         <div class="links">
           <a class="btn" href="https://open.spotify.com/album/3iAGatLge2nioxcbvdWhTF" target="_blank" rel="noopener">Spotify</a>
@@ -69,13 +155,15 @@
       <div class="about-left" data-reveal>
         <h2 id="about-heading">About Us</h2>
         <p>
-          We are Squash, an indie-jam band from Boulder, CO. Our music blends the classic improvisational rock techniques with modern indie-rock songwriting. Created by two brothers in 2022, Squash aims to merge a goofy stage presence with masterfully coordinated musicality. The live shows are never done the same way twice!
+          We are Squash, an indie-jam band from <strong>Boulder, CO</strong>. Our music blends classic improvisational rock with modern indie-rock songwriting.
+          Founded by two brothers in 2022, our shows around Boulder and Denver bring a playful stage presence with tightly arranged musicianship.
+          No two live sets are the same—come see why we’re one of the most fun <em>bands in Boulder</em>.
         </p>
       </div>
 
       <!-- Right: image -->
       <figure class="about-artwork" data-reveal>
-        <img src="donkeyjesus.jpg" alt="Squash band press photo" />
+        <img src="donkeyjesus.jpg" alt="Squash band press photo, Boulder Colorado indie rock group" />
       </figure>
     </div>
   </section>
