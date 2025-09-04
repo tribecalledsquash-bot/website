@@ -3,7 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Shows — Squash</title>
+  <title>Shows – Squash | Live Music in Boulder, CO</title>
+
+  <!-- SEO -->
+  <meta name="description" content="See upcoming Squash shows in Boulder, Denver, and across Colorado. Dates, venues, and tickets for Boulder indie rock band Squash." />
+  <link rel="canonical" href="https://www.squashband.com/shows.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Squash Shows | Boulder Indie Rock" />
+  <meta property="og:description" content="Upcoming concerts and tickets for Squash, a Boulder-based indie rock band." />
+  <meta property="og:url" content="https://www.squashband.com/shows.html" />
+  <meta property="og:image" content="https://www.squashband.com/images/og-cover.jpg" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Squash Shows | Boulder Indie Rock" />
+  <meta name="twitter:description" content="Catch Squash live — dates, venues, tickets." />
+  <meta name="twitter:image" content="https://www.squashband.com/images/og-cover.jpg" />
+
   <link rel="stylesheet" href="style.css" />
   <style>
     /* --- Shows page (kept local like media.html's inline styles) --- */
@@ -151,30 +170,39 @@
 
   <script>
     // --- Edit your shows here ---
-    // date: ISO (YYYY-MM-DD)
-    // title: Show title / venue
-    // location: City, ST
+    // date: ISO (YYYY-MM-DD) or ISO datetime (YYYY-MM-DDTHH:MM in 24h; optional local time)
+    // title: Show title (you can include the venue here, or use venueName below)
+    // location: Freeform fallback text for display (e.g., "Boulder, CO – Fox Theatre")
     // tickets: URL for tickets (omit or set to "" if free)
     // free: true to show "Free" instead of a button
+    // Optional (recommended for richer schema):
+    //   venueName: "Fox Theatre"
+    //   city: "Boulder", region: "CO", postalCode: "80302", country: "US"
+    //   endTime: "23:00" (24h) to build an endDate for schema
     const SHOWS = [
-      { date: "2025-09-13", title: "Lolita's", location: "Boulder, CO - Lolita's on West Pearl St.", free: true },
-      { date: "2025-10-19", title: "Jarty", location: "Contact for Address", free: true },
-      { date: "2025-10-09", title: "Fox Theatre! - Use code SQUASH for discount", location: "Boulder, CO ", tickets: "https://tix.axs.com/DrsuCQAAAADLMp%2bUAAAAAAD9%2fv%2f%2f%2fwD%2f%2f%2f%2f%2fBXRoZW1lAP%2f%2f%2f%2f%2f%2f%2f%2f%2f%2f/shop/restrictions?axssid=token_0e31593076c1&locale=en-US&originalReferringURL=&skin=foxtheatre&_gl=1*tu7imo*_gcl_au*MTM0NjM0MDI4Ny4xNzU2NDkxMDk2LjEyNzE1NTQ1NjkuMTc1NjQ5MTE2OS4xNzU2NDkxMTY4*FPAU*MTEzNzI0MTA1OC4xNzU2NDkxMDgz*_ga*MTgzNzI5OTcwNC4xNzU2NDkxMDk2*_ga_D0FS4F37VT*czE3NTY0OTYxMjIkbzIkZzAkdDE3NTY0OTYxMjIkajYwJGwwJGgxMDY2MzkxMjI2*_fplc*eHNGQ25oWUZQTWolMkJ2WUZoJTJGTTJRdmRZQ1RZV0ZDU0JDJTJGVGVnbEtoWGdlZnBMRkVjMVBVa1RsODE1M3dreDg2bzc4c2UyeURmc0lIT0VqRjFYZFBWbnBXRDZ4R1dqeiUyQnI2WnZmUDAlMkJoeFZETW5UeXdqdWpSUGJVYkhrQkc2ZyUzRCUzRA..*_ga_5B364S9DNL*czE3NTY0OTYxMjIkbzIkZzAkdDE3NTY0OTYxMjIkajYwJGwwJGgw" },
-      { date: "2025-10-17", title: "Roots Music Festival", location: "1904 Pearl Street - 7:00 pm", free: true },
-      { date: "2025-10-30", title: "Halloweekend House Show", location: "2002 Baseline Rd., Boulder, CO", free: true },
-      
+      { date: "2025-09-13", title: "Lolita's", location: "Boulder, CO – Lolita's on West Pearl St.", free: true, venueName: "Lolita's on West Pearl St.", city: "Boulder", region: "CO", country: "US" },
+      { date: "2025-10-09T20:00", title: "Fox Theatre! — Use code SQUASH for discount", location: "Boulder, CO", tickets: "https://tix.axs.com/DrsuCQAAAADLMp%2bUAAAAAAD9%2fv%2f%2f%2f%2f%2fBXRoZW1lAP%2f%2f%2f%2f%2f%2f%2f%2f%2f%2f/shop/restrictions?axssid=token_0e31593076c1", venueName: "Fox Theatre", city: "Boulder", region: "CO", postalCode: "80302", country: "US", endTime: "23:00" },
+      { date: "2025-10-17T19:00", title: "Roots Music Festival", location: "1904 Pearl Street – 7:00 pm", free: true, venueName: "Roots Music Festival", city: "Boulder", region: "CO", country: "US", endTime: "22:00" },
+      { date: "2025-10-19", title: "Jarty", location: "Contact for Address", free: true, city: "Boulder", region: "CO", country: "US" },
+      { date: "2025-10-30", title: "Halloweekend House Show", location: "2002 Baseline Rd., Boulder, CO", free: true, venueName: "House Show", city: "Boulder", region: "CO", country: "US" }
       // Add more here...
     ];
 
-    // Utility: format date parts
+    // Utility: format date parts for the UI
     const MONTHS = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
-
     function mkEl(tag, cls, text) {
       const el = document.createElement(tag);
       if (cls) el.className = cls;
       if (text != null) el.textContent = text;
       return el;
     }
+    function parseISODate(val) {
+      // Accept "YYYY-MM-DD" or "YYYY-MM-DDTHH:MM"
+      // Create date in local time to match how you'll present it
+      const d = val.includes("T") ? new Date(val) : new Date(val + "T00:00");
+      return isNaN(d.valueOf()) ? null : d;
+    }
+    function pad2(n){ return String(n).padStart(2,"0"); }
 
     function renderShows() {
       const wrap = document.getElementById("shows-wrap");
@@ -183,26 +211,31 @@
       const today = new Date();
       today.setHours(0,0,0,0);
 
-      // Sort ascending, and keep upcoming (>= today)
-      const upcoming = SHOWS
-        .map(s => ({ ...s, _date: new Date(s.date + "T00:00:00") }))
-        .filter(s => !isNaN(s._date.valueOf()) && s._date >= today)
+      // Normalize, filter upcoming, sort ascending
+      const normalized = SHOWS
+        .map(s => ({ ...s, _date: parseISODate(s.date) }))
+        .filter(s => s._date) // valid dates only
+        .filter(s => s._date >= today)
         .sort((a, b) => a._date - b._date);
 
-      if (upcoming.length === 0) {
+      if (normalized.length === 0) {
         const empty = mkEl("p", null, "No upcoming shows — check back soon!");
         empty.style.textAlign = "center";
         empty.style.opacity = "0.9";
         wrap.appendChild(empty);
+        // Also ensure we clear schema if no shows
+        injectEventSchema([]);
         return;
       }
 
-      upcoming.forEach(show => {
+      normalized.forEach(show => {
         const card = mkEl("article", "show-card");
-        card.setAttribute("aria-label", `${show.title} in ${show.location} on ${show._date.toDateString()}`);
+        const d = show._date;
+
+        card.setAttribute("aria-label",
+          `${show.title} in ${show.location || show.city || ""} on ${d.toDateString()}`);
 
         // Date block
-        const d = show._date;
         const dateBox = mkEl("div", "show-date");
         dateBox.appendChild(mkEl("span", "month", MONTHS[d.getMonth()]));
         dateBox.appendChild(mkEl("span", "day", String(d.getDate())));
@@ -211,7 +244,8 @@
         // Info
         const info = mkEl("div", "show-info");
         const h3 = mkEl("h3", null, show.title);
-        const loc = mkEl("div", "loc", show.location);
+        const locTxt = show.location || [show.city, show.region].filter(Boolean).join(", ");
+        const loc = mkEl("div", "loc", locTxt || "");
         info.appendChild(h3);
         info.appendChild(loc);
 
@@ -224,10 +258,9 @@
           a.href = show.tickets;
           a.target = "_blank";
           a.rel = "noopener";
-          a.ariaLabel = `Buy tickets for ${show.title}`;
+          a.setAttribute("aria-label", `Buy tickets for ${show.title}`);
           action.appendChild(a);
         } else {
-          // No info provided; default to "Info soon"
           const soon = mkEl("span", "free-pill", "Info soon");
           soon.style.background = "#fff7e6";
           soon.style.borderColor = "#ffe0a8";
@@ -238,9 +271,98 @@
         card.appendChild(dateBox);
         card.appendChild(info);
         card.appendChild(action);
-
         wrap.appendChild(card);
       });
+
+      // Inject JSON-LD schema for upcoming shows
+      injectEventSchema(normalized);
+    }
+
+    // Build & inject schema.org MusicEvent JSON-LD for upcoming shows
+    function injectEventSchema(upcoming) {
+      // Remove any existing injected schema block
+      const prev = document.getElementById("event-schema");
+      if (prev) prev.remove();
+
+      const events = upcoming.map(s => {
+        const start = s._date;
+        const hasTime = s.date.includes("T");
+        // Compute endDate if endTime provided, else +3 hours when a start time exists
+        let endDate = null;
+        if (s.endTime && hasTime) {
+          const [hh, mm = "00"] = s.endTime.split(":");
+          const end = new Date(start);
+          end.setHours(parseInt(hh,10), parseInt(mm,10), 0, 0);
+          if (end <= start) end.setHours(end.getHours() + 3); // ensure after start
+          endDate = end.toISOString().slice(0,16);
+        } else if (hasTime) {
+          const end = new Date(start);
+          end.setHours(end.getHours() + 3);
+          endDate = end.toISOString().slice(0,16);
+        }
+
+        // Location/address — prefer explicit fields, else try to parse "City, ST" from location
+        let addressLocality = s.city || "";
+        let addressRegion   = s.region || "";
+        let postalCode      = s.postalCode || "";
+        let addressCountry  = s.country || "US";
+        if ((!addressLocality || !addressRegion) && s.location) {
+          const m = s.location.match(/([A-Za-z .'-]+),\s*([A-Z]{2})(?![A-Za-z])/);
+          if (m) {
+            addressLocality = addressLocality || m[1].trim();
+            addressRegion   = addressRegion   || m[2].trim();
+          }
+        }
+
+        // Offer object (Free vs Tickets)
+        const offers = s.free
+          ? { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock" }
+          : (s.tickets
+              ? { "@type": "Offer", "url": s.tickets, "priceCurrency": "USD", "availability": "https://schema.org/InStock" }
+              : undefined);
+
+        const eventObj = {
+          "@type": "MusicEvent",
+          "name": s.title,
+          "startDate": hasTime
+            ? start.toISOString().slice(0,16)
+            : `${start.getFullYear()}-${pad2(start.getMonth()+1)}-${pad2(start.getDate())}T20:00`, // default 8pm if date only
+          "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+          "eventStatus": "https://schema.org/EventScheduled",
+          "location": {
+            "@type": "Place",
+            "name": s.venueName || s.title,
+            "address": {
+              "@type": "PostalAddress",
+              ...(addressLocality ? { "addressLocality": addressLocality } : {}),
+              ...(addressRegion ? { "addressRegion": addressRegion } : {}),
+              ...(postalCode ? { "postalCode": postalCode } : {}),
+              ...(addressCountry ? { "addressCountry": addressCountry } : {})
+            }
+          },
+          "performer": {
+            "@type": "MusicGroup",
+            "name": "Squash",
+            "url": "https://www.squashband.com/"
+          }
+        };
+
+        if (endDate) eventObj.endDate = endDate;
+        if (offers)  eventObj.offers  = offers;
+
+        return eventObj;
+      });
+
+      const jsonld = {
+        "@context": "https://schema.org",
+        "@graph": events
+      };
+
+      const script = document.createElement("script");
+      script.type = "application/ld+json";
+      script.id = "event-schema";
+      script.text = JSON.stringify(jsonld);
+      document.head.appendChild(script);
     }
 
     renderShows();
