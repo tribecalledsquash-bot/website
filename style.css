@@ -154,19 +154,58 @@ body {
   .listen-left { text-align: center; }
 }
 
-/* About Section */
-.about-section { text-align: left; }
-.about-content {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 2rem;
-  justify-content: center;
+/* === About section: match listen layout === */
+.about-section {
+  padding: 5rem 2rem;
 }
-.about-text { flex: 1 1 300px; }
-.about-image { flex: 1 1 300px; }
-.about-image img { width: 100%; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.about-left { text-align: left; }
+.about-left p {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  margin: .75rem 0 1.25rem;
+  color: #222;
+}
+.about-artwork { margin: 0; }
+.about-artwork img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 14px;
+  box-shadow: 0 14px 40px rgba(0,0,0,0.22);
+}
+@media (max-width: 1000px) {
+  .about-grid { grid-template-columns: 1fr; max-width: 900px; }
+  .about-left { text-align: center; }
+}
 
+/* === About section background === */
+.about-section {
+  background: linear-gradient(180deg, #f4f4f4 0%, #e6e6e6 100%);
+}
+
+/* === About section dividers === */
+.about-section {
+  border-top: 2px solid rgba(0,0,0,0.08);
+  border-bottom: 2px solid rgba(0,0,0,0.08);
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+/* === Listen section dividers === */
+.listen-section {
+  border-top: 2px solid rgba(255,255,255,0.25);
+  border-bottom: 2px solid rgba(255,255,255,0.25);
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
 /* Links (music + socials) */
 .links a {
   display: inline-block; margin: .5rem; padding: .75rem 1.25rem; background: #222; color: #fff; border-radius: 5px; text-decoration: none; transition: background .3s;
