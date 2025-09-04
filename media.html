@@ -5,6 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Media — Squash</title>
   <link rel="stylesheet" href="style.css" />
+
+  <link rel="stylesheet" href="style.css" />
+<style>
+  /* --- Photo collage (masonry-like) --- */
+  .photo-collage { padding: 1rem 0 3rem; }
+  .photo-collage h3 { text-align: center; margin: 0 0 1rem; color: #fff; }
+
+  .media-collage {
+    column-count: 3;
+    column-gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  .media-collage figure {
+    break-inside: avoid;
+    margin: 0 0 1rem 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    background: #fff;
+  }
+  .media-collage img { width: 100%; height: auto; display: block; }
+  .media-collage figcaption { font-size: 0.85rem; padding: 0.5rem 0.75rem; color: #111; }
+
+  @media (max-width: 1000px) { .media-collage { column-count: 2; } }
+  @media (max-width: 640px)  { .media-collage { column-count: 1; } }
+</style>
+
 </head>
 <body class="media-page">
   <!-- Navbar -->
@@ -45,6 +74,35 @@
     <h2>Media</h2>
     <p>Photos and videos coming soon! This page will host a gallery of live performances, behind-the-scenes shots, and official music videos.</p>
   </main>
+<section class="photo-collage" aria-labelledby="photos-heading">
+  <h3 id="photos-heading">Photos</h3>
+  <div class="media-collage">
+    <figure>
+      <img src="C39A1383.JPG" alt="Photo C39A1383" loading="lazy" />
+    </figure>
+    <figure>
+      <img src="C39A1449.JPG" alt="Photo C39A1449" loading="lazy" />
+    </figure>
+    <figure>
+      <img src="C39A1486.JPG" alt="Photo C39A1486" loading="lazy" />
+    </figure>
+    <figure>
+      <img src="DSC06183.JPG" alt="Photo DSC06183" loading="lazy" />
+    </figure>
+    <figure>
+      <img src="DSC06185.JPG" alt="Photo DSC06185" loading="lazy" />
+    </figure>
+    <figure>
+      <img src="DSC06188.JPG" alt="Photo DSC06188" loading="lazy" />
+    </figure>
+    <figure>
+      <img src="FFDE67D7-61F2-4244-90A1-F7F8FF32454D.JPG" alt="Photo FFDE67D7-61F2-4244-90A1-F7F8FF32454D" loading="lazy" />
+    </figure>
+    <figure>
+      <img src="IMG_2658.JPG" alt="Photo IMG_2658" loading="lazy" />
+    </figure>
+  </div>
+</section>
 
   <!-- Footer -->
   <footer>
