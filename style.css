@@ -231,6 +231,41 @@ body.media-page { background: rgb(7,76,200); color: #fff; }
 }
 
 /* =========================
+   Shows Page Styles
+   ========================= */
+body.shows-page { background: #fafafa; color: #222; }
+
+.shows-section { max-width: 900px; margin: 0 auto; text-align: left; }
+
+.shows-list { list-style: none; margin: 2rem 0; padding: 0; }
+
+.show-item {
+  display: flex;
+  gap: 1.5rem;
+  border-bottom: 1px solid #ddd;
+  padding: 1rem 0;
+  align-items: center;
+}
+.show-date {
+  flex: 0 0 150px;
+  font-weight: bold;
+  color: #0d3d75;
+}
+.show-info { flex: 1; }
+.show-title { font-size: 1.2rem; margin-bottom: .25rem; }
+.show-location { margin-bottom: .5rem; color: #555; }
+.free-show { font-weight: bold; color: #2f8f2f; }
+
+.show-item .btn {
+  background: #0d3d75;
+  color: #fff;
+  padding: .5rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+}
+.show-item .btn:hover { background: #1251a6; }
+
+/* =========================
    Responsive
    ========================= */
 @media (max-width: 1000px) {
