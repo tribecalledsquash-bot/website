@@ -21,7 +21,7 @@
     <nav id="primary-nav" class="primary-nav" role="navigation">
       <a href="#music">Music</a>
       <a href="#about">About</a>
-      <a href="#media">Media</a>
+      <a href="media.html">Media</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
@@ -54,16 +54,12 @@
         </p>
       </div>
       <div class="about-image" data-reveal>
-        <img src="donkeyjesus.jpg" alt="Squash band press photo" />
+        <img src="images/donkeyjesus.png" alt="Squash band press photo" />
       </div>
     </div>
   </section>
 
-  <!-- Media -->
-  <section id="media" class="section" aria-labelledby="media-heading">
-    <h2 id="media-heading">Media</h2>
-    <p>Photos and videos coming soon!</p>
-  </section>
+  <!-- Media moved to separate page: media.html -->
 
   <!-- Contact -->
   <section id="contact" class="section" aria-labelledby="contact-heading">
@@ -95,13 +91,17 @@
 
       // Scroll spy using IntersectionObserver
       const links = Array.from(document.querySelectorAll('#primary-nav a'));
+      // ONLY hash links become observed sections
       const sections = links
-        .map(a => document.querySelector(a.getAttribute('href')))
+        .map(a => a.getAttribute('href'))
+        .filter(href => href && href.startsWith('#'))
+        .map(href => document.querySelector(href))
         .filter(Boolean);
 
       const setActive = (id) => {
         links.forEach(a => {
-          const match = a.getAttribute('href') === '#' + id;
+          const href = a.getAttribute('href') || '';
+          const match = href === '#' + id;
           a.classList.toggle('active', match);
           a.setAttribute('aria-current', match ? 'page' : 'false');
         });
