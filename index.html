@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+CTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -35,12 +35,31 @@
   </section>
 
   <!-- Music Links -->
+    <!-- Music Links (Listen) -->
   <section id="music" class="section listen-section" aria-labelledby="music-heading">
-    <h2 id="music-heading">Listen</h2>
-    <div class="links">
-      <a class="btn" data-reveal href="https://open.spotify.com/album/3iAGatLge2nioxcbvdWhTF" target="_blank" rel="noopener">Spotify</a>
-      <a class="btn" data-reveal href="https://music.apple.com/album/1811306807" target="_blank" rel="noopener">Apple Music</a>
-      <a class="btn" data-reveal href="https://www.youtube.com/channel/UCLs0-yVltyq0_zj5qhVx3Ow" target="_blank" rel="noopener">YouTube</a>
+    <div class="listen-grid">
+      <!-- Left: heading, album blurb, links -->
+      <div class="listen-left" data-reveal>
+        <h2 id="music-heading">Listen</h2>
+        <p class="album-blurb">
+          Our first album "Squnction" is out now! Streaming on all platforms, this album ranges through the genre spectrum. From indie 
+          rock inspired songs like <em>Fifty Five Degrees</em> and <em>Save Your Words</em>, to the latin samba <em>El Zopenco</em>, among bluegrass and squankin' funk jams 
+          featured on <em>If You Want</em> and the title track. This debut record was produced, recorded, mixed and mastered by Mason Walker at The Moat 
+          studio in Boulder Colorado. We had loads of fun creating this album, and cannot wait to share even more of our music in the future. In the mean
+          time, check us out live to hear these songs, as well as plenty of new music not yet recorded!
+        </p>
+        <div class="links">
+          <a class="btn" href="https://open.spotify.com/album/3iAGatLge2nioxcbvdWhTF" target="_blank" rel="noopener">Spotify</a>
+          <a class="btn" href="https://music.apple.com/album/1811306807" target="_blank" rel="noopener">Apple Music</a>
+          <a class="btn" href="https://www.youtube.com/channel/UCLs0-yVltyq0_zj5qhVx3Ow" target="_blank" rel="noopener">YouTube</a>
+        </div>
+      </div>
+
+      <!-- Right: artwork / image -->
+      <figure class="listen-artwork" data-reveal>
+        <img src="Squnction.jpg" alt="Squash album artwork / live photo" />
+        <figcaption class="visually-hidden">Album artwork and band photo</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -58,8 +77,6 @@
       </div>
     </div>
   </section>
-
-  <!-- Media moved to separate page: media.html -->
 
   <!-- Contact -->
   <section id="contact" class="section" aria-labelledby="contact-heading">
@@ -91,7 +108,6 @@
 
       // Scroll spy using IntersectionObserver
       const links = Array.from(document.querySelectorAll('#primary-nav a'));
-      // ONLY hash links become observed sections
       const sections = links
         .map(a => a.getAttribute('href'))
         .filter(href => href && href.startsWith('#'))
@@ -117,7 +133,7 @@
 
       sections.forEach(sec => observer.observe(sec));
 
-      // ---- Reveal-on-scroll animations ----
+      // Reveal-on-scroll animations
       const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -130,7 +146,7 @@
       const revealEls = document.querySelectorAll('[data-reveal]');
       revealEls.forEach((el, i) => {
         el.classList.add('reveal');
-        el.style.transitionDelay = (i % 6) * 60 + 'ms'; // gentle stagger
+        el.style.transitionDelay = (i % 6) * 60 + 'ms';
         revealObserver.observe(el);
       });
     })();
