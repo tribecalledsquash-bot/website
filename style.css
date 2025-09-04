@@ -54,6 +54,8 @@ body {
 /* Sections */
 .section { padding: 3rem 2rem; text-align: center; }
 .section h2 { margin-bottom: 1rem; font-size: 2rem; }
+
+
 /* Listen Section */
 .listen-section {
   background: linear-gradient(180deg, #2f8f2f 0%, #3fa34d 100%);
@@ -138,6 +140,12 @@ body {
   box-shadow: 0 14px 40px rgba(0,0,0,0.22);
 }
 
+/* Simple visually-hidden utility */
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+@media (max-width: 1000px) {
+  .listen-grid { grid-template-columns: 1fr; max-width: 900px; }
+  .listen-left { text-align: center; }
 /* Simple visually-hidden utility */
 .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 
