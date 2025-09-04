@@ -22,17 +22,60 @@
   <main class="section" id="media">
     <h2>Media</h2>
     <p>Photos and videos coming soon! This page will host a gallery of live performances, behind-the-scenes shots, and official music videos.</p>
-    <!-- Placeholder for future gallery -->
-    <div class="media-gallery">
-      <div class="media-item">Sample Image 1</div>
-      <div class="media-item">Sample Image 2</div>
-      <div class="media-item">Sample Video 1</div>
-    </div>
+
+    <!-- From the Yard Section -->
+    <section class="from-yard">
+      <h2>From the Yard</h2>
+      <div class="media-gallery">
+        <div class="media-item">
+          <iframe src="https://www.youtube.com/embed/vw5e_F_GGUU" title="From the Yard — Cassidy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <p>From the Yard — Cassidy</p>
+        </div>
+        <div class="media-item">
+          <iframe src="https://www.youtube.com/embed/oGdDdqFPylQ" title="From the Yard — Take Me Home" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <p>From the Yard — Take Me Home</p>
+        </div>
+        <div class="media-item">
+          <iframe src="https://www.youtube.com/embed/Gzl34Ru-kbw" title="From the Yard — Fifty Five Degrees" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <p>From the Yard — Fifty Five Degrees</p>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- Footer -->
   <footer>
     <p>© 2025 Squash. All Rights Reserved.</p>
   </footer>
+
+  <script>
+    // Reveal-on-scroll for media items (accessible & dependency-free)
+    (function(){
+      var items = Array.prototype.slice.call(document.querySelectorAll('.media-item'));
+      if (!items.length) return;
+
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) {
+        items.forEach(function(el){ el.classList.remove('reveal'); el.classList.add('in'); });
+        return;
+      }
+
+      items.forEach(function(el){ el.classList.add('reveal'); });
+
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -10% 0px' });
+
+      items.forEach(function(el, i){
+        el.style.transitionDelay = (i % 6) * 80 + 'ms';
+        io.observe(el);
+      });
+    })();
+  </script>
 </body>
 </html>
