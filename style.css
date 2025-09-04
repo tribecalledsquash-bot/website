@@ -127,7 +127,8 @@ body {
    About (matches Listen layout)
    ========================= */
 .about-section {
-  background: linear-gradient(180deg, #f4f4f4 0%, #e6e6e6 100%);
+  /* Dark sky-blue background per request */
+  background: #0d3d75;
   border-top: 2px solid rgba(0,0,0,0.08);
   border-bottom: 2px solid rgba(0,0,0,0.08);
   padding-top: 6rem;
@@ -144,11 +145,20 @@ body {
 }
 
 .about-left { text-align: left; }
+
+/* Brighter heading on dark background */
+.about-left h2 {
+  color: #e0f2ff;
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
+}
+
+/* Larger body copy on dark background */
 .about-left p {
-  font-size: 1.05rem;
-  line-height: 1.75;
+  font-size: 1.25rem;
+  line-height: 1.9;
   margin: .75rem 0 1.25rem;
-  color: #222;
+  color: #fff;
 }
 
 .about-artwork { margin: 0; }
