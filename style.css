@@ -165,28 +165,32 @@ body.media-page { background: rgb(7,76,200); color: #fff; }
   color: #111; 
   background: #f4f4f4; 
 }
-
-/* Larger, side-by-side videos on desktop; responsive down to mobile */
+/* --- Media gallery wide layout --- */
 .media-gallery.media-gallery--wide {
-  max-width: 1400px;
-  grid-template-columns: repeat(3, minmax(340px, 1fr));
-  gap: 1.25rem;
+  display: grid; /* ensure grid layout */
+  grid-template-columns: repeat(3, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 1100px;   /* cap width so videos don’t get too large */
   margin: 0 auto;
+  padding: 0 1rem 2rem;
 }
 
 /* Tablet: 2-up */
-@media (max-width: 1100px) {
-  .media-gallery.media-gallery--wide { 
-    grid-template-columns: repeat(2, minmax(320px, 1fr)); 
+@media (max-width: 1000px) {
+  .media-gallery.media-gallery--wide {
+    grid-template-columns: repeat(2, minmax(260px, 1fr));
+    max-width: 900px;
   }
 }
 
 /* Mobile: stack */
 @media (max-width: 640px) {
-  .media-gallery.media-gallery--wide { 
-    grid-template-columns: 1fr; 
+  .media-gallery.media-gallery--wide {
+    grid-template-columns: 1fr;
+    max-width: 100%;
   }
 }
+
 
 /* Divider between sections */
 .section-divider {
