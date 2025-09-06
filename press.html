@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Press Kit — Squash</title>
+  <meta name="description" content="Squash official electronic press kit (EPK): bios, high-res photos, music, video, press quotes, stage plot, tech rider, and booking info." />
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Press Kit — Squash" />
+  <meta property="og:description" content="EPK: bios, high-res photos, music, video, press quotes, stage plot, tech rider, and booking info." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/og/press-og.jpg" />
+  <meta property="og:url" content="https://yoursite.com/press.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- JSON-LD: MusicGroup w/ sameAs links (update as needed) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MusicGroup",
+    "name": "Squash",
+    "url": "https://yoursite.com",
+    "image": "https://yoursite.com/assets/photos/promo-1.jpg",
+    "genre": ["Indie Rock"],
+    "foundingLocation": "Your City, State",
+    "sameAs": [
+      "https://instagram.com/yourband",
+      "https://youtube.com/@yourband",
+      "https://open.spotify.com/artist/your-id",
+      "https://bandcamp.com/yourband"
+    ],
+    "member": [
+      {"@type":"Person","name":"Member One"},
+      {"@type":"Person","name":"Member Two"}
+    ]
+  }
+  </script>
+
+  <style>
+    /* Page-local styles that complement your style.css */
+    body.press-page { background:#0a0a0a; color:#fff; }
+    .press-hero { text-align:center; padding:2.5rem 1rem 0; }
+    .press-hero h1 { font-size:2.25rem; color:#fff; letter-spacing:.5px; }
+    .press-hero p { opacity:.9; margin-top:.25rem; }
+    .press-wrap { max-width:1100px; margin:0 auto; padding:1rem 1rem 3rem; }
+    .press-grid { display:grid; grid-template-columns:1fr; gap:1.25rem; }
+    @media (min-width: 880px){ .press-grid { grid-template-columns: 1fr 1fr; } }
+    section.press-card {
+      background:#111; border:1px solid #222; border-radius:14px;
+      padding:1rem 1rem 1.25rem; box-shadow:0 8px 24px rgba(0,0,0,.25);
+    }
+    section.press-card h2 { font-size:1.1rem; letter-spacing:.4px; margin-bottom:.5rem; }
+    .muted { opacity:.8; }
+    .btn {
+      display:inline-block; border-radius:999px; padding:.5rem .9rem; line-height:1;
+      border:1px solid #444; text-decoration:none; color:#fff; transition:.2s;
+    }
+    .btn:hover { transform:translateY(-1px); border-color:#666; }
+    .btn-ghost { background:transparent; }
+    .btn-solid { background:#2b6ef3; border-color:#2b6ef3; }
+    .inline-actions { display:flex; gap:.5rem; flex-wrap:wrap; margin:.5rem 0 0; }
+    .media-grid { display:grid; grid-template-columns:1fr 1fr; gap:.5rem; }
+    @media (min-width: 720px){ .media-grid { grid-template-columns: repeat(3, 1fr); } }
+    .media-grid a { position:relative; border-radius:10px; overflow:hidden; border:1px solid #222; }
+    .media-grid img { width:100%; height:100%; object-fit:cover; display:block; }
+    .pill { font-size:.8rem; padding:.25rem .6rem; border:1px solid #333; border-radius:999px; display:inline-block; }
+    .stack { display:flex; flex-direction:column; gap:.5rem; }
+    details { background:#0d0d0d; border:1px solid #222; border-radius:10px; padding:.6rem .75rem; }
+    details summary { cursor:pointer; list-style:none; }
+    details summary::-webkit-details-marker { display:none; }
+    .two-col { columns:1; column-gap:2rem; }
+    @media (min-width: 880px){ .two-col { columns:2; } }
+    .list { margin:.5rem 0 0; padding-left:1rem; }
+    .list li { margin:.2rem 0; }
+    .press-quotes blockquote { border-left:3px solid #333; padding:.5rem .75rem; margin:.5rem 0; background:#0e0e0e; border-radius:6px; }
+    .kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; font-size:.9em; background:#161616; border:1px solid #2a2a2a; padding:.1rem .35rem; border-radius:5px; }
+    .small { font-size:.92rem; }
+  </style>
+</head>
+
+<body class="press-page">
+  <!-- If your site uses a fixed navbar, include it here or rely on your shared index navbar via server includes -->
+  <header class="press-hero" role="banner" aria-label="Press Kit Hero">
+    <p class="pill">Electronic Press Kit</p>
+    <h1>Squash — Press Kit</h1>
+    <p class="muted small">Everything promoters, venues, and media need — bios, photos, music, video, quotes, and tech info.</p>
+    <div class="inline-actions" aria-label="Quick actions">
+      <a class="btn btn-solid" href="assets/one-sheet/Squash-OneSheet.pdf" download>Download One-Sheet (PDF)</a>
+      <button class="btn btn-ghost" id="copyEmailBtn" type="button" aria-label="Copy booking email">Copy Booking Email</button>
+    </div>
+  </header>
+
+  <main class="press-wrap" role="main">
+    <div class="press-grid">
+      <!-- BIO -->
+      <section class="press-card" id="bio" aria-labelledby="bio-title">
+        <h2 id="bio-title">Band Bio</h2>
+        <div class="stack">
+          <details open>
+            <summary><strong>Short</strong> — 1–2 sentences</summary>
+            <p class="muted">Squash is an indie-rock outfit from Your City blending angular guitars with elastic rhythms and big-hearted hooks.</p>
+          </details>
+          <details>
+            <summary><strong>Medium</strong> — 1 paragraph</summary>
+            <p class="muted">Formed in 20XX, Squash pairs wiry post-punk textures with sing-along choruses, landing somewhere between energy and elegance. Their 2025 EP <em>Golden Hour Parking Lot</em> captures the band’s kinetic live feel and tender storytelling.</p>
+          </details>
+          <details>
+            <summary><strong>Full</strong> — 3–5 paragraphs</summary>
+            <div class="two-col muted">
+              <p>Write your full narrative here: origins, influences, milestones, tours, studio highlights, and what’s next. Keep paragraphs tight and fact-rich.</p>
+              <p>Add key moments (festivals, radio play, supports), notable collaborators, and a sentence on your current release cycle.</p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- PHOTOS -->
+      <section class="press-card" id="photos" aria-labelledby="photos-title">
+        <h2 id="photos-title">High-Res Photos</h2>
+        <p class="muted small">Click to preview; use the download links for full-resolution files.</p>
+        <div class="media-grid" aria-label="Photo thumbnails">
+          <a href="assets/photos/promo-1-full.jpg" download>
+            <img src="assets/photos/promo-1.jpg" alt="Squash promo photo 1" loading="lazy" />
+          </a>
+          <a href="assets/photos/promo-2-full.jpg" download>
+            <img src="assets/photos/promo-2.jpg" alt="Squash promo photo 2" loading="lazy" />
+          </a>
+          <a href="assets/photos/live-1-full.jpg" download>
+            <img src="assets/photos/live-1.jpg" alt="Squash live photo 1" loading="lazy" />
+          </a>
+        </div>
+        <div class="inline-actions">
+          <a class="btn btn-ghost" href="assets/photos/Squash-Press-Photos.zip" download>Download All (ZIP)</a>
+          <a class="btn btn-ghost" href="assets/logos/Squash-Logos.zip" download>Logos / Wordmarks (ZIP)</a>
+        </div>
+      </section>
+
+      <!-- MUSIC -->
+      <section class="press-card" id="music" aria-labelledby="music-title">
+        <h2 id="music-title">Listen</h2>
+        <div class="stack">
+          <!-- Replace with your real embeds -->
+          <iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/placeholder" width="100%" height="152" frameborder="0" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"></iframe>
+          <iframe style="border:0; width:100%; height:120px;" src="https://bandcamp.com/EmbeddedPlayer/album=0000/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/artwork=small/transparent=true/" seamless loading="lazy"><a href="https://yourband.bandcamp.com">Bandcamp</a></iframe>
+          <p class="muted small">Prefer WAV/AIFF? <a class="btn btn-ghost" href="assets/audio/Squash-Press-Audio.zip" download>Download Press Audio (ZIP)</a></p>
+        </div>
+      </section>
+
+      <!-- VIDEO -->
+      <section class="press-card" id="video" aria-labelledby="video-title">
+        <h2 id="video-title">Video</h2>
+        <div class="stack">
+          <div class="responsive-video" style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:12px; border:1px solid #222;">
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Squash — Official Video" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;" loading="lazy"></iframe>
+          </div>
+          <div class="responsive-video" style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:12px; border:1px solid #222;">
+            <iframe src="https://www.youtube.com/embed/LIVE_CLIP_ID" title="Squash — Live" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;" loading="lazy"></iframe>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRESS QUOTES -->
+      <section class="press-card press-quotes" id="press" aria-labelledby="press-title">
+        <h2 id="press-title">Press Quotes</h2>
+        <blockquote>
+          <p>“Big-hearted indie with bite — the kind of choruses that stick for days.”</p>
+          <cite class="muted small">— Cool Blog</cite>
+        </blockquote>
+        <blockquote>
+          <p>“A whip-smart live band with clockwork chemistry.”</p>
+          <cite class="muted small">— Local Weekly</cite>
+        </blockquote>
+        <div class="inline-actions">
+          <a class="btn btn-ghost" href="assets/press/Squash-Press-Clips.pdf" download>Download Press Clips (PDF)</a>
+          <a class="btn btn-ghost" href="assets/press/Squash-PressRelease-EP.pdf" download>Latest Press Release (PDF)</a>
+        </div>
+      </section>
+
+      <!-- SHOW HISTORY / HIGHLIGHTS -->
+      <section class="press-card" id="highlights" aria-labelledby="highlights-title">
+        <h2 id="highlights-title">Highlights</h2>
+        <ul class="list muted">
+          <li>Opened for <em>Notable Act</em> at <em>Famous Venue</em> (2025)</li>
+          <li><em>Festival Name</em> Official Showcase (2024)</li>
+          <li>Regional airplay on <em>Station X</em> + <em>Station Y</em> (2024–2025)</li>
+        </ul>
+        <p class="small muted" style="margin-top:.5rem;">See <a href="shows.html">upcoming shows</a> for current dates.</p>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="press-card" id="contact" aria-labelledby="contact-title">
+        <h2 id="contact-title">Contact & Social</h2>
+        <div class="stack">
+          <p><strong>Booking:</strong> <a href="mailto:booking@yourband.com" id="bookingEmail">booking@yourband.com</a></p>
+          <p><strong>Press:</strong> <a href="mailto:press@yourband.com">press@yourband.com</a></p>
+          <div class="inline-actions">
+            <a class="btn btn-ghost" href="https://instagram.com/yourband" target="_blank" rel="noopener">Instagram</a>
+            <a class="btn btn-ghost" href="https://tiktok.com/@yourband" target="_blank" rel="noopener">TikTok</a>
+            <a class="btn btn-ghost" href="https://youtube.com/@yourband" target="_blank" rel="noopener">YouTube</a>
+            <a class="btn btn-ghost" href="https://open.spotify.com/artist/your-id" target="_blank" rel="noopener">Spotify</a>
+            <a class="btn btn-ghost" href="https://yourband.bandcamp.com" target="_blank" rel="noopener">Bandcamp</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- TECH -->
+      <section class="press-card" id="tech" aria-labelledby="tech-title">
+        <h2 id="tech-title">Stage Plot & Tech</h2>
+        <p class="muted small">PDFs and PNGs for quick reference.</p>
+        <div class="inline-actions">
+          <a class="btn btn-ghost" href="assets/tech/Squash-StagePlot.pdf" download>Stage Plot (PDF)</a>
+          <a class="btn btn-ghost" href="assets/tech/Squash-TechRider.pdf" download>Tech Rider (PDF)</a>
+          <a class="btn btn-ghost" href="assets/tech/Squash-InputList.pdf" download>Input List (PDF)</a>
+        </div>
+        <details style="margin-top:.6rem;">
+          <summary><strong>Quick Specs</strong> (inline)</summary>
+          <ul class="list muted">
+            <li>4-piece: Drums, Bass (DI), Guitar (amp mic), Vocals</li>
+            <li>Minimum 4 monitor mixes</li>
+            <li>Backline preferred: 22" kick, 4x10 bass cab, 1x12 or 2x12 guitar combo</li>
+          </ul>
+        </details>
+      </section>
+
+      <!-- ASSETS SUMMARY -->
+      <section class="press-card" id="downloads" aria-labelledby="downloads-title">
+        <h2 id="downloads-title">Downloads</h2>
+        <ul class="list">
+          <li><a href="assets/one-sheet/Squash-OneSheet.pdf" download>One-Sheet (PDF)</a></li>
+          <li><a href="assets/photos/Squash-Press-Photos.zip" download>Press Photos (ZIP)</a></li>
+          <li><a href="assets/press/Squash-PressRelease-EP.pdf" download>Press Release (PDF)</a></li>
+          <li><a href="assets/audio/Squash-Press-Audio.zip" download>Audio (WAV/MP3) (ZIP)</a></li>
+          <li><a href="assets/tech/Squash-TechRider.pdf" download>Tech Rider (PDF)</a></li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <footer class="press-wrap" role="contentinfo">
+    <p class="muted small">© <span id="year"></span> Squash. For media inquiries: <a href="mailto:press@yourband.com">press@yourband.com</a>.</p>
+  </footer>
+
+  <script>
+    // Simple helpers
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const copyBtn = document.getElementById('copyEmailBtn');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', async () => {
+        const email = document.getElementById('bookingEmail')?.textContent?.trim() || 'booking@yourband.com';
+        try {
+          await navigator.clipboard.writeText(email);
+          copyBtn.textContent = 'Copied!';
+          setTimeout(() => (copyBtn.textContent = 'Copy Booking Email'), 1400);
+        } catch {
+          alert('Copy failed. Email: ' + email);
+        }
+      });
+    }
+  </script>
+</body>
+</html>
