@@ -239,7 +239,7 @@
   </main>
 
   <footer class="press-wrap" role="contentinfo">
-    <p class="muted small">© <span id="year"></span> Squash. For media inquiries: <a href="mailto:press@yourband.com">press@yourband.com</a>.</p>
+    <p class="muted small">© <span id="year"></span> Squash. For media inquiries: <a href="mailto:tribecalledsquash@gmail.com">tribecalledsquash@gmail.com</a>.</p>
   </footer>
 
   <script>
@@ -248,7 +248,7 @@
     const copyBtn = document.getElementById('copyEmailBtn');
     if (copyBtn) {
       copyBtn.addEventListener('click', async () => {
-        const email = document.getElementById('bookingEmail')?.textContent?.trim() || 'booking@yourband.com';
+        const email = document.getElementById('bookingEmail')?.textContent?.trim() || 'tribecalledsquash@gmail.com';
         try {
           await navigator.clipboard.writeText(email);
           copyBtn.textContent = 'Copied!';
