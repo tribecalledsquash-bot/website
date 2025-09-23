@@ -1,4 +1,103 @@
+
 /* ==================================================
+SQUASH — Retro Theme (global stylesheet)
+================================================== */
+/* Fonts (90s/arcade vibe) */
+@import url('https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap');
+
+:root {
+--bg: #0b0f1a; /* deep night */
+--bg-2: #121a2b; /* panels */
+--ink: #e7f3ff; /* primary text */
+--muted: #9fb5d1; /* secondary text */
+--acid: #39ff14; /* lime neon */
+--mag: #ff2bd6; /* magenta neon */
+--sky: #00e0ff; /* cyan neon */
+--yellow: #ffe36e; /* accent */
+--card: #0f1526; /* card body */
+--border: #2a3553; /* pixel border */
+--shadow: 0 12px 28px rgba(0,0,0,.35);
+--radius: 14px;
+--grid: min(1200px, 92vw);
+}
+
+/* Reset / base */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+margin: 0;
+color: var(--ink);
+background:
+linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.65)),
+radial-gradient(1200px 600px at 10% -10%, rgba(255,43,214,.18), transparent 60%),
+radial-gradient(900px 500px at 90% 10%, rgba(0,224,255,.16), transparent 60%),
+var(--bg);
+font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, 'Helvetica Neue', Arial, 'Press Start 2P', sans-serif;
+line-height: 1.6;
+}
+
+/* CRT scanline overlay for the whole site (subtle) */
+body::after {
+content: "";
+position: fixed; inset: 0; pointer-events: none; z-index: 1;
+background-image: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px);
+background-size: 100% 2px; mix-blend-mode: soft-light; opacity: .18;
+}
+
+/* Utility */
+.container { width: var(--grid); margin: 0 auto; padding: 0 1rem; }
+.section { padding: 4rem 0; position: relative; }
+.pixel-border { border: 2px solid var(--border); box-shadow: var(--shadow); border-radius: var(--radius); }
+
+/* =========================
+NAVBAR
+========================= */
+.navbar {
+position: sticky; top: 0; z-index: 20; backdrop-filter: blur(8px);
+background: linear-gradient(180deg, rgba(18,26,43,.9), rgba(11,15,26,.85));
+border-bottom: 2px solid var(--border);
+}
+.navbar .wrap { display: flex; align-items: center; justify-content: space-between; width: var(--grid); margin: 0 auto; padding: .6rem 1rem; }
+.site-title { font-family: 'Press Start 2P', monospace; letter-spacing: .02em; font-size: 1rem; color: var(--yellow); text-shadow: 0 0 8px rgba(255,227,110,.45); }
+.primary-nav { display: flex; gap: .75rem; flex-wrap: wrap; }
+.primary-nav a {
+color: var(--ink); text-decoration: none; font-weight: 700; letter-spacing: .04em; font-size: .9rem;
+padding: .55rem .8rem; border: 2px solid transparent; border-radius: 10px; position: relative; isolation: isolate;
+}
+.primary-nav a::before {
+content:""; position: absolute; inset: 0; border-radius: 10px;
+background: linear-gradient(90deg, rgba(57,255,20,.15), rgba(0,224,255,.15));
+transform: scale(.96); opacity: 0; transition: .2s ease;
+}
+.primary-nav a:hover::before { opacity: 1; transform: scale(1); }
+.primary-nav a.active { border-color: var(--sky); box-shadow: 0 0 0 3px rgba(0,224,255,.15) inset; }
+
+
+.primary-nav a::before {
+content:""; position: absolute; inset: 0; border-radius: 10px;
+background: linear-gradient(90deg, rgba(57,255,20,.15), rgba(0,224,255,.15));
+transform: scale(.96); opacity: 0; transition: .2s ease;
+}
+.primary-nav a:hover::before { opacity: 1; transform: scale(1); }
+.primary-nav a.active { border-color: var(--sky); box-shadow: 0 0 0 3px rgba(0,224,255,.15) inset; }
+
+/* =========================
+HERO
+========================= */
+.hero {
+padding: 6rem 0 4rem; text-align: center; position: relative; overflow: clip;
+}
+.hero h1 {
+font-family: 'Press Start 2P', monospace; font-size: clamp(28px, 4vw, 54px);
+line-height: 1.15; margin: 0 0 1rem; letter-spacing: .015em;
+background: linear-gradient(90deg, var(--acid), var(--sky), var(--mag));
+-webkit-background-clip: text; background-clip: text; color: transparent;
+text-shadow: 0 0 14px rgba(57,255,20,.2);
+}
+/* ==================================================
+.hero p { color: var(--muted); max-width: 52ch; margin: 0 auto 1.5rem; }
+.hero .cta-row { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; }
+
 /* Buttons */
 .btn {
 --glow: 0 0 12px rgba(0,224,255,.45), 0 0 24px rgba(255,43,214,.33);
