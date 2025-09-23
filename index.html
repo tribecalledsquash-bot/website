@@ -3,70 +3,242 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Primary SEO -->
   <title>Squash | Indie-Jam Band in Boulder, CO – Live Shows & Music</title>
-  <meta name="description" content="Squash is a Boulder, Colorado indie-jam band. Listen to our music, see upcoming shows, and grab tickets." />
+  <meta name="description" content="Squash is a Boulder, Colorado indie rock band playing high-energy live shows across the Front Range. Listen to our music, see upcoming shows, and grab tickets." />
   <link rel="canonical" href="https://www.squashband.com/" />
+
+  <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Squash | Indie Rock Band in Boulder, CO" />
   <meta property="og:description" content="Boulder indie rock band Squash – music, shows, tickets, and media." />
   <meta property="og:url" content="https://www.squashband.com/" />
+  <meta property="og:image" content="https://www.squashband.com/images/og-cover.jpg" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Squash | Indie Rock Band in Boulder, CO" />
+  <meta name="twitter:description" content="Catch Squash live around Boulder & Denver. Music, shows, and tickets." />
+  <meta name="twitter:image" content="https://www.squashband.com/images/og-cover.jpg" />
+
+  <!-- Favicons (optional; update paths) -->
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Schema.org JSON-LD: Music Group -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MusicGroup",
+    "name": "Squash",
+    "genre": ["Indie Rock", "Jam"],
+    "foundingLocation": {
+      "@type": "City",
+      "name": "Boulder, Colorado"
+    },
+    "url": "https://www.squashband.com/",
+    "image": "https://www.squashband.com/images/og-cover.jpg",
+    "logo": "https://www.squashband.com/images/logo.png",
+    "sameAs": [
+      "https://open.spotify.com/artist/xxxxxxxx", 
+      "https://music.apple.com/artist/xxxxxxxx",
+      "https://www.youtube.com/channel/UCLs0-yVltyq0_zj5qhVx3Ow",
+      "https://instagram.com/instasquash"
+    ]
+  }
+  </script>
+
+  <!-- Schema.org JSON-LD: Example Event (duplicate & edit per show) -->
+  <!--
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MusicEvent",
+    "name": "Squash Live at Fox Theatre",
+    "startDate": "2025-09-18T20:00",
+    "endDate": "2025-09-18T23:00",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "location": {
+      "@type": "Place",
+      "name": "Fox Theatre",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1135 13th St",
+        "addressLocality": "Boulder",
+        "addressRegion": "CO",
+        "postalCode": "80302",
+        "addressCountry": "US"
+      }
+    },
+    "performer": {
+      "@type": "MusicGroup",
+      "name": "Squash",
+      "url": "https://www.squashband.com/"
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.foxtheatre.com/event/squash-tickets",
+      "price": "20",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    }
+  }
+  </script>
+  -->
 </head>
 <body>
-  <header class="navbar">
-    <div class="site-title">Squash</div>
-    <nav class="primary-nav">
-      <a class="active" href="#listen">Listen</a>
+  <!-- Fixed Navigation -->
+  <header class="navbar" role="banner">
+    <!-- Updated H1 for local relevance -->
+    <h1 class="site-title">Squash – Boulder Indie Rock Band</h1>
+
+    <!-- Mobile menu button -->
+    <button class="nav-toggle" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <nav id="primary-nav" class="primary-nav" role="navigation">
+      <a href="#music">Music</a>
       <a href="#about">About</a>
       <a href="media.html">Media</a>
       <a href="shows.html">Shows</a>
-      <a href="press.html">Press</a>
+      <a href="#contact">Contact</a>
     </nav>
   </header>
 
-  <section class="hero" id="home">
-    <img src="images/hero.jpg" alt="Squash performing live" />
+  <!-- Hero Section -->
+  <section class="hero" aria-label="Hero">
+    <img src="images/0E7620E5-2ED8-4A22-A47A-F951CBDEC398.JPG" alt="Squash, a Boulder indie rock band, performing live on stage" />
     <div class="overlay">
-      <h2>Squash — Indie-Jam from Boulder, CO</h2>
+      <h2 data-reveal>Welcome to the Squnction</h2>
     </div>
   </section>
 
-  <section id="listen" class="section listen-section">
-    <h2>Listen</h2>
+  <!-- Music Links (Listen) -->
+  <section id="music" class="section listen-section" aria-labelledby="music-heading">
     <div class="listen-grid">
-      <div class="listen-left">
-        <div class="album-card">
-          <p class="album-blurb">Listen to our debut album Squnction on your favorite platform.</p>
-          <div class="inline-actions">
-            <a class="btn" href="https://open.spotify.com/album/xyz">Spotify</a>
-            <a class="btn" href="https://music.apple.com/album/xyz">Apple Music</a>
-            <a class="btn" href="https://youtube.com/playlist?list=xyz">YouTube</a>
-          </div>
+      <!-- Left: artwork / image -->
+      <figure class="listen-artwork" data-reveal>
+        <img src="Squnction.jpg" alt="Squash album Squnction cover art and live photo" />
+      </figure>
+
+      <!-- Right: heading, album blurb, links -->
+      <div class="listen-left" data-reveal>
+        <h2 id="music-heading">Listen</h2>
+        <p class="album-blurb">
+          Our first album <strong>Squnction</strong> is out now! We’re an indie rock band based in <strong>Boulder, Colorado</strong>, playing shows across the Front Range—Boulder, Denver, and beyond. From indie rock tracks like
+          <em>Fifty Five Degrees</em> and <em>Save Your Words</em> to the Latin samba <em>El Zopenco</em>, plus bluegrass and squankin’ funk jams on
+          <em>If You Want</em> and the title track—produced and recorded at The Moat Studio in Boulder. Catch us live for new, unreleased songs.
+        </p>
+        <div class="links">
+          <a class="btn" href="https://open.spotify.com/album/3iAGatLge2nioxcbvdWhTF" target="_blank" rel="noopener">Spotify</a>
+          <a class="btn" href="https://music.apple.com/album/1811306807" target="_blank" rel="noopener">Apple Music</a>
+          <a class="btn" href="https://www.youtube.com/channel/UCLs0-yVltyq0_zj5qhVx3Ow" target="_blank" rel="noopener">YouTube</a>
         </div>
       </div>
-      <div class="listen-artwork">
-        <img src="images/Squnction.jpg" alt="Squnction album artwork" />
-      </div>
     </div>
-    <hr class="section-divider" />
   </section>
 
-  <section id="about" class="section about-section">
-    <h2>About</h2>
+  <!-- About -->
+  <section id="about" class="section about-section" aria-labelledby="about-heading">
     <div class="about-grid">
-      <div class="about-left">
-        <p>Squash is a Boulder-based indie-jam group blending tight grooves with improvisational energy.</p>
-        <p class="muted small">We write songs like “Fifty Five Degrees,” “Save Your Words,” “El Zopenco,” and “If You Want.”</p>
+      <!-- Left: text -->
+      <div class="about-left" data-reveal>
+        <h2 id="about-heading">About Us</h2>
+        <p>
+          We are Squash, an indie-jam band from <strong>Boulder, CO</strong>. Our music blends classic improvisational rock with modern indie-rock songwriting.
+          Founded by two brothers in 2022, our shows around Boulder and Denver bring a playful stage presence with tightly arranged musicianship.
+          No two live sets are the same—come see why we’re one of the most fun <em>bands in Boulder</em>.
+        </p>
       </div>
-      <div class="about-artwork">
-        <img src="images/band.jpg" alt="Photo of Squash band members" />
-      </div>
+
+      <!-- Right: image -->
+      <figure class="about-artwork" data-reveal>
+        <img src="donkeyjesus.jpg" alt="Squash band press photo, Boulder Colorado indie rock group" />
+      </figure>
     </div>
-    <hr class="section-divider" />
   </section>
 
-  <footer class="section">
-    <p class="small muted">© Squash</p>
+  <!-- Contact -->
+  <section id="contact" class="section" aria-labelledby="contact-heading">
+    <h2 id="contact-heading">Contact</h2>
+    <p>Email us at: <a href="mailto:tribecalledsquash@gmail.com">tribecalledsquash@gmail.com</a></p>
+    <div class="links">
+      <a href="https://instagram.com/instasquash" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.youtube.com/channel/UCLs0-yVltyq0_zj5qhVx3Ow" target="_blank" rel="noopener">YouTube</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <p>© 2025 Squash. All Rights Reserved.</p>
   </footer>
+
+  <script>
+    (function () {
+      // Mobile menu toggle
+      const toggle = document.querySelector('.nav-toggle');
+      const nav = document.getElementById('primary-nav');
+      if (toggle && nav) {
+        toggle.addEventListener('click', () => {
+          const isOpen = nav.classList.toggle('open');
+          toggle.setAttribute('aria-expanded', String(isOpen));
+        });
+      }
+
+      // Scroll spy using IntersectionObserver
+      const links = Array.from(document.querySelectorAll('#primary-nav a'));
+      const sections = links
+        .map(a => a.getAttribute('href'))
+        .filter(href => href && href.startsWith('#'))
+        .map(href => document.querySelector(href))
+        .filter(Boolean);
+
+      const setActive = (id) => {
+        links.forEach(a => {
+          const href = a.getAttribute('href') || '';
+          const match = href === '#' + id;
+          a.classList.toggle('active', match);
+          a.setAttribute('aria-current', match ? 'page' : 'false');
+        });
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setActive(entry.target.id);
+          }
+        });
+      }, { rootMargin: '-40% 0px -55% 0px', threshold: 0.01 });
+
+      sections.forEach(sec => observer.observe(sec));
+
+      // Reveal-on-scroll animations
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -10% 0px' });
+
+      const revealEls = document.querySelectorAll('[data-reveal]');
+      revealEls.forEach((el, i) => {
+        el.classList.add('reveal');
+        el.style.transitionDelay = (i % 6) * 60 + 'ms'; // gentle stagger
+        revealObserver.observe(el);
+      });
+    })();
+  </script>
 </body>
 </html>
