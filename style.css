@@ -1,9 +1,12 @@
+<!-- style.css -->
 /* ==================================================
 SQUASH — Retro Arcade Theme (global stylesheet)
 Palette & fonts per user's tokens. Layout and DOM preserved.
 ================================================== */
 
-/* Fonts (90s/arcade vibe) */
+/* Fonts: add highly legible families */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Rubik:wght@600;800&display=swap');
+/* (Keep retro set available if you still want it somewhere) */
 @import url('https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap');
 
 /* -----------------------------------------------------------------------
@@ -47,9 +50,9 @@ Palette & fonts per user's tokens. Layout and DOM preserved.
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
-  font-family: "VT323", ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
-  font-size: 22px;
-  line-height: 1.5;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 20px; /* slightly smaller improves clarity */
+  line-height: 1.6;
   color: var(--ink);
   background:
     radial-gradient(1200px 800px at 15% -10%, rgba(0,224,255,0.08) 0%, rgba(0,0,0,0) 70%),
@@ -57,6 +60,8 @@ body {
     linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
   padding-top: 70px; /* offset for fixed navbar */
   min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Subtle pixel grid */
@@ -75,7 +80,7 @@ body::before {
 
 /* Typography helpers */
 .muted { color: var(--muted); }
-.small { font-size: 0.85em; }
+.small { font-size: 0.9em; }
 
 /* Simple stacks / lists */
 .stack { display: grid; gap: var(--space-3); }
@@ -85,7 +90,7 @@ body::before {
 .inline-actions { display: flex; flex-wrap: wrap; gap: .5rem .75rem; align-items: center; }
 
 /* -----------------------------------------------------------------------
-   NAVBAR — neon chrome w/ pixel bevel
+   NAVBAR — refreshed buttons for clarity
    ----------------------------------------------------------------------- */
 .navbar {
   position: fixed; top: 0; left: 0; width: 100%;
@@ -100,60 +105,55 @@ body::before {
   backdrop-filter: blur(6px) saturate(130%);
 }
 .site-title {
-  font-family: "Press Start 2P", system-ui, sans-serif;
-  font-size: 16px; letter-spacing: 1px;
-  text-shadow: 0 0 8px rgba(0,224,255,.35);
+  font-family: "Rubik", system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 18px; letter-spacing: 0.2px;
+  text-shadow: none;
 }
 
-.primary-nav { margin-left: auto; display: flex; align-items: center; gap: .35rem; }
+.primary-nav { margin-left: auto; display: flex; align-items: center; gap: .5rem; }
 .primary-nav a {
-  position: relative; color: #fff; text-decoration: none;
-  padding: .5rem .9rem; border-radius: 9999px; font-weight: 700; letter-spacing: .2px;
+  position: relative; color: #0b1222; text-decoration: none;
+  padding: .55rem 1rem; border-radius: 12px; font-weight: 800; letter-spacing: .2px;
   background:
-    linear-gradient(180deg, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.2) 100%),
-    linear-gradient(180deg, #27345b 0%, #0e162d 100%);
-  border: 1px solid rgba(255,255,255,0.2);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 6px 16px rgba(0,0,0,0.4);
+    linear-gradient(180deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.28) 45%, rgba(0,0,0,0.08) 100%),
+    linear-gradient(180deg, #b9d8ff 0%, #78a6ff 100%);
+  border: 1px solid rgba(15, 35, 80, 0.25);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
   transition: transform var(--t-fast) ease, box-shadow var(--t-med) ease, filter var(--t-fast) ease;
 }
 .primary-nav a:hover, .primary-nav a:focus-visible {
   transform: translateY(-1px);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), 0 10px 24px rgba(0,0,0,0.55), 0 0 18px rgba(0,224,255,0.5);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.35);
 }
 .primary-nav a.active {
-  filter: saturate(1.2);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.75), 0 0 0 2px rgba(255,255,255,0.2), 0 0 28px rgba(57,255,20,0.5);
+  outline: 2px solid rgba(9, 94, 255, 0.35);
+  outline-offset: 1px;
 }
-
-/* Mobile nav (only if markup includes .nav-toggle) */
-.nav-toggle { display: none; margin-left: auto; width: 40px; height: 40px; border: 1px solid rgba(255,255,255,.25);
-  background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, rgba(0,0,0,0.25) 100%), linear-gradient(180deg, rgba(85,183,255,0.45) 0%, rgba(10,16,28,0.8) 100%);
-  border-radius: 10px; cursor: pointer; align-items: center; justify-content: center; gap: 4px; padding: 6px;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), inset 0 -2px 0 rgba(0,0,0,0.5), 0 6px 18px rgba(0,0,0,0.45);
-}
-.nav-toggle .bar { display: block; width: 70%; height: 2px; background: #fff; }
 
 /* -----------------------------------------------------------------------
-   HERO
+   HERO — move headline higher for better image composition
    ----------------------------------------------------------------------- */
 .hero { position: relative; z-index: 1; }
 .hero img { width: 100%; height: 100vh; object-fit: cover; object-position: 50% 75%; display: block; filter: saturate(1.05) contrast(1.02); }
 .hero .overlay {
-  position: absolute; inset: 0; display: flex; justify-content: center; align-items: center; text-align: center; color: #fff;
-  background: linear-gradient(180deg, rgba(0,0,0,0.2), rgba(0,0,0,0.45));
+  position: absolute; inset: 0; display: flex; justify-content: center; align-items: flex-start; text-align: center; color: #fff;
+  background: linear-gradient(180deg, rgba(0,0,0,0.16), rgba(0,0,0,0.38));
+  padding-top: clamp(10vh, 18vh, 24vh);
 }
 .hero .overlay h2 {
-  font-family: "Press Start 2P", system-ui, sans-serif;
-  font-size: clamp(18px, 4vw, 32px);
-  line-height: 1.3;
+  font-family: "Rubik", system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(20px, 4vw, 36px);
+  line-height: 1.25;
   padding: var(--space-3) var(--space-4);
   border-radius: var(--radius);
-  text-shadow: 0 2px 0 rgba(0,0,0,0.7), 0 0 36px rgba(255,255,255,0.25);
+  text-shadow: 0 2px 0 rgba(0,0,0,0.65), 0 10px 30px rgba(0,0,0,0.45);
   background:
-    linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.04) 40%, rgba(0,0,0,0.3) 100%),
+    linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.03) 40%, rgba(0,0,0,0.25) 100%),
     linear-gradient(180deg, #122044 0%, #0b142b 100%);
-  border: 1px solid rgba(255,255,255,0.2);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), inset 0 -2px 0 rgba(0,0,0,0.55), 0 12px 40px rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -2px 0 rgba(0,0,0,0.45), 0 12px 40px rgba(0,0,0,0.35);
 }
 
 /* -----------------------------------------------------------------------
@@ -161,11 +161,11 @@ body::before {
    ----------------------------------------------------------------------- */
 .section { padding: var(--space-6) var(--space-5); text-align: center; }
 .section h2 {
-  font-family: "Press Start 2P", system-ui, sans-serif;
-  font-size: clamp(16px, 3vw, 28px);
+  font-family: "Rubik", system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(18px, 3vw, 30px);
   margin-bottom: var(--space-3);
   color: var(--sky);
-  text-shadow: 0 0 14px rgba(0,224,255,.35);
 }
 .section p { color: var(--ink); }
 
@@ -192,9 +192,7 @@ body::before {
   border: 1px solid rgba(255,255,255,0.35);
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.75), inset 0 -2px 0 rgba(0,0,0,0.55), 0 8px 20px rgba(0,0,0,0.45);
 }
-.btn-ghost {
-  color: var(--ink); background: transparent; border: 1px dashed var(--border);
-}
+.btn-ghost { color: var(--ink); background: transparent; border: 1px dashed var(--border); }
 .pill { color: var(--ink); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.2); }
 .btn:hover, .btn:focus-visible, .btn-solid:hover, .btn-solid:focus-visible {
   transform: translateY(-1px);
@@ -268,32 +266,12 @@ body::before {
 .from-yard { opacity: .95; }
 
 /* -----------------------------------------------------------------------
-   PRESS
-   ----------------------------------------------------------------------- */
-.press-grid { width: min(1100px, 94vw); margin: 0 auto; display: grid; gap: var(--space-4); }
-.press-card {
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.06) 45%, rgba(0,0,0,0.35) 100%),
-    linear-gradient(180deg, #141c35 0%, #0c1226 100%);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: var(--space-4);
-  box-shadow: var(--shadow);
-}
-.press-wrap { width: var(--grid); margin: 0 auto; }
-.press-page { background: linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%); color: var(--ink); }
-.press-hero { text-align: center; padding: var(--space-5) var(--space-3) 0; }
-.press-quotes { display: grid; gap: var(--space-4); }
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
-.media-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); }
-
-/* -----------------------------------------------------------------------
    SHOWS
    ----------------------------------------------------------------------- */
 body.shows-page { background: linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%); color: var(--ink); }
 .shows-section { width: min(900px, 92vw); margin: 0 auto; text-align: left; }
 .shows-hero { padding: var(--space-5) var(--space-3) 0; text-align: center; }
-.shows-hero h1 { font-family: "Press Start 2P", system-ui, sans-serif; font-size: clamp(16px, 3vw, 28px); color: #fff; text-shadow: 0 0 14px rgba(255,227,110,.45); }
+.shows-hero h1 { font-family: "Rubik", system-ui, sans-serif; font-weight: 800; font-size: clamp(18px, 3vw, 30px); color: #fff; }
 .shows-wrap { padding: var(--space-4) var(--space-3) var(--space-6); }
 
 /* -----------------------------------------------------------------------
@@ -307,7 +285,7 @@ body.shows-page { background: linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 
   border-bottom: 2px solid #000;
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.25), inset 0 -1px 0 rgba(0,0,0,0.45);
 }
-.ticker__track { display: inline-block; padding: .5rem 0; color: #fff; text-shadow: 0 1px 0 rgba(0,0,0,0.7); animation: ticker-scroll 20s linear infinite; font-family: "Press Start 2P", system-ui, sans-serif; font-size: 12px; }
+.ticker__track { display: inline-block; padding: .5rem 0; color: #fff; text-shadow: 0 1px 0 rgba(0,0,0,0.7); animation: ticker-scroll 20s linear infinite; font-family: "Rubik", system-ui, sans-serif; font-weight: 800; font-size: 12px; }
 @keyframes ticker-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .ticker__track { animation: none; } }
 
@@ -327,5 +305,7 @@ h1:hover, h2:hover, h3:hover { text-shadow: 0 0 20px rgba(255, 43, 214, 0.25); t
 @media (max-width: 860px) { .media-gallery, .media-gallery.media-gallery--wide { grid-template-columns: repeat(2, minmax(220px, 1fr)); width: var(--grid); } }
 @media (max-width: 640px) {
   .media-gallery, .media-gallery.media-gallery--wide { grid-template-columns: 1fr; width: 100%; }
-  .hero .overlay h2 { font-size: 16px; }
+  .hero .overlay { padding-top: 12vh; }
+  .hero .overlay h2 { font-size: 18px; }
   .media-collage { column-count: 1; }
+}
