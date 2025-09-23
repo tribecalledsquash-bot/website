@@ -23,7 +23,7 @@ Palette & fonts per user's tokens. Layout and DOM preserved.
   --shadow: 0 12px 28px rgba(0,0,0,.35);
   --radius: 14px;
 
-  /* extras for spacing & motion */
+  /* spacing & motion */
   --grid: min(1200px, 92vw);
   --space-1: .5rem;
   --space-2: .75rem;
@@ -73,6 +73,17 @@ body::before {
 
 :focus-visible { outline: 2px dashed var(--sky); outline-offset: 2px; }
 
+/* Typography helpers */
+.muted { color: var(--muted); }
+.small { font-size: 0.85em; }
+
+/* Simple stacks / lists */
+.stack { display: grid; gap: var(--space-3); }
+.list { list-style: none; }
+.links a { color: var(--sky); text-decoration: none; }
+.links a:hover { text-decoration: underline; }
+.inline-actions { display: flex; flex-wrap: wrap; gap: .5rem .75rem; align-items: center; }
+
 /* -----------------------------------------------------------------------
    NAVBAR — neon chrome w/ pixel bevel
    ----------------------------------------------------------------------- */
@@ -90,8 +101,7 @@ body::before {
 }
 .site-title {
   font-family: "Press Start 2P", system-ui, sans-serif;
-  font-size: 16px;
-  letter-spacing: 1px;
+  font-size: 16px; letter-spacing: 1px;
   text-shadow: 0 0 8px rgba(0,224,255,.35);
 }
 
@@ -110,7 +120,18 @@ body::before {
   transform: translateY(-1px);
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), 0 10px 24px rgba(0,0,0,0.55), 0 0 18px rgba(0,224,255,0.5);
 }
-.primary-nav a.active { filter: saturate(1.2); box-shadow: inset 0 1px 0 rgba(255,255,255,0.75), 0 0 0 2px rgba(255,255,255,0.2), 0 0 28px rgba(57,255,20,0.5); }
+.primary-nav a.active {
+  filter: saturate(1.2);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.75), 0 0 0 2px rgba(255,255,255,0.2), 0 0 28px rgba(57,255,20,0.5);
+}
+
+/* Mobile nav (only if markup includes .nav-toggle) */
+.nav-toggle { display: none; margin-left: auto; width: 40px; height: 40px; border: 1px solid rgba(255,255,255,.25);
+  background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, rgba(0,0,0,0.25) 100%), linear-gradient(180deg, rgba(85,183,255,0.45) 0%, rgba(10,16,28,0.8) 100%);
+  border-radius: 10px; cursor: pointer; align-items: center; justify-content: center; gap: 4px; padding: 6px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), inset 0 -2px 0 rgba(0,0,0,0.5), 0 6px 18px rgba(0,0,0,0.45);
+}
+.nav-toggle .bar { display: block; width: 70%; height: 2px; background: #fff; }
 
 /* -----------------------------------------------------------------------
    HERO
@@ -151,21 +172,43 @@ body::before {
 /* Pixel divider */
 .section-divider {
   border: 0; height: 2px; margin: var(--space-4) auto; width: var(--grid);
-  background:
-    repeating-linear-gradient(90deg, rgba(255,255,255,0.7) 0 8px, transparent 8px 16px);
+  background: repeating-linear-gradient(90deg, rgba(255,255,255,0.7) 0 8px, transparent 8px 16px);
   opacity: .9;
 }
+
+/* -----------------------------------------------------------------------
+   BUTTONS / PILLS
+   ----------------------------------------------------------------------- */
+.btn, .btn-solid, .btn-ghost, .pill {
+  display: inline-block; text-decoration: none; cursor: pointer; user-select: none;
+  border-radius: 999px; padding: .55rem .9rem; font-weight: 800; letter-spacing: .3px;
+  transition: transform var(--t-fast) ease, box-shadow var(--t-med) ease, filter var(--t-fast) ease, background-color var(--t-fast) ease, color var(--t-fast) ease;
+}
+.btn, .btn-solid {
+  color: #0b0f1a;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.24) 0%, rgba(255,255,255,0.12) 40%, rgba(0,0,0,0.35) 100%),
+    linear-gradient(180deg, var(--sky) 0%, #0e70a1 100%);
+  border: 1px solid rgba(255,255,255,0.35);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.75), inset 0 -2px 0 rgba(0,0,0,0.55), 0 8px 20px rgba(0,0,0,0.45);
+}
+.btn-ghost {
+  color: var(--ink); background: transparent; border: 1px dashed var(--border);
+}
+.pill { color: var(--ink); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.2); }
+.btn:hover, .btn:focus-visible, .btn-solid:hover, .btn-solid:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), inset 0 -2px 0 rgba(0,0,0,0.6), 0 12px 26px rgba(0,0,0,0.55), 0 0 20px rgba(0,224,255,0.5);
+}
+.btn:active, .btn-solid:active { transform: translateY(1px); box-shadow: inset 0 2px 0 rgba(0,0,0,0.55), 0 6px 16px rgba(0,0,0,0.5); }
 
 /* -----------------------------------------------------------------------
    LISTEN (green arcade glow)
    ----------------------------------------------------------------------- */
 .listen-section {
-  color: #fff;
-  padding-top: var(--space-6);
-  padding-bottom: var(--space-6);
+  color: #fff; padding-top: var(--space-6); padding-bottom: var(--space-6);
   background: linear-gradient(180deg, #0f1b10 0%, #102515 55%, #11301a 100%);
-  border-top: 2px solid #000;
-  border-bottom: 2px solid #000;
+  border-top: 2px solid #000; border-bottom: 2px solid #000;
   box-shadow: inset 0 2px 0 rgba(255,255,255,0.08), inset 0 -2px 0 rgba(0,0,0,0.6);
 }
 .listen-section h2 { color: #b8ffcc; text-shadow: 0 0 18px rgba(57,255,20,0.55); }
@@ -180,22 +223,8 @@ body::before {
   box-shadow: var(--shadow);
   text-align: left;
 }
-.album-card .btn, .btn {
-  display: inline-block; font-weight: 800; letter-spacing: .2px; text-decoration: none;
-  color: #0b0f1a; padding: .6rem .9rem; border-radius: 999px;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.24) 0%, rgba(255,255,255,0.12) 40%, rgba(0,0,0,0.35) 100%),
-    linear-gradient(180deg, var(--sky) 0%, #0e70a1 100%);
-  border: 1px solid rgba(255,255,255,0.35);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.75), inset 0 -2px 0 rgba(0,0,0,0.55), 0 8px 20px rgba(0,0,0,0.45);
-  transition: transform var(--t-fast) ease, box-shadow var(--t-med) ease, filter var(--t-fast) ease;
-}
-.btn:hover, .btn:focus-visible {
-  transform: translateY(-1px);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), inset 0 -2px 0 rgba(0,0,0,0.6), 0 12px 26px rgba(0,0,0,0.55), 0 0 20px rgba(0,224,255,0.5);
-}
-.btn:active { transform: translateY(1px); box-shadow: inset 0 2px 0 rgba(0,0,0,0.55), 0 6px 16px rgba(0,0,0,0.5); }
-.listen-section img, .album-art { width: 100%; height: auto; display: block; border-radius: var(--radius); box-shadow: 0 14px 40px rgba(0,0,0,0.35); max-height: 720px; }
+.listen-artwork img, .listen-section img, .album-art { width: 100%; height: auto; display: block; border-radius: var(--radius); box-shadow: 0 14px 40px rgba(0,0,0,0.35); max-height: 720px; }
+.listen-left, .album-blurb { color: var(--ink); }
 
 /* -----------------------------------------------------------------------
    ABOUT (blue/cyan arcade)
@@ -209,7 +238,8 @@ body::before {
 }
 .about-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: var(--space-5); align-items: center; max-width: 1200px; margin: 0 auto; }
 .about-section h2 { color: var(--sky); }
-.about-section img { width: 100%; height: auto; display: block; border-radius: var(--radius); box-shadow: 0 14px 40px rgba(0,0,0,0.35); }
+.about-artwork img, .about-section img { width: 100%; height: auto; display: block; border-radius: var(--radius); box-shadow: 0 14px 40px rgba(0,0,0,0.35); }
+.about-left, .about-right { color: var(--ink); }
 
 /* -----------------------------------------------------------------------
    MEDIA
@@ -228,16 +258,14 @@ body::before {
   transition: transform var(--t-med) ease, box-shadow var(--t-med) ease;
 }
 .media-item:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(0,0,0,0.55); }
-.media-item iframe { width: 100%; aspect-ratio: 16/9; border: none; display: block; }
-
-/* -----------------------------------------------------------------------
-   SHOWS
-   ----------------------------------------------------------------------- */
-body.shows-page { background: linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%); color: var(--ink); }
-.shows-section { width: min(900px, 92vw); margin: 0 auto; text-align: left; }
-.shows-hero { padding: var(--space-5) var(--space-3) 0; text-align: center; }
-.shows-hero h1 { font-family: "Press Start 2P", system-ui, sans-serif; font-size: clamp(16px, 3vw, 28px); color: #fff; text-shadow: 0 0 14px rgba(255,227,110,.45); }
-.shows-wrap { padding: var(--space-4) var(--space-3) var(--space-6); }
+.media-item iframe, .responsive-video iframe { width: 100%; aspect-ratio: 16/9; border: none; display: block; }
+.media-page { background: linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%); color: var(--ink); }
+.photo-collage { padding: 1rem 0 3rem; }
+.media-collage { column-count: 3; column-gap: 1rem; padding: 0 1rem; }
+.media-collage figure { break-inside: avoid; margin: 0 0 1rem 0; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.25); background: #0e1426; border: 1px solid var(--border); }
+.media-collage img { width: 100%; height: auto; display: block; }
+.media-collage figcaption { font-size: 0.85rem; padding: 0.5rem 0.75rem; color: var(--muted); }
+.from-yard { opacity: .95; }
 
 /* -----------------------------------------------------------------------
    PRESS
@@ -252,6 +280,21 @@ body.shows-page { background: linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 
   padding: var(--space-4);
   box-shadow: var(--shadow);
 }
+.press-wrap { width: var(--grid); margin: 0 auto; }
+.press-page { background: linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%); color: var(--ink); }
+.press-hero { text-align: center; padding: var(--space-5) var(--space-3) 0; }
+.press-quotes { display: grid; gap: var(--space-4); }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+.media-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); }
+
+/* -----------------------------------------------------------------------
+   SHOWS
+   ----------------------------------------------------------------------- */
+body.shows-page { background: linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%); color: var(--ink); }
+.shows-section { width: min(900px, 92vw); margin: 0 auto; text-align: left; }
+.shows-hero { padding: var(--space-5) var(--space-3) 0; text-align: center; }
+.shows-hero h1 { font-family: "Press Start 2P", system-ui, sans-serif; font-size: clamp(16px, 3vw, 28px); color: #fff; text-shadow: 0 0 14px rgba(255,227,110,.45); }
+.shows-wrap { padding: var(--space-4) var(--space-3) var(--space-6); }
 
 /* -----------------------------------------------------------------------
    TICKER
@@ -279,9 +322,10 @@ h1:hover, h2:hover, h3:hover { text-shadow: 0 0 20px rgba(255, 43, 214, 0.25); t
 /* -----------------------------------------------------------------------
    RESPONSIVE
    ----------------------------------------------------------------------- */
-@media (max-width: 980px) { .listen-grid, .about-grid { grid-template-columns: 1fr; } }
+@media (max-width: 1100px) { .media-collage { column-count: 2; } }
+@media (max-width: 980px) { .listen-grid, .about-grid, .two-col { grid-template-columns: 1fr; } }
 @media (max-width: 860px) { .media-gallery, .media-gallery.media-gallery--wide { grid-template-columns: repeat(2, minmax(220px, 1fr)); width: var(--grid); } }
 @media (max-width: 640px) {
   .media-gallery, .media-gallery.media-gallery--wide { grid-template-columns: 1fr; width: 100%; }
   .hero .overlay h2 { font-size: 16px; }
-}
+  .media-collage { column-count: 1; }
