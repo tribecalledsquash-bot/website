@@ -1,35 +1,29 @@
-<!-- index.html -->
+<!-- index.html (unchanged text; visibility tweaks handled via CSS) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Squash | Indie-Jam Band in Boulder, CO – Live Shows & Music</title>
   <meta name="description" content="Squash is a Boulder, Colorado indie rock band playing high-energy live shows across the Front Range. Listen to our music, see upcoming shows, and grab tickets." />
   <link rel="canonical" href="https://www.squashband.com/" />
-
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Squash | Indie Rock Band in Boulder, CO" />
   <meta property="og:description" content="Boulder indie rock band Squash – music, shows, tickets, and media." />
   <meta property="og:url" content="https://www.squashband.com/" />
   <meta property="og:image" content="https://www.squashband.com/images/og-cover.jpg" />
   <meta property="og:locale" content="en_US" />
-
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Squash | Indie Rock Band in Boulder, CO" />
   <meta name="twitter:description" content="Catch Squash live around Boulder & Denver. Music, shows, and tickets." />
   <meta name="twitter:image" content="https://www.squashband.com/images/og-cover.jpg" />
-
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" href="/icon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
-
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Win95/Tron Titlebar Navbar -->
   <header class="navbar titlebar" role="banner">
     <div class="titlebar-left">
       <span class="titlebar-icon"></span>
@@ -49,16 +43,13 @@
     </div>
   </header>
 
-  <!-- Hero -->
   <section class="hero" aria-label="Hero">
     <img src="images/0E7620E5-2ED8-4A22-A47A-F951CBDEC398.JPG" alt="Squash, a Boulder indie rock band, performing live on stage" />
     <div class="overlay overlay--tron">
-      <!-- keep exact text, change style (no box, neon outline) -->
       <h2 data-reveal class="tron-head">Welcome to the Squnction</h2>
     </div>
   </section>
 
-  <!-- Listen -->
   <section id="music" class="section listen-section" aria-labelledby="music-heading">
     <div class="listen-grid">
       <figure class="listen-artwork" data-reveal>
@@ -66,11 +57,7 @@
       </figure>
       <div class="listen-left" data-reveal>
         <h2 id="music-heading">Listen</h2>
-        <p class="album-blurb">
-          Our first album <strong>Squnction</strong> is out now! We’re an indie rock band based in <strong>Boulder, Colorado</strong>, playing shows across the Front Range—Boulder, Denver, and beyond. From indie rock tracks like
-          <em>Fifty Five Degrees</em> and <em>Save Your Words</em> to the Latin samba <em>El Zopenco</em>, plus bluegrass and squankin’ funk jams on
-          <em>If You Want</em> and the title track—produced and recorded at The Moat Studio in Boulder. Catch us live for new, unreleased songs.
-        </p>
+        <p class="album-blurb">Our first album <strong>Squnction</strong> is out now! We’re an indie rock band based in <strong>Boulder, Colorado</strong>, playing shows across the Front Range—Boulder, Denver, and beyond. From indie rock tracks like <em>Fifty Five Degrees</em> and <em>Save Your Words</em> to the Latin samba <em>El Zopenco</em>, plus bluegrass and squankin’ funk jams on <em>If You Want</em> and the title track—produced and recorded at The Moat Studio in Boulder. Catch us live for new, unreleased songs.</p>
         <div class="links">
           <a class="btn btn-neon" href="https://open.spotify.com/album/3iAGatLge2nioxcbvdWhTF" target="_blank" rel="noopener">Spotify</a>
           <a class="btn btn-neon" href="https://music.apple.com/album/1811306807" target="_blank" rel="noopener">Apple Music</a>
@@ -80,16 +67,11 @@
     </div>
   </section>
 
-  <!-- About -->
   <section id="about" class="section about-section" aria-labelledby="about-heading">
     <div class="about-grid">
       <div class="about-left" data-reveal>
         <h2 id="about-heading">About Us</h2>
-        <p>
-          We are Squash, an indie-jam band from <strong>Boulder, CO</strong>. Our music blends classic improvisational rock with modern indie-rock songwriting.
-          Founded by two brothers in 2022, our shows around Boulder and Denver bring a playful stage presence with tightly arranged musicianship.
-          No two live sets are the same—come see why we’re one of the most fun <em>bands in Boulder</em>.
-        </p>
+        <p>We are Squash, an indie-jam band from <strong>Boulder, CO</strong>. Our music blends classic improvisational rock with modern indie-rock songwriting. Founded by two brothers in 2022, our shows around Boulder and Denver bring a playful stage presence with tightly arranged musicianship. No two live sets are the same—come see why we’re one of the most fun <em>bands in Boulder</em>.</p>
       </div>
       <figure class="about-artwork" data-reveal>
         <img src="donkeyjesus.jpg" alt="Squash band press photo, Boulder Colorado indie rock group" />
@@ -97,7 +79,6 @@
     </div>
   </section>
 
-  <!-- Contact -->
   <section id="contact" class="section" aria-labelledby="contact-heading">
     <h2 id="contact-heading">Contact</h2>
     <p>Email us at: <a href="mailto:tribecalledsquash@gmail.com">tribecalledsquash@gmail.com</a></p>
@@ -107,25 +88,19 @@
     </div>
   </section>
 
-  <footer role="contentinfo">
-    <p>© 2025 Squash. All Rights Reserved.</p>
-  </footer>
+  <footer role="contentinfo"><p>© 2025 Squash. All Rights Reserved.</p></footer>
 
   <script>
-    // nav active state + reveal
     (function(){
       const links=[...document.querySelectorAll('#primary-nav a')];
       const ids=links.map(a=>a.getAttribute('href')).filter(h=>h&&h.startsWith('#'));
       const secs=ids.map(h=>document.querySelector(h)).filter(Boolean);
-      const setActive=id=>links.forEach(a=>{
-        const m=a.getAttribute('href')==='#'+id; a.classList.toggle('active',m);
-      });
-      const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting) setActive(e.target.id);});},{rootMargin:'-45% 0% -45% 0%',threshold:0.01});
+      const setActive=id=>links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+id));
+      const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting) setActive(e.target.id);});},{rootMargin:'-45% 0 -45% 0',threshold:0.01});
       secs.forEach(s=>io.observe(s));
-      const rio=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rio.unobserve(e.target);}})},{threshold:0.12});
+      const rio=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rio.unobserve(e.target);}})},{threshold:.12});
       document.querySelectorAll('[data-reveal]').forEach((el,i)=>{el.classList.add('reveal'); el.style.transitionDelay=(i%6)*70+'ms'; rio.observe(el);});
     })();
   </script>
 </body>
 </html>
-
