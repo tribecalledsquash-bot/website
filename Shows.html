@@ -1,47 +1,81 @@
+<!-- shows.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Shows – Squash | Indie-Jam Band Live in Boulder, CO</title>
-
-  <!-- SEO -->
-  <meta name="description" content="See upcoming Squash shows in Boulder, Denver, and across Colorado. Dates, venues, and tickets for Boulder indie rock band Squash." />
-  <link rel="canonical" href="https://www.squashband.com/shows.html" />
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Squash Shows | Boulder Indie Rock" />
-  <meta property="og:description" content="Upcoming concerts and tickets for Squash, a Boulder-based indie rock band." />
-  <meta property="og:url" content="https://www.squashband.com/shows.html" />
-  <meta property="og:image" content="https://www.squashband.com/images/og-cover.jpg" />
-  <meta property="og:locale" content="en_US" />
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Squash Shows | Boulder Indie Rock" />
-  <meta name="twitter:description" content="Catch Squash live — dates, venues, tickets." />
-  <meta name="twitter:image" content="https://www.squashband.com/images/og-cover.jpg" />
-
   <link rel="stylesheet" href="style.css" />
-  <style>
-    /* --- Shows page (kept local like media.html's inline styles) --- */
-    body.shows-page { background: rgb(7,76,200); color: #fff; }
+</head>
+<body class="shows-page">
+  <header class="navbar titlebar">
+    <div class="titlebar-left">
+      <span class="titlebar-icon"></span>
+      <h1 class="site-title">Squash</h1>
+    </div>
+    <nav class="primary-nav">
+      <a class="tab" href="index.html#music">Music</a>
+      <a class="tab" href="index.html#about">About</a>
+      <a class="tab" href="media.html">Media</a>
+      <a class="tab active" href="shows.html" aria-current="page">Shows</a>
+      <a class="tab" href="index.html#contact">Contact</a>
+    </nav>
+    <div class="titlebar-buttons" aria-hidden="true">
+      <button class="tb tb-min"></button>
+      <button class="tb tb-max"></button>
+      <button class="tb tb-close"></button>
+    </div>
+  </header>
 
-    .shows-hero {
-      padding: 2rem 1rem 0;
-      text-align: center;
-    }
-    .shows-hero h1 {
-      font-size: 2rem;
-      margin-bottom: .25rem;
-      color: #fff;
-    }
-    .shows-hero p {
-      opacity: .9;
-    }
+  <main class="section" id="shows">
+    <div class="shows-hero">
+      <h1>Upcoming Shows</h1>
+      <p>Catch us live — updated as new dates drop.</p>
+    </div>
 
-    .shows-wrap {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 
+    <hr class="section-divider" />
+
+    <div id="shows-wrap" class="shows-wrap" aria-live="polite"></div>
+  </main>
+
+  <footer>
+    <p>© 2025 Squash. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    const SHOWS = [
+      { date: "2025-09-13", title: "Lolita's", location: "Boulder, CO – Lolita's on West Pearl St.", free: true },
+      { date: "2025-10-09T20:00", title: "Fox Theatre! — Use code SQUASH for discount", location: "Boulder, CO", tickets: "https://tix.axs.com/DrsuCQAAAADLMp%2bUAAAAAAD9%2fv%2f%2f%2f%2f%2fBXRoZW1lAP%2f%2f%2f%2f%2f%2f%2f%2f%2f%2f/shop/restrictions?axssid=token_0e31593076c1" },
+      { date: "2025-10-17T19:00", title: "Roots Music Festival", location: "1904 Pearl Street – 7:00 pm", free: true },
+      { date: "2025-10-30", title: "Halloweekend House Show", location: "2002 Baseline Rd., Boulder, CO", free: true }
+    ];
+
+    const MONTHS=["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+    function mke(tag,c,t){const e=document.createElement(tag); if(c) e.className=c; if(t!=null) e.textContent=t; return e;}
+    function parseISO(d){const v=d.includes('T')?new Date(d):new Date(d+'T00:00');return isNaN(v)?null:v;}
+
+    function render(){
+      const wrap=document.getElementById('shows-wrap'); wrap.innerHTML='';
+      const today=new Date(); today.setHours(0,0,0,0);
+      const rows=SHOWS.map(s=>({...s,_d:parseISO(s.date)})).filter(s=>s._d&&s._d>=today).sort((a,b)=>a._d-b._d);
+      if(!rows.length){wrap.appendChild(mke('p','muted','No upcoming shows — check back soon!'));return;}
+      rows.forEach(s=>{
+        const card=mke('article','show-card');
+        const d=s._d; const date=mke('div','show-date');
+        date.appendChild(mke('span','month',MONTHS[d.getMonth()]));
+        date.appendChild(mke('span','day',String(d.getDate())));
+        date.appendChild(mke('span','year',String(d.getFullYear())));
+        const info=mke('div','show-info');
+        info.appendChild(mke('h3','',s.title));
+        info.appendChild(mke('div','loc',s.location||''));
+        const act=mke('div','show-action');
+        if(s.free){act.appendChild(mke('span','free-pill','Free'));}
+        else if(s.tickets){const a=mke('a','btn btn-neon','Tickets'); a.href=s.tickets; a.target='_blank'; a.rel='noopener'; act.appendChild(a);} 
+        else {act.appendChild(mke('span','free-pill','Info soon'));}
+        card.append(date,info,act); wrap.appendChild(card);
+      });
+    }
+    render();
+  </script>
+</body>
+</html>
