@@ -1,137 +1,60 @@
 /* ==================================================
-   WINDOWS 95 THEME — STACKED LAYOUT (HOMEPAGE FIX)
-   No text or src changes; high contrast maintained
+   SQUASH — WINDOWS 95 THEME (adjusted Listen + About)
 ================================================== */
 :root{
-  --desk:#008080;                /* Win95 teal desktop */
-  --window:#c0c0c0;              /* window body gray */
-  --panel:#e5e5e5;               /* default inner panel */
-  --panel-soft: rgb(179,179,179);/* requested for Listen/About */
-  --text:#000;                   /* text */
-  --title:#000080;               /* titlebar */
-  --title-text:#fff;             /* title text */
-  --hi:#ffffff;                  /* bevel highlight */
-  --lo:#808080;                  /* bevel shadow */
+  --desk:#008080;
+  --window:#c0c0c0;
+  --mid:#bdbdbd;
+  --text:#000;
+  --title:#000080;
+  --title-text:#fff;
+  --hi:#ffffff;
+  --lo:#808080;
   --edge:#9a9a9a;
-  --focus:#000000;
-  --content-w:max(320px, 1200px);
 }
 
 /* Base */
-*{box-sizing:border-box}
-html,body{margin:0}
-body.win95{font-family: Tahoma, "MS Sans Serif", system-ui, sans-serif; font-size:14px; line-height:1.5; color:var(--text); background:var(--desk) }
-img{max-width:100%; height:auto; display:block}
-a{color:#0000EE}
-a:focus-visible, button:focus-visible, .win95-button:focus-visible, .win95-input:focus-visible{outline:1px dotted var(--focus)}
+*{box-sizing:border-box;margin:0;padding:0}
+body.win95{font-family:Tahoma,"MS Sans Serif",system-ui,sans-serif; font-size:18px; line-height:1.5; color:var(--text); background:var(--desk); min-height:100vh}
+.desktop{position:relative; padding-bottom:40px}
+.icons{position:fixed; left:10px; top:10px; list-style:none; display:grid; gap:10px; color:#fff}
+.icons .icon{display:block; width:28px; height:28px; background:#fff; border:1px solid #000; margin:0 auto}
+.icons span{text-shadow:1px 1px 0 #000}
 
-/* Shared bevels */
-.navbar, .win95-statusbar, .win95-panel, .win95-window, .win95-button, .win95-input{
-  border-top:1px solid var(--hi);
-  border-left:1px solid var(--hi);
-  border-bottom:1px solid var(--lo);
-  border-right:1px solid var(--lo);
-}
+/* Windows */
+.window{position:absolute; width:min(1200px,86vw); background:var(--window); border-top:2px solid var(--hi); border-left:2px solid var(--hi); border-right:2px solid var(--lo); border-bottom:2px solid var(--lo); box-shadow: inset 1px 1px 0 var(--edge), inset -1px -1px 0 var(--edge)}
+.titlebar{display:flex; align-items:center; justify-content:space-between; background:var(--title); color:var(--title-text); padding:5px 6px; font-weight:700}
+.controls{display:flex; gap:4px}
+.ctrl{min-width:20px; height:18px; padding:0 4px; border-top:2px solid var(--hi); border-left:2px solid var(--hi); border-right:2px solid var(--lo); border-bottom:2px solid var(--lo); background:#c0c0c0; color:#000; font-weight:700; line-height:14px}
+.ctrl:active{border-top:2px solid var(--lo); border-left:2px solid var(--lo); border-right:2px solid var(--hi); border-bottom:2px solid var(--hi)}
+.toolbar{display:flex; gap:6px; padding:4px; background:var(--window); border-top:1px solid var(--edge)}
+.tbtn{padding:2px 6px; border-top:2px solid var(--hi); border-left:2px solid var(--hi); border-right:2px solid var(--lo); border-bottom:2px solid var(--lo); background:#dcdcdc}
+.address{width:min(520px,40vw); border:2px solid var(--hi); padding:3px; background:#fff; color:#000}
+.window-body{padding:10px; background:var(--mid)}
 
-/* Taskbar-like top nav */
-.navbar{position:sticky; top:0; z-index:5; display:flex; align-items:center; gap:.5rem; padding:6px 8px; background:var(--window)}
-.site-title{margin:0 8px 0 0; font-size:14px; font-weight:700}
-.primary-nav{margin-left:auto; display:flex; gap:6px; flex-wrap:wrap}
-.start-btn{margin-right:.5rem}
+/* Hero */
+.hero-body img{width:100%; height:60vh; object-fit:cover}
 
-/* Buttons */
-.win95-button{background:var(--window); color:var(--text); padding:6px 10px; text-decoration:none; display:inline-block}
-.win95-button:active{
-  border-top:1px solid var(--lo); border-left:1px solid var(--lo);
-  border-bottom:1px solid var(--hi); border-right:1px solid var(--hi); background:#dcdcdc
-}
-
-/* Inputs */
-.win95-input{background:#fff; color:#000; padding:4px}
-.address{min-width:240px; width:40%}
-
-/* Windows (STACKED — no absolute positioning) */
-.win95-window{width:min(var(--content-w), 92vw); margin:16px auto; background:var(--window)}
-.win95-titlebar{display:flex; align-items:center; justify-content:space-between; padding:6px 8px; background:var(--title); color:var(--title-text); font-weight:700}
-.win95-title{white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-.win95-controls .ctrl{display:inline-block; min-width:18px; text-align:center; padding:2px 4px; background:var(--window); color:#000}
-.win95-toolbar{display:flex; gap:6px; align-items:center; padding:6px; background:var(--window); border-top:1px solid var(--edge)}
-@media (max-width:640px){ .win95-toolbar{display:none} }
-.win95-window-body{padding:12px; background:var(--panel)}
-
-/* Panels */
-.win95-panel{background:#fff; position:relative}
-
-/* HERO — less crop & centered caption */
-.hero-media{margin:0; overflow:hidden}
-.hero-media img{
-  width:100%;
-  height:85vh;                 /* show more image */
-  object-fit:cover;
-  object-position:center 70%;  /* less top crop */
-}
-.hero-caption{
-  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-  display:inline-block; padding:6px 10px; background:#fff; color:#000;
-  border-top:1px solid var(--hi); border-left:1px solid var(--hi);
-  border-bottom:1px solid var(--lo); border-right:1px solid var(--lo);
-}
-.hero-caption__chrome{font-weight:700}
-
-/* LISTEN & ABOUT — requested panel color and tighter Listen */
-.listen-section .win95-window-body,
-.about-section .win95-window-body{ background: var(--panel-soft); }
-.listen-artwork.win95-panel,
-.about-artwork.win95-panel{ background: var(--panel-soft); }
-
-.listen-grid{display:grid; grid-template-columns:1.1fr 1fr; gap:16px; align-items:start}
-.listen-artwork img{
-  height:260px;           /* smaller section height */
-  object-fit:cover;
-  object-position:center;
-}
-
-.about-grid{display:grid; grid-template-columns:1.1fr 1fr; gap:16px; align-items:center}
-.about-left{max-width:65ch}
-
-
-/* Layout helpers */
+/* Listen */
 .grid-95{display:grid; grid-template-columns:1.1fr 1fr; gap:12px; align-items:start}
-.stack-95{display:grid; gap:10px; font-size:50px; line-height:1.7} /* increased text size for About */
+.grid-95 .card-95 img{width:100%; height:400px; object-fit:cover; object-position:center}
+
+/* About */
+.stack-95.about-text{font-size:20px; line-height:1.7}
+
+/* Shared */
+.card-95{background:#fff; border:2px solid var(--hi)}
 .btn-row{display:flex; gap:8px; flex-wrap:wrap}
+.btn-95{display:inline-block; text-decoration:none; color:#000; background:var(--window); padding:6px 12px; border:2px solid var(--hi)}
+.btn-95:active{border:2px solid var(--lo)}
 
-/* Listen photo bigger */
-.grid-95 .card-95 img{height:400px; object-fit:cover; object-position:center}
-
-/* Footer status bar */
-.win95-statusbar{width:min(var(--content-w), 92vw); margin:16px auto; padding:6px 10px; background:var(--window)}
-
-/* Media page helpers (unchanged, but ensure same teal background via body.win95) */
-.media-gallery, .media-gallery.media-gallery--wide{width:min(var(--content-w), 92vw); margin:0 auto; display:grid; grid-template-columns:repeat(3, minmax(260px,1fr)); gap:12px}
-.media-item{background:#fff}
-.media-item p{margin:8px 10px 10px}
-.photo-collage .media-collage{width:min(var(--content-w), 92vw)}
-.media-collage{column-count:3; column-gap:12px}
-.media-collage figure{break-inside:avoid; margin:0 0 12px 0; background:#fff; border-top:1px solid var(--hi); border-left:1px solid var(--hi); border-bottom:1px solid var(--lo); border-right:1px solid var(--lo)}
-
-/* Shows page list */
-.listview-95{display:block}
-.row-95{display:flex; align-items:center; background:#fff; border-top:1px solid var(--edge); color:#000}
-.row-95:nth-child(even){background:#f2f2f2}
-.row-head-95{background:#dcdcdc; font-weight:700; border-top:1px solid var(--lo); border-bottom:1px solid var(--hi)}
-.cell-95{padding:8px 10px; border-right:1px solid #bcbcbc}
-.cell-95.w120{width:120px}
-.cell-95.w260{width:260px}
-.cell-95.flex1{flex:1 1 auto}
+/* Taskbar */
+.taskbar.bottom{position:fixed; left:0; right:0; bottom:0; display:flex; align-items:center; gap:8px; padding:4px; background:var(--window); border:2px solid var(--hi)}
+.start{padding:4px 10px; background:#dcdcdc; border:2px solid var(--hi); font-weight:700}
+.menu{display:flex; gap:6px}
+.menu-item{padding:4px 8px; background:var(--window); border:2px solid var(--hi); text-decoration:none; color:#000}
+.menu-item:active{border:2px solid var(--lo); background:#eaeaea}
+.tray{margin-left:auto; padding:0 10px}
 
 /* Responsive */
-@media (max-width:980px){
-  .listen-grid,.about-grid{grid-template-columns:1fr}
-  .address{width:60%}
-}
-@media (max-width:640px){
-  .primary-nav{gap:4px}
-  .address{display:none}
-  .media-gallery{grid-template-columns:1fr}
-  .media-collage{column-count:1}
-}
+@media(max-width:980px){.grid-95{grid-template-columns:1fr}.window{width:92vw}}
