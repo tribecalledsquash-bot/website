@@ -1,4 +1,4 @@
-<!-- index.html (unchanged text; visibility tweaks handled via CSS) -->
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,81 +24,79 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="navbar titlebar" role="banner">
-    <div class="titlebar-left">
-      <span class="titlebar-icon"></span>
-      <h1 class="site-title">Squash – Boulder Indie Rock Band</h1>
-    </div>
-    <nav id="primary-nav" class="primary-nav" role="navigation">
-      <a class="tab" href="#music">Music</a>
-      <a class="tab" href="#about">About</a>
-      <a class="tab" href="media.html">Media</a>
-      <a class="tab" href="shows.html">Shows</a>
-      <a class="tab" href="#contact">Contact</a>
+  <!-- Minimal neon navbar (no bubbly tabs) -->
+  <header class="nav" role="banner">
+    <a class="brand" href="index.html"><span class="disc" aria-hidden="true"></span>Squash</a>
+    <nav class="nav-links" id="primary-nav" role="navigation">
+      <a href="#music">Music</a>
+      <a href="#about">About</a>
+      <a href="media.html">Media</a>
+      <a href="shows.html">Shows</a>
+      <a href="#contact">Contact</a>
     </nav>
-    <div class="titlebar-buttons" aria-hidden="true">
-      <button class="tb tb-min" title="Minimize"></button>
-      <button class="tb tb-max" title="Maximize"></button>
-      <button class="tb tb-close" title="Close"></button>
-    </div>
   </header>
 
+  <!-- Hero -->
   <section class="hero" aria-label="Hero">
     <img src="images/0E7620E5-2ED8-4A22-A47A-F951CBDEC398.JPG" alt="Squash, a Boulder indie rock band, performing live on stage" />
-    <div class="overlay overlay--tron">
-      <h2 data-reveal class="tron-head">Welcome to the Squnction</h2>
+    <div class="overlay">
+      <h2 class="hero-title" data-reveal>Welcome to the Squnction</h2>
     </div>
   </section>
 
-  <section id="music" class="section listen-section" aria-labelledby="music-heading">
-    <div class="listen-grid">
-      <figure class="listen-artwork" data-reveal>
+  <!-- Listen -->
+  <section id="music" class="section listen" aria-labelledby="music-heading">
+    <div class="grid two">
+      <figure class="card" data-reveal>
         <img src="Squnction.jpg" alt="Squash album Squnction cover art and live photo" />
       </figure>
-      <div class="listen-left" data-reveal>
+      <div class="stack" data-reveal>
         <h2 id="music-heading">Listen</h2>
-        <p class="album-blurb">Our first album <strong>Squnction</strong> is out now! We’re an indie rock band based in <strong>Boulder, Colorado</strong>, playing shows across the Front Range—Boulder, Denver, and beyond. From indie rock tracks like <em>Fifty Five Degrees</em> and <em>Save Your Words</em> to the Latin samba <em>El Zopenco</em>, plus bluegrass and squankin’ funk jams on <em>If You Want</em> and the title track—produced and recorded at The Moat Studio in Boulder. Catch us live for new, unreleased songs.</p>
-        <div class="links">
-          <a class="btn btn-neon" href="https://open.spotify.com/album/3iAGatLge2nioxcbvdWhTF" target="_blank" rel="noopener">Spotify</a>
-          <a class="btn btn-neon" href="https://music.apple.com/album/1811306807" target="_blank" rel="noopener">Apple Music</a>
-          <a class="btn btn-neon" href="https://www.youtube.com/channel/UCLs0-yVltyq0_zj5qhVx3Ow" target="_blank" rel="noopener">YouTube</a>
+        <p class="lead">Our first album <strong>Squnction</strong> is out now! We’re an indie rock band based in <strong>Boulder, Colorado</strong>, playing shows across the Front Range—Boulder, Denver, and beyond. From indie rock tracks like <em>Fifty Five Degrees</em> and <em>Save Your Words</em> to the Latin samba <em>El Zopenco</em>, plus bluegrass and squankin’ funk jams on <em>If You Want</em> and the title track—produced and recorded at The Moat Studio in Boulder. Catch us live for new, unreleased songs.</p>
+        <div class="action-row">
+          <a class="btn line" href="https://open.spotify.com/album/3iAGatLge2nioxcbvdWhTF" target="_blank" rel="noopener">Spotify</a>
+          <a class="btn line" href="https://music.apple.com/album/1811306807" target="_blank" rel="noopener">Apple Music</a>
+          <a class="btn line" href="https://www.youtube.com/channel/UCLs0-yVltyq0_zj5qhVx3Ow" target="_blank" rel="noopener">YouTube</a>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="about" class="section about-section" aria-labelledby="about-heading">
-    <div class="about-grid">
-      <div class="about-left" data-reveal>
+  <!-- About -->
+  <section id="about" class="section about" aria-labelledby="about-heading">
+    <div class="grid two">
+      <div class="stack copy" data-reveal>
         <h2 id="about-heading">About Us</h2>
         <p>We are Squash, an indie-jam band from <strong>Boulder, CO</strong>. Our music blends classic improvisational rock with modern indie-rock songwriting. Founded by two brothers in 2022, our shows around Boulder and Denver bring a playful stage presence with tightly arranged musicianship. No two live sets are the same—come see why we’re one of the most fun <em>bands in Boulder</em>.</p>
       </div>
-      <figure class="about-artwork" data-reveal>
+      <figure class="card" data-reveal>
         <img src="donkeyjesus.jpg" alt="Squash band press photo, Boulder Colorado indie rock group" />
       </figure>
     </div>
   </section>
 
-  <section id="contact" class="section" aria-labelledby="contact-heading">
+  <!-- Contact -->
+  <section id="contact" class="section contact" aria-labelledby="contact-heading">
     <h2 id="contact-heading">Contact</h2>
     <p>Email us at: <a href="mailto:tribecalledsquash@gmail.com">tribecalledsquash@gmail.com</a></p>
-    <div class="links">
-      <a class="btn btn-ghost-neon" href="https://instagram.com/instasquash" target="_blank" rel="noopener">Instagram</a>
-      <a class="btn btn-ghost-neon" href="https://www.youtube.com/channel/UCLs0-yVltyq0_zj5qhVx3Ow" target="_blank" rel="noopener">YouTube</a>
+    <div class="action-row">
+      <a class="btn ghost" href="https://instagram.com/instasquash" target="_blank" rel="noopener">Instagram</a>
+      <a class="btn ghost" href="https://www.youtube.com/channel/UCLs0-yVltyq0_zj5qhVx3Ow" target="_blank" rel="noopener">YouTube</a>
     </div>
   </section>
 
-  <footer role="contentinfo"><p>© 2025 Squash. All Rights Reserved.</p></footer>
+  <footer role="contentinfo" class="footer"><p>© 2025 Squash. All Rights Reserved.</p></footer>
 
   <script>
+    // simple reveal & active nav
     (function(){
-      const links=[...document.querySelectorAll('#primary-nav a')];
-      const ids=links.map(a=>a.getAttribute('href')).filter(h=>h&&h.startsWith('#'));
+      const links=[...document.querySelectorAll('.nav-links a')];
+      const ids=links.map(a=>a.getAttribute('href')).filter(h=>h && h.startsWith('#'));
       const secs=ids.map(h=>document.querySelector(h)).filter(Boolean);
-      const setActive=id=>links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+id));
-      const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting) setActive(e.target.id);});},{rootMargin:'-45% 0 -45% 0',threshold:0.01});
+      const setActive=id=>links.forEach(a=>a.classList.toggle('active', a.getAttribute('href')==='#'+id));
+      const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting) setActive(e.target.id);});},{rootMargin:'-50% 0% -45% 0%',threshold:0.01});
       secs.forEach(s=>io.observe(s));
-      const rio=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rio.unobserve(e.target);}})},{threshold:.12});
+      const rio=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rio.unobserve(e.target);}})},{threshold:.12});
       document.querySelectorAll('[data-reveal]').forEach((el,i)=>{el.classList.add('reveal'); el.style.transitionDelay=(i%6)*70+'ms'; rio.observe(el);});
     })();
   </script>
