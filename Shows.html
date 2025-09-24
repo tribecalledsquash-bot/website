@@ -6,29 +6,23 @@
   <title>Shows – Squash | Indie-Jam Band Live in Boulder, CO</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="shows-page">
-  <header class="navbar win95-taskbar">
-    <button class="win95-button start-btn" aria-label="Start">Start</button>
-    <h1 class="site-title">Squash</h1>
-    <nav class="primary-nav">
-      <a class="win95-button" href="index.html#music">Music</a>
-      <a class="win95-button" href="index.html#about">About</a>
-      <a class="win95-button" href="media.html">Media</a>
-      <a class="win95-button" href="shows.html" aria-current="page">Shows</a>
-      <a class="win95-button" href="index.html#contact">Contact</a>
+<body class="win95 desktop">
+  <section class="window" style="left:10vw; top:10vh">
+    <div class="titlebar"><div class="title">Upcoming Shows</div></div>
+    <div class="window-body">
+      <div id="shows-wrap" class="listview-95" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <footer class="taskbar bottom">
+    <button class="start"><span class="flag">🪟</span> Start</button>
+    <nav class="menu">
+      <a href="index.html" class="menu-item">Desktop</a>
+      <a href="#" class="menu-item">Shows</a>
+      <a href="media.html" class="menu-item">Media</a>
     </nav>
-  </header>
-
-  <main class="section shows-section">
-    <section class="win95-window">
-      <div class="win95-titlebar"><span class="win95-title">Upcoming Shows</span></div>
-      <div class="win95-window-body">
-        <div id="shows-wrap" class="listview-95" aria-live="polite"></div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="win95-statusbar"><p>© 2025 Squash. All Rights Reserved.</p></footer>
+    <div class="tray">Show List</div>
+  </footer>
 
   <script>
     const SHOWS = [
@@ -60,7 +54,7 @@
           (function(){
             const c=mk('div','cell-95 w120');
             if(s.free){ c.appendChild(mk('span','badge-95','Free')); }
-            else if(s.tickets){ const a=document.createElement('a'); a.href=s.tickets; a.target='_blank'; a.rel='noopener'; a.className='win95-button'; a.textContent='Tickets'; c.appendChild(a); }
+            else if(s.tickets){ const a=document.createElement('a'); a.href=s.tickets; a.target='_blank'; a.rel='noopener'; a.className='btn-95'; a.textContent='Tickets'; c.appendChild(a); }
             else { c.appendChild(mk('span','badge-95', 'Info soon')); }
             return c;
           })()
