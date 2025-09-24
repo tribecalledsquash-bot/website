@@ -1,4 +1,4 @@
-<!-- index.html -->
+!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,43 +13,42 @@
   <meta property="og:url" content="https://www.squashband.com/" />
   <meta property="og:image" content="https://www.squashband.com/images/og-cover.jpg" />
   <meta property="og:locale" content="en_US" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Squash | Indie Rock Band in Boulder, CO" />
-  <meta name="twitter:description" content="Catch Squash live around Boulder & Denver. Music, shows, and tickets." />
-  <meta name="twitter:image" content="https://www.squashband.com/images/og-cover.jpg" />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="win95">
-  <!-- Top Taskbar/Nav -->
-  <header class="taskbar">
-    <div class="start">🪟 Start</div>
-    <nav id="primary-nav" class="menu">
-      <a href="#music" class="menu-item">Music</a>
-      <a href="#about" class="menu-item">About</a>
-      <a href="media.html" class="menu-item">Media</a>
-      <a href="shows.html" class="menu-item">Shows</a>
-      <a href="#contact" class="menu-item">Contact</a>
-    </nav>
-    <div class="tray">Squash — Boulder Indie Rock Band</div>
-  </header>
+<body class="win95 desktop">
+  <!-- Icons (optional) -->
+  <ul class="icons" aria-label="Desktop icons">
+    <li><span class="icon"></span><span>My Computer</span></li>
+    <li><span class="icon"></span><span>Network</span></li>
+    <li><span class="icon"></span><span>Recycle Bin</span></li>
+  </ul>
 
-  <!-- Hero window -->
-  <section class="window hero-window" aria-label="Hero">
+  <!-- Overlapping windows like screenshot (z-index order) -->
+  <section class="window hero-window" style="left:6vw; top:7vh; z-index:3" aria-label="Hero">
     <div class="titlebar">
       <div class="title">Welcome to the Squnction</div>
-      <div class="controls">
-        <button aria-label="Minimize" class="ctrl ctrl-min"></button>
-        <button aria-label="Maximize" class="ctrl ctrl-max"></button>
-        <button aria-label="Close" class="ctrl ctrl-close"></button>
+      <div class="controls" aria-hidden="true">
+        <button class="ctrl">_</button>
+        <button class="ctrl">□</button>
+        <button class="ctrl">×</button>
       </div>
+    </div>
+    <div class="toolbar">
+      <div class="tool-left">
+        <button class="tbtn">Back</button>
+        <button class="tbtn">Forward</button>
+        <button class="tbtn">Stop</button>
+        <button class="tbtn">Refresh</button>
+        <button class="tbtn">Home</button>
+      </div>
+      <div class="tool-right"><input class="address" value="https://www.squashband.com/" aria-label="Address bar" /></div>
     </div>
     <div class="window-body hero-body">
       <img src="images/0E7620E5-2ED8-4A22-A47A-F951CBDEC398.JPG" alt="Squash, a Boulder indie rock band, performing live on stage" />
     </div>
   </section>
 
-  <!-- Listen window -->
-  <section id="music" class="window">
+  <section class="window" style="left:3vw; top:52vh; z-index:2">
     <div class="titlebar"><div class="title">Listen</div></div>
     <div class="window-body">
       <div class="grid-95">
@@ -66,8 +65,7 @@
     </div>
   </section>
 
-  <!-- About window -->
-  <section id="about" class="window">
+  <section class="window" style="left:18vw; top:70vh; z-index:1">
     <div class="titlebar"><div class="title">About Us</div></div>
     <div class="window-body">
       <div class="grid-95">
@@ -79,8 +77,7 @@
     </div>
   </section>
 
-  <!-- Contact window -->
-  <section id="contact" class="window">
+  <section class="window" style="left:8vw; top:100vh; z-index:1" id="contact">
     <div class="titlebar"><div class="title">Contact</div></div>
     <div class="window-body">
       <p>Email us at: <a href="mailto:tribecalledsquash@gmail.com">tribecalledsquash@gmail.com</a></p>
@@ -91,6 +88,16 @@
     </div>
   </section>
 
-  <footer class="statusbar"><p>© 2025 Squash. All Rights Reserved.</p></footer>
+  <!-- Bottom taskbar exactly like Win95 -->
+  <footer class="taskbar bottom">
+    <button class="start"><span class="flag">🪟</span> Start</button>
+    <nav class="menu">
+      <a href="#" class="menu-item" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Desktop</a>
+      <a href="#contact" class="menu-item">Contact</a>
+      <a href="media.html" class="menu-item">Media</a>
+      <a href="shows.html" class="menu-item">Shows</a>
+    </nav>
+    <div class="tray">Squash — Boulder Indie Rock Band</div>
+  </footer>
 </body>
 </html>
