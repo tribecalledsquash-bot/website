@@ -1,13 +1,12 @@
 /* ==================================================
-   Windows 95 stacked layout — FIXED HOMEPAGE JUMBLE
-   + Bigger Listen photo, bigger About text
-   (No text/src changes; AA contrast preserved)
+   Windows 95 stacked layout — sitewide
+   (Shows page rows now styled as clear Win95 cards)
 ================================================== */
 :root{
   --desk:#008080;                /* desktop teal */
   --window:#c0c0c0;              /* outer window */
   --panel:#e5e5e5;               /* default inner panel */
-  --panel-soft: rgb(179,179,179);/* requested softer panel */
+  --panel-soft: rgb(179,179,179);
   --text:#000;
   --title:#000080;
   --title-text:#fff;
@@ -77,9 +76,9 @@ a:focus-visible, button:focus-visible, .win95-button:focus-visible, .win95-input
 .listen-artwork.win95-panel{ background: var(--panel-soft); }
 .listen-grid{display:grid; grid-template-columns:1.1fr 1fr; gap:16px; align-items:start}
 .listen-artwork img{
-  height:400px;           /* bigger photo per request */
-  object-fit:cover;       /* crop without changing src */
-  object-position:center; /* balanced crop */
+  height:400px;
+  object-fit:cover;
+  object-position:center;
 }
 
 /* ABOUT — bigger text; softer panel */
@@ -87,10 +86,97 @@ a:focus-visible, button:focus-visible, .win95-button:focus-visible, .win95-input
 .about-artwork.win95-panel{ background: var(--panel-soft); }
 .about-grid{display:grid; grid-template-columns:1.1fr 1fr; gap:16px; align-items:center}
 .about-left{max-width:65ch}
-.about-bigger-text{ font-size:20px; line-height:1.7; }  /* requested bigger text */
+.about-bigger-text{ font-size:20px; line-height:1.7; }
 
 /* Buttons row */
 .btn-row{display:flex; gap:8px; flex-wrap:wrap}
 
 /* Footer status bar */
-.win95-statusbar{width:min(var(--content-w),92vw); margin:16px auto; padding:6px 10px
+.win95-statusbar{width:min(var(--content-w),92vw); margin:16px auto; padding:6px 10px; background:var(--window)}
+
+/* Media helpers */
+.media-gallery, .media-gallery.media-gallery--wide{width:min(var(--content-w),92vw); margin:0 auto; display:grid; grid-template-columns:repeat(3, minmax(260px,1fr)); gap:12px}
+.media-item{background:#fff}
+.media-item p{margin:8px 10px 10px}
+.photo-collage .media-collage{width:min(var(--content-w),92vw)}
+.media-collage{column-count:3; column-gap:12px}
+.media-collage figure{break-inside:avoid; margin:0 0 12px 0; background:#fff; border-top:1px solid var(--hi); border-left:1px solid var(--hi); border-bottom:1px solid var(--lo); border-right:1px solid var(--lo)}
+
+/* ============================
+   SHOWS PAGE — CLEAR ROW CARDS
+   ============================ */
+.listview-95{display:block; padding:6px}
+
+.row-head-95{
+  display:grid;
+  grid-template-columns: 140px 1fr 320px 140px;
+  gap:0;
+  background:#dcdcdc;
+  font-weight:700;
+  border-top:1px solid var(--lo);
+  border-bottom:1px solid var(--hi);
+}
+.row-head-95 .cell-95{padding:8px 10px; border-right:1px solid #bcbcbc}
+.row-head-95 .cell-95:last-child{border-right:none}
+
+.row-95{
+  display:grid;
+  grid-template-columns: 140px 1fr 320px 140px; /* Date | Title | Location | Action */
+  align-items:stretch;
+  background:#fff;
+  margin:10px 0;                 /* space between shows */
+  padding:0;                     /* we pad cells */
+  /* Raised Win95 card */
+  border-top:1px solid var(--hi);
+  border-left:1px solid var(--hi);
+  border-bottom:1px solid var(--lo);
+  border-right:1px solid var(--lo);
+  box-shadow: inset 1px 1px 0 var(--edge), inset -1px -1px 0 var(--edge);
+}
+.row-95 .cell-95{
+  padding:10px 12px;
+  border-right:1px solid #bcbcbc;
+}
+.row-95 .cell-95:last-child{border-right:none}
+
+/* Hover/focus emphasis */
+.row-95:hover,
+.row-95:focus-within{
+  outline:1px dotted var(--focus);
+  outline-offset:0;
+}
+
+/* Action cell tweaks */
+.badge-95{display:inline-block; padding:4px 8px; background:#e5e5e5;
+  border-top:1px solid var(--hi); border-left:1px solid var(--hi);
+  border-bottom:1px solid var(--lo); border-right:1px solid var(--lo); color:#000}
+
+/* Responsive: collapse to two columns, then one */
+@media (max-width:980px){
+  .listen-grid,.about-grid{grid-template-columns:1fr}
+  .address{width:60%}
+  .row-head-95{grid-template-columns: 120px 1fr 1fr 120px}
+  .row-95{grid-template-columns: 120px 1fr 1fr 120px}
+}
+@media (max-width:700px){
+  .row-head-95{display:none} /* hide table header on small screens */
+  .row-95{
+    grid-template-columns: 1fr 1fr; /* two-up cards */
+    grid-auto-rows:auto;
+  }
+  .row-95 .cell-95{border-right:none; border-bottom:1px solid #bcbcbc}
+  .row-95 .cell-95:nth-child(odd){border-right:1px solid #bcbcbc}
+  .row-95 .cell-95:last-child{border-bottom:none}
+}
+@media (max-width:480px){
+  .row-95{grid-template-columns: 1fr} /* single column stack */
+  .row-95 .cell-95{border-right:none}
+}
+
+/* Responsive (misc) */
+@media (max-width:640px){
+  .primary-nav{gap:4px}
+  .address{display:none}
+  .media-gallery{grid-template-columns:1fr}
+  .media-collage{column-count:1}
+}
