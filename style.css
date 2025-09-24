@@ -137,6 +137,12 @@ a:focus-visible, button:focus-visible, .win95-button:focus-visible, .win95-input
 .cell-95.w260{width:260px}
 .cell-95.flex1{flex:1 1 auto}
 
+/* Match background color across all pages */
+body.win95.media-page,
+body.win95.shows-page {
+  background: var(--desk); /* or copy the exact gradient/definition used on index */
+}
+
 /* Responsive */
 @media (max-width:980px){
   .listen-grid,.about-grid{grid-template-columns:1fr}
