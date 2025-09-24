@@ -6,59 +6,42 @@
   <title>Media — Squash</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <header class="navbar win95-taskbar">
-    <button class="win95-button start-btn" aria-label="Start">Start</button>
-    <h1 class="site-title">Squash</h1>
-    <nav class="primary-nav">
-      <a class="win95-button" href="index.html#music">Music</a>
-      <a class="win95-button" href="index.html#about">About</a>
-      <a class="win95-button" href="media.html" aria-current="page">Media</a>
-      <a class="win95-button" href="shows.html">Shows</a>
-      <a class="win95-button" href="index.html#contact">Contact</a>
+<body class="win95 desktop">
+  <section class="window" style="left:8vw; top:8vh">
+    <div class="titlebar"><div class="title">From the Yard</div></div>
+    <div class="window-body">
+      <div class="media-grid-95">
+        <div class="media-card-95"><iframe src="https://www.youtube.com/embed/vw5e_F_GGUU" title="From the Yard — Cassidy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><p>From the Yard — Cassidy</p></div>
+        <div class="media-card-95"><iframe src="https://www.youtube.com/embed/oGdDdqFPylQ" title="From the Yard — Take Me Home" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><p>From the Yard — Take Me Home</p></div>
+        <div class="media-card-95"><iframe src="https://www.youtube.com/embed/Gzl34Ru-kbw" title="From the Yard — Fifty Five Degrees" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><p>From the Yard — Fifty Five Degrees</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="window" style="left:18vw; top:56vh">
+    <div class="titlebar"><div class="title">Photos</div></div>
+    <div class="window-body">
+      <div class="collage-95">
+        <figure><img src="C39A1383.JPG" alt="Photo C39A1383" loading="lazy" /></figure>
+        <figure><img src="C39A1449.JPG" alt="Photo C39A1449" loading="lazy" /></figure>
+        <figure><img src="C39A1486.JPG" alt="Photo C39A1486" loading="lazy" /></figure>
+        <figure><img src="DSC06183.JPG" alt="Photo DSC06183" loading="lazy" /></figure>
+        <figure><img src="DSC06185.JPG" alt="Photo DSC06185" loading="lazy" /></figure>
+        <figure><img src="DSC06188.JPG" alt="Photo DSC06188" loading="lazy" /></figure>
+        <figure><img src="FFDE67D7-61F2-4244-90A1-F7F8FF32454D.JPG" alt="Photo FFDE67D7-61F2-4244-90A1-F7F8FF32454D" loading="lazy" /></figure>
+        <figure><img src="IMG_2658.JPG" alt="Photo IMG_2658" loading="lazy" /></figure>
+      </div>
+    </div>
+  </section>
+
+  <footer class="taskbar bottom">
+    <button class="start"><span class="flag">🪟</span> Start</button>
+    <nav class="menu">
+      <a href="index.html" class="menu-item">Desktop</a>
+      <a href="shows.html" class="menu-item">Shows</a>
+      <a href="#" class="menu-item">Media</a>
     </nav>
-  </header>
-
-  <main class="section" id="media">
-    <section class="win95-window from-yard">
-      <div class="win95-titlebar"><span class="win95-title">From the Yard</span></div>
-      <div class="win95-window-body">
-        <div class="media-gallery media-gallery--wide">
-          <div class="media-item win95-panel">
-            <iframe src="https://www.youtube.com/embed/vw5e_F_GGUU" title="From the Yard — Cassidy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            <p>From the Yard — Cassidy</p>
-          </div>
-          <div class="media-item win95-panel">
-            <iframe src="https://www.youtube.com/embed/oGdDdqFPylQ" title="From the Yard — Take Me Home" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            <p>From the Yard — Take Me Home</p>
-          </div>
-          <div class="media-item win95-panel">
-            <iframe src="https://www.youtube.com/embed/Gzl34Ru-kbw" title="From the Yard — Fifty Five Degrees" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            <p>From the Yard — Fifty Five Degrees</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <hr class="section-divider" />
-
-    <section class="win95-window photo-collage" aria-labelledby="photos-heading">
-      <div class="win95-titlebar"><span class="win95-title" id="photos-heading">Photos</span></div>
-      <div class="win95-window-body">
-        <div class="media-collage">
-          <figure class="win95-panel"><img src="C39A1383.JPG" alt="Photo C39A1383" loading="lazy" /></figure>
-          <figure class="win95-panel"><img src="C39A1449.JPG" alt="Photo C39A1449" loading="lazy" /></figure>
-          <figure class="win95-panel"><img src="C39A1486.JPG" alt="Photo C39A1486" loading="lazy" /></figure>
-          <figure class="win95-panel"><img src="DSC06183.JPG" alt="Photo DSC06183" loading="lazy" /></figure>
-          <figure class="win95-panel"><img src="DSC06185.JPG" alt="Photo DSC06185" loading="lazy" /></figure>
-          <figure class="win95-panel"><img src="DSC06188.JPG" alt="Photo DSC06188" loading="lazy" /></figure>
-          <figure class="win95-panel"><img src="FFDE67D7-61F2-4244-90A1-F7F8FF32454D.JPG" alt="Photo FFDE67D7-61F2-4244-90A1-F7F8FF32454D" loading="lazy" /></figure>
-          <figure class="win95-panel"><img src="IMG_2658.JPG" alt="Photo IMG_2658" loading="lazy" /></figure>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="win95-statusbar"><p>© 2025 Squash. All Rights Reserved.</p></footer>
+    <div class="tray">Media Viewer</div>
+  </footer>
 </body>
 </html>
