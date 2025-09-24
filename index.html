@@ -1,9 +1,8 @@
-!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Squash | Indie-Jam Band in Boulder, CO – Live Shows & Music</title>
   <meta name="description" content="Squash is a Boulder, Colorado indie rock band playing high-energy live shows across the Front Range. Listen to our music, see upcoming shows, and grab tickets." />
   <link rel="canonical" href="https://www.squashband.com/" />
@@ -15,89 +14,105 @@
   <meta property="og:locale" content="en_US" />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="win95 desktop">
-  <!-- Icons (optional) -->
-  <ul class="icons" aria-label="Desktop icons">
-    <li><span class="icon"></span><span>My Computer</span></li>
-    <li><span class="icon"></span><span>Network</span></li>
-    <li><span class="icon"></span><span>Recycle Bin</span></li>
-  </ul>
+<body>
+  <!-- Win95 Taskbar-style top nav (keeps your original link text) -->
+  <header class="navbar win95-taskbar" role="banner">
+    <button class="win95-button start-btn" aria-label="Start">Start</button>
+    <h1 class="site-title">Squash – Boulder Indie Rock Band</h1>
+    <nav id="primary-nav" class="primary-nav" role="navigation">
+      <a class="win95-button" href="#music">Music</a>
+      <a class="win95-button" href="#about">About</a>
+      <a class="win95-button" href="media.html">Media</a>
+      <a class="win95-button" href="shows.html">Shows</a>
+      <a class="win95-button" href="#contact">Contact</a>
+    </nav>
+  </header>
 
-  <!-- Overlapping windows like screenshot (z-index order) -->
-  <section class="window hero-window" style="left:6vw; top:7vh; z-index:3" aria-label="Hero">
-    <div class="titlebar">
-      <div class="title">Welcome to the Squnction</div>
-      <div class="controls" aria-hidden="true">
-        <button class="ctrl">_</button>
-        <button class="ctrl">□</button>
-        <button class="ctrl">×</button>
+  <!-- HERO as a Win95 window: title bar + image panel; text unchanged -->
+  <section class="hero win95-window" aria-label="Hero">
+    <div class="win95-titlebar" role="heading" aria-level="2">
+      <span class="win95-title">Welcome to the Squnction</span>
+      <div class="win95-controls" aria-hidden="true">
+        <span class="ctrl" aria-label="Minimize">_</span>
+        <span class="ctrl" aria-label="Maximize">□</span>
+        <span class="ctrl" aria-label="Close">×</span>
       </div>
     </div>
-    <div class="toolbar">
-      <div class="tool-left">
-        <button class="tbtn">Back</button>
-        <button class="tbtn">Forward</button>
-        <button class="tbtn">Stop</button>
-        <button class="tbtn">Refresh</button>
-        <button class="tbtn">Home</button>
-      </div>
-      <div class="tool-right"><input class="address" value="https://www.squashband.com/" aria-label="Address bar" /></div>
+    <div class="win95-toolbar">
+      <button class="win95-button" type="button">Back</button>
+      <button class="win95-button" type="button">Forward</button>
+      <button class="win95-button" type="button">Stop</button>
+      <button class="win95-button" type="button">Refresh</button>
+      <button class="win95-button" type="button">Home</button>
+      <input class="win95-input address" value="https://www.squashband.com/" aria-label="Address" />
     </div>
-    <div class="window-body hero-body">
+    <figure class="hero-media win95-panel">
       <img src="images/0E7620E5-2ED8-4A22-A47A-F951CBDEC398.JPG" alt="Squash, a Boulder indie rock band, performing live on stage" />
-    </div>
+    </figure>
   </section>
 
-  <section class="window" style="left:3vw; top:52vh; z-index:2">
-    <div class="titlebar"><div class="title">Listen</div></div>
-    <div class="window-body">
-      <div class="grid-95">
-        <figure class="card-95"><img src="Squnction.jpg" alt="Squash album Squnction cover art and live photo" /></figure>
-        <div class="stack-95">
-          <p>Our first album <strong>Squnction</strong> is out now! We’re an indie rock band based in <strong>Boulder, Colorado</strong>, playing shows across the Front Range—Boulder, Denver, and beyond. From indie rock tracks like <em>Fifty Five Degrees</em> and <em>Save Your Words</em> to the Latin samba <em>El Zopenco</em>, plus bluegrass and squankin’ funk jams on <em>If You Want</em> and the title track—produced and recorded at The Moat Studio in Boulder. Catch us live for new, unreleased songs.</p>
-          <div class="btn-row">
-            <a class="btn-95" href="https://open.spotify.com/album/3iAGatLge2nioxcbvdWhTF" target="_blank" rel="noopener">Spotify</a>
-            <a class="btn-95" href="https://music.apple.com/album/1811306807" target="_blank" rel="noopener">Apple Music</a>
-            <a class="btn-95" href="https://www.youtube.com/channel/UCLs0-yVltyq0_zj5qhVx3Ow" target="_blank" rel="noopener">YouTube</a>
+  <!-- Music Links (Listen) -->
+  <section id="music" class="section listen-section win95-window" aria-labelledby="music-heading">
+    <div class="win95-titlebar"><span class="win95-title" id="music-heading">Listen</span></div>
+    <div class="win95-window-body">
+      <div class="listen-grid">
+        <figure class="listen-artwork win95-panel">
+          <img src="Squnction.jpg" alt="Squash album Squnction cover art and live photo" />
+        </figure>
+        <div class="listen-left">
+          <p class="album-blurb">
+            Our first album <strong>Squnction</strong> is out now! We’re an indie rock band based in <strong>Boulder, Colorado</strong>, playing shows across the Front Range—Boulder, Denver, and beyond. From indie rock tracks like
+            <em>Fifty Five Degrees</em> and <em>Save Your Words</em> to the Latin samba <em>El Zopenco</em>, plus bluegrass and squankin’ funk jams on
+            <em>If You Want</em> and the title track—produced and recorded at The Moat Studio in Boulder. Catch us live for new, unreleased songs.
+          </p>
+          <div class="links btn-row">
+            <a class="win95-button" href="https://open.spotify.com/album/3iAGatLge2nioxcbvdWhTF" target="_blank" rel="noopener">Spotify</a>
+            <a class="win95-button" href="https://music.apple.com/album/1811306807" target="_blank" rel="noopener">Apple Music</a>
+            <a class="win95-button" href="https://www.youtube.com/channel/UCLs0-yVltyq0_zj5qhVx3Ow" target="_blank" rel="noopener">YouTube</a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="window" style="left:18vw; top:70vh; z-index:1">
-    <div class="titlebar"><div class="title">About Us</div></div>
-    <div class="window-body">
-      <div class="grid-95">
-        <div class="stack-95">
-          <p>We are Squash, an indie-jam band from <strong>Boulder, CO</strong>. Our music blends classic improvisational rock with modern indie-rock songwriting. Founded by two brothers in 2022, our shows around Boulder and Denver bring a playful stage presence with tightly arranged musicianship. No two live sets are the same—come see why we’re one of the most fun <em>bands in Boulder</em>.</p>
+  <!-- About -->
+  <section id="about" class="section about-section win95-window" aria-labelledby="about-heading">
+    <div class="win95-titlebar"><span class="win95-title" id="about-heading">About Us</span></div>
+    <div class="win95-window-body">
+      <div class="about-grid">
+        <div class="about-left">
+          <p>
+            We are Squash, an indie-jam band from <strong>Boulder, CO</strong>. Our music blends classic improvisational rock with modern indie-rock songwriting.
+            Founded by two brothers in 2022, our shows around Boulder and Denver bring a playful stage presence with tightly arranged musicianship.
+            No two live sets are the same—come see why we’re one of the most fun <em>bands in Boulder</em>.
+          </p>
         </div>
-        <figure class="card-95"><img src="donkeyjesus.jpg" alt="Squash band press photo, Boulder Colorado indie rock group" /></figure>
+        <figure class="about-artwork win95-panel">
+          <img src="donkeyjesus.jpg" alt="Squash band press photo, Boulder Colorado indie rock group" />
+        </figure>
       </div>
     </div>
   </section>
 
-  <section class="window" style="left:8vw; top:100vh; z-index:1" id="contact">
-    <div class="titlebar"><div class="title">Contact</div></div>
-    <div class="window-body">
+  <!-- Contact -->
+  <section id="contact" class="section win95-window" aria-labelledby="contact-heading">
+    <div class="win95-titlebar"><span class="win95-title" id="contact-heading">Contact</span></div>
+    <div class="win95-window-body">
       <p>Email us at: <a href="mailto:tribecalledsquash@gmail.com">tribecalledsquash@gmail.com</a></p>
-      <div class="btn-row">
-        <a class="btn-95" href="https://instagram.com/instasquash" target="_blank" rel="noopener">Instagram</a>
-        <a class="btn-95" href="https://www.youtube.com/channel/UCLs0-yVltyq0_zj5qhVx3Ow" target="_blank" rel="noopener">YouTube</a>
+      <div class="links btn-row">
+        <a href="https://instagram.com/instasquash" target="_blank" rel="noopener" class="win95-button">Instagram</a>
+        <a href="https://www.youtube.com/channel/UCLs0-yVltyq0_zj5qhVx3Ow" target="_blank" rel="noopener" class="win95-button">YouTube</a>
       </div>
     </div>
   </section>
 
-  <!-- Bottom taskbar exactly like Win95 -->
-  <footer class="taskbar bottom">
-    <button class="start"><span class="flag">🪟</span> Start</button>
-    <nav class="menu">
-      <a href="#" class="menu-item" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Desktop</a>
-      <a href="#contact" class="menu-item">Contact</a>
-      <a href="media.html" class="menu-item">Media</a>
-      <a href="shows.html" class="menu-item">Shows</a>
-    </nav>
-    <div class="tray">Squash — Boulder Indie Rock Band</div>
+  <!-- Footer / status bar -->
+  <footer class="win95-statusbar" role="contentinfo">
+    <p>© 2025 Squash. All Rights Reserved.</p>
   </footer>
+
+  <script>
+    // keep your small nav/observer logic if needed (no visual animations)
+  </script>
 </body>
 </html>
