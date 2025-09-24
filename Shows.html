@@ -1,4 +1,4 @@
-<!-- shows.html -->
+<!-- shows.html (unchanged text/logic; UI comes from CSS) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,10 +9,7 @@
 </head>
 <body class="shows-page">
   <header class="navbar titlebar">
-    <div class="titlebar-left">
-      <span class="titlebar-icon"></span>
-      <h1 class="site-title">Squash</h1>
-    </div>
+    <div class="titlebar-left"><span class="titlebar-icon"></span><h1 class="site-title">Squash</h1></div>
     <nav class="primary-nav">
       <a class="tab" href="index.html#music">Music</a>
       <a class="tab" href="index.html#about">About</a>
@@ -20,11 +17,7 @@
       <a class="tab active" href="shows.html" aria-current="page">Shows</a>
       <a class="tab" href="index.html#contact">Contact</a>
     </nav>
-    <div class="titlebar-buttons" aria-hidden="true">
-      <button class="tb tb-min"></button>
-      <button class="tb tb-max"></button>
-      <button class="tb tb-close"></button>
-    </div>
+    <div class="titlebar-buttons" aria-hidden="true"><button class="tb tb-min"></button><button class="tb tb-max"></button><button class="tb tb-close"></button></div>
   </header>
 
   <main class="section" id="shows">
@@ -32,47 +25,34 @@
       <h1>Upcoming Shows</h1>
       <p>Catch us live — updated as new dates drop.</p>
     </div>
-
     <hr class="section-divider" />
-
     <div id="shows-wrap" class="shows-wrap" aria-live="polite"></div>
   </main>
-
-  <footer>
-    <p>© 2025 Squash. All Rights Reserved.</p>
-  </footer>
-
+  <footer><p>© 2025 Squash. All Rights Reserved.</p></footer>
   <script>
-    const SHOWS = [
+    const SHOWS=[
       { date: "2025-09-13", title: "Lolita's", location: "Boulder, CO – Lolita's on West Pearl St.", free: true },
       { date: "2025-10-09T20:00", title: "Fox Theatre! — Use code SQUASH for discount", location: "Boulder, CO", tickets: "https://tix.axs.com/DrsuCQAAAADLMp%2bUAAAAAAD9%2fv%2f%2f%2f%2f%2fBXRoZW1lAP%2f%2f%2f%2f%2f%2f%2f%2f%2f%2f/shop/restrictions?axssid=token_0e31593076c1" },
       { date: "2025-10-17T19:00", title: "Roots Music Festival", location: "1904 Pearl Street – 7:00 pm", free: true },
       { date: "2025-10-30", title: "Halloweekend House Show", location: "2002 Baseline Rd., Boulder, CO", free: true }
     ];
-
     const MONTHS=["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
-    function mke(tag,c,t){const e=document.createElement(tag); if(c) e.className=c; if(t!=null) e.textContent=t; return e;}
-    function parseISO(d){const v=d.includes('T')?new Date(d):new Date(d+'T00:00');return isNaN(v)?null:v;}
-
+    function mke(t,c,tx){const e=document.createElement(t); if(c) e.className=c; if(tx!=null) e.textContent=tx; return e;}
+    function parseISO(v){const d=v.includes('T')?new Date(v):new Date(v+'T00:00'); return isNaN(d)?null:d;}
     function render(){
       const wrap=document.getElementById('shows-wrap'); wrap.innerHTML='';
       const today=new Date(); today.setHours(0,0,0,0);
       const rows=SHOWS.map(s=>({...s,_d:parseISO(s.date)})).filter(s=>s._d&&s._d>=today).sort((a,b)=>a._d-b._d);
-      if(!rows.length){wrap.appendChild(mke('p','muted','No upcoming shows — check back soon!'));return;}
+      if(!rows.length){const p=mke('p','muted','No upcoming shows — check back soon!'); p.style.textAlign='center'; wrap.appendChild(p); return;}
       rows.forEach(s=>{
         const card=mke('article','show-card');
-        const d=s._d; const date=mke('div','show-date');
-        date.appendChild(mke('span','month',MONTHS[d.getMonth()]));
-        date.appendChild(mke('span','day',String(d.getDate())));
-        date.appendChild(mke('span','year',String(d.getFullYear())));
-        const info=mke('div','show-info');
-        info.appendChild(mke('h3','',s.title));
-        info.appendChild(mke('div','loc',s.location||''));
+        const d=s._d; const box=mke('div','show-date');
+        box.append(mke('span','month',MONTHS[d.getMonth()]), mke('span','day',String(d.getDate())), mke('span','year',String(d.getFullYear())));
+        const info=mke('div','show-info'); info.append(mke('h3','',s.title), mke('div','loc',s.location||''));
         const act=mke('div','show-action');
-        if(s.free){act.appendChild(mke('span','free-pill','Free'));}
-        else if(s.tickets){const a=mke('a','btn btn-neon','Tickets'); a.href=s.tickets; a.target='_blank'; a.rel='noopener'; act.appendChild(a);} 
-        else {act.appendChild(mke('span','free-pill','Info soon'));}
-        card.append(date,info,act); wrap.appendChild(card);
+        if(s.free) act.appendChild(mke('span','free-pill','Free'));
+        else if(s.tickets){const a=mke('a','btn btn-neon','Tickets'); a.href=s.tickets; a.target='_blank'; a.rel='noopener'; act.appendChild(a);} else act.appendChild(mke('span','free-pill','Info soon'));
+        card.append(box,info,act); wrap.appendChild(card);
       });
     }
     render();
