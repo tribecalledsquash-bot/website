@@ -1,5 +1,3 @@
-# index.html
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +15,7 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Win95 Taskbar-style top nav (keeps your original link text) -->
+  <!-- Win95 Taskbar-style top nav (visual only; text unchanged) -->
   <header class="navbar win95-taskbar" role="banner">
     <button class="win95-button start-btn" aria-label="Start">Start</button>
     <h1 class="site-title">Squash – Boulder Indie Rock Band</h1>
@@ -30,7 +28,7 @@
     </nav>
   </header>
 
-  <!-- HERO as a Win95 window: title bar + image panel; text unchanged -->
+  <!-- HERO as a Win95 window: title bar + toolbar + image panel -->
   <section class="hero win95-window" aria-label="Hero">
     <div class="win95-titlebar" role="heading" aria-level="2">
       <span class="win95-title">Welcome to the Squnction</span>
@@ -53,7 +51,7 @@
     </figure>
   </section>
 
-  <!-- Music Links (Listen) -->
+  <!-- Music (Listen) -->
   <section id="music" class="section listen-section win95-window" aria-labelledby="music-heading">
     <div class="win95-titlebar"><span class="win95-title" id="music-heading">Listen</span></div>
     <div class="win95-window-body">
@@ -112,241 +110,5 @@
   <footer class="win95-statusbar" role="contentinfo">
     <p>© 2025 Squash. All Rights Reserved.</p>
   </footer>
-
-  <script>
-    // keep your small nav/observer logic if needed (no visual animations)
-  </script>
-</body>
-</html>
-```
-
-# style.css
-```css
-/* ==================================================
-   Windows 95 Visual Theme (no text/content changes)
-   Strong contrast, simple motion, accessible focus
-================================================== */
-:root{
-  --win-bg:#C0C0C0;        /* window */
-  --win-panel:#E5E5E5;     /* inner panel */
-  --win-text:#000;         /* text */
-  --win-title:#000080;     /* active titlebar */
-  --win-title-text:#fff;   /* title text */
-  --win-border-light:#FFFFFF;
-  --win-border-mid:#C0C0C0;
-  --win-border-dark:#808080;
-  --win-border-shadow:#404040;
-  --focus:#000000;
-
-  --page-bg:#008080;       /* desktop teal */
-  --content-w:max(320px, 1200px);
-}
-
-/* Base / typography */
-*{box-sizing:border-box}
-html,body{margin:0}
-body{font-family:"MS Sans Serif","Segoe UI",Tahoma,Geneva,Verdana,sans-serif; font-size:14px; line-height:1.5; color:var(--win-text); background:var(--page-bg)}
-img{max-width:100%; height:auto; display:block}
-a{color:#0000EE}
-a:focus-visible, button:focus-visible, .win95-button:focus-visible, .win95-input:focus-visible{outline:1px dotted var(--focus); outline-offset:0}
-
-/* Taskbar-like top nav */
-.navbar{position:sticky; top:0; z-index:5; display:flex; align-items:center; gap:.5rem; padding:6px 8px; background:var(--win-bg);}
-.navbar,.win95-statusbar,.win95-panel,.win95-window,.win95-button,.win95-input{border-top:1px solid var(--win-border-light); border-left:1px solid var(--win-border-light); border-bottom:1px solid var(--win-border-shadow); border-right:1px solid var(--win-border-shadow)}
-.site-title{margin:0 8px 0 0; font-size:14px; font-weight:700}
-.primary-nav{margin-left:auto; display:flex; gap:6px; flex-wrap:wrap}
-.start-btn{margin-right:.5rem}
-
-/* Buttons */
-.win95-button{background:var(--win-bg); color:var(--win-text); padding:6px 10px; text-decoration:none; display:inline-block}
-.win95-button:active{border-top:1px solid var(--win-border-shadow); border-left:1px solid var(--win-border-shadow); border-bottom:1px solid var(--win-border-light); border-right:1px solid var(--win-border-light); background:#DCDCDC}
-
-/* Inputs */
-.win95-input{background:#fff; color:#000; padding:4px}
-.address{min-width:240px; width:40%}
-
-/* Windows */
-.win95-window{width:min(var(--content-w), 92vw); margin:16px auto; background:var(--win-bg)}
-.win95-titlebar{display:flex; align-items:center; justify-content:space-between; padding:6px 8px; background:var(--win-title); color:var(--win-title-text); font-weight:700}
-.win95-title{white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-.win95-controls .ctrl{display:inline-block; min-width:18px; text-align:center; padding:2px 4px; background:var(--win-bg); color:#000}
-.win95-toolbar{display:flex; gap:6px; align-items:center; padding:6px; background:var(--win-bg); border-top:1px solid var(--win-border-dark)}
-.win95-window-body{padding:12px; background:var(--win-panel)}
-
-/* Panels */
-.win95-panel{background:#fff}
-
-/* Sections / grids — preserve existing layout structure */
-.section{padding:0}
-.listen-grid,.about-grid{display:grid; grid-template-columns:1.1fr 1fr; gap:16px; align-items:start}
-.listen-left,.about-left,.album-blurb{color:#000}
-
-/* Hero media stays simple so it never overlaps */
-.hero-media{margin:0}
-.hero-media img{width:100%; height:auto}
-
-/* Buttons row */
-.btn-row{display:flex; gap:8px; flex-wrap:wrap}
-
-/* Footer status bar */
-.win95-statusbar{width:min(var(--content-w), 92vw); margin:16px auto; padding:6px 10px; background:var(--win-bg)}
-
-/* Media page helpers */
-.media-gallery, .media-gallery.media-gallery--wide{width:min(var(--content-w), 92vw)}
-.media-item{background:#fff}
-.media-item p{margin:8px 10px 10px}
-.photo-collage .media-collage{width:min(var(--content-w), 92vw)}
-.media-collage figure{background:#fff}
-
-/* Shows page */
-.shows-section,.shows-wrap{width:min(900px, 92vw)}
-
-/* Responsive */
-@media (max-width:980px){.listen-grid,.about-grid{grid-template-columns:1fr}.address{width:60%}}
-@media (max-width:640px){.primary-nav{gap:4px}.address{display:none}}
-```
-
-# media.html
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Media — Squash</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <header class="navbar win95-taskbar">
-    <button class="win95-button start-btn" aria-label="Start">Start</button>
-    <h1 class="site-title">Squash</h1>
-    <nav class="primary-nav">
-      <a class="win95-button" href="index.html#music">Music</a>
-      <a class="win95-button" href="index.html#about">About</a>
-      <a class="win95-button" href="media.html" aria-current="page">Media</a>
-      <a class="win95-button" href="shows.html">Shows</a>
-      <a class="win95-button" href="index.html#contact">Contact</a>
-    </nav>
-  </header>
-
-  <main class="section" id="media">
-    <section class="win95-window from-yard">
-      <div class="win95-titlebar"><span class="win95-title">From the Yard</span></div>
-      <div class="win95-window-body">
-        <div class="media-gallery media-gallery--wide">
-          <div class="media-item win95-panel">
-            <iframe src="https://www.youtube.com/embed/vw5e_F_GGUU" title="From the Yard — Cassidy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            <p>From the Yard — Cassidy</p>
-          </div>
-          <div class="media-item win95-panel">
-            <iframe src="https://www.youtube.com/embed/oGdDdqFPylQ" title="From the Yard — Take Me Home" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            <p>From the Yard — Take Me Home</p>
-          </div>
-          <div class="media-item win95-panel">
-            <iframe src="https://www.youtube.com/embed/Gzl34Ru-kbw" title="From the Yard — Fifty Five Degrees" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            <p>From the Yard — Fifty Five Degrees</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <hr class="section-divider" />
-
-    <section class="win95-window photo-collage" aria-labelledby="photos-heading">
-      <div class="win95-titlebar"><span class="win95-title" id="photos-heading">Photos</span></div>
-      <div class="win95-window-body">
-        <div class="media-collage">
-          <figure class="win95-panel"><img src="C39A1383.JPG" alt="Photo C39A1383" loading="lazy" /></figure>
-          <figure class="win95-panel"><img src="C39A1449.JPG" alt="Photo C39A1449" loading="lazy" /></figure>
-          <figure class="win95-panel"><img src="C39A1486.JPG" alt="Photo C39A1486" loading="lazy" /></figure>
-          <figure class="win95-panel"><img src="DSC06183.JPG" alt="Photo DSC06183" loading="lazy" /></figure>
-          <figure class="win95-panel"><img src="DSC06185.JPG" alt="Photo DSC06185" loading="lazy" /></figure>
-          <figure class="win95-panel"><img src="DSC06188.JPG" alt="Photo DSC06188" loading="lazy" /></figure>
-          <figure class="win95-panel"><img src="FFDE67D7-61F2-4244-90A1-F7F8FF32454D.JPG" alt="Photo FFDE67D7-61F2-4244-90A1-F7F8FF32454D" loading="lazy" /></figure>
-          <figure class="win95-panel"><img src="IMG_2658.JPG" alt="Photo IMG_2658" loading="lazy" /></figure>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="win95-statusbar"><p>© 2025 Squash. All Rights Reserved.</p></footer>
-</body>
-</html>
-```
-
-# shows.html
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shows – Squash | Indie-Jam Band Live in Boulder, CO</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body class="shows-page">
-  <header class="navbar win95-taskbar">
-    <button class="win95-button start-btn" aria-label="Start">Start</button>
-    <h1 class="site-title">Squash</h1>
-    <nav class="primary-nav">
-      <a class="win95-button" href="index.html#music">Music</a>
-      <a class="win95-button" href="index.html#about">About</a>
-      <a class="win95-button" href="media.html">Media</a>
-      <a class="win95-button" href="shows.html" aria-current="page">Shows</a>
-      <a class="win95-button" href="index.html#contact">Contact</a>
-    </nav>
-  </header>
-
-  <main class="section shows-section">
-    <section class="win95-window">
-      <div class="win95-titlebar"><span class="win95-title">Upcoming Shows</span></div>
-      <div class="win95-window-body">
-        <div id="shows-wrap" class="listview-95" aria-live="polite"></div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="win95-statusbar"><p>© 2025 Squash. All Rights Reserved.</p></footer>
-
-  <script>
-    const SHOWS = [
-      { date: "2025-09-13", title: "Lolita's", location: "Boulder, CO – Lolita's on West Pearl St.", free: true },
-      { date: "2025-10-09T20:00", title: "Fox Theatre! — Use code SQUASH for discount", location: "Boulder, CO", tickets: "https://tix.axs.com/DrsuCQAAAADLMp%2bUAAAAAAD9%2fv%2f%2f%2f%2f%2fBXRoZW1lAP%2f%2f%2f%2f%2f%2f%2f%2f%2f%2f/shop/restrictions?axssid=token_0e31593076c1" },
-      { date: "2025-10-17T19:00", title: "Roots Music Festival", location: "1904 Pearl Street – 7:00 pm", free: true },
-      { date: "2025-10-30", title: "Halloweekend House Show", location: "2002 Baseline Rd., Boulder, CO", free: true }
-    ];
-
-    const MONTHS=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-    const mk=(t,c,tx)=>{const e=document.createElement(t); if(c) e.className=c; if(tx!=null) e.textContent=tx; return e;};
-    const parseISO=v=>{const d=v.includes('T')?new Date(v):new Date(v+'T00:00'); return isNaN(d)?null:d;};
-
-    function render(){
-      const wrap=document.getElementById('shows-wrap'); wrap.innerHTML='';
-      const today=new Date(); today.setHours(0,0,0,0);
-      const rows=SHOWS.map(s=>({...s,_d:parseISO(s.date)})).filter(s=>s._d && s._d>=today).sort((a,b)=>a._d-b._d);
-      if(!rows.length){wrap.appendChild(mk('div','row-95','No upcoming shows — check back soon!'));return;}
-      const header=mk('div','row-95 row-head-95');
-      header.append(mk('div','cell-95 w120','Date'), mk('div','cell-95 flex1','Title'), mk('div','cell-95 w260','Location'), mk('div','cell-95 w120','Action'));
-      wrap.appendChild(header);
-      rows.forEach(s=>{
-        const r=mk('div','row-95');
-        const d=s._d; const date=`${MONTHS[d.getMonth()]} ${String(d.getDate()).padStart(2,'0')}, ${d.getFullYear()}`;
-        r.append(
-          mk('div','cell-95 w120',date),
-          mk('div','cell-95 flex1',s.title),
-          mk('div','cell-95 w260',s.location||''),
-          (function(){
-            const c=mk('div','cell-95 w120');
-            if(s.free){ c.appendChild(mk('span','badge-95','Free')); }
-            else if(s.tickets){ const a=document.createElement('a'); a.href=s.tickets; a.target='_blank'; a.rel='noopener'; a.className='win95-button'; a.textContent='Tickets'; c.appendChild(a); }
-            else { c.appendChild(mk('span','badge-95', 'Info soon')); }
-            return c;
-          })()
-        );
-        wrap.appendChild(r);
-      });
-    }
-    render();
-  </script>
 </body>
 </html>
