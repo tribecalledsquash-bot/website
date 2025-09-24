@@ -6,23 +6,31 @@
   <title>Shows – Squash | Indie-Jam Band Live in Boulder, CO</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="win95 desktop">
-  <section class="window" style="left:10vw; top:10vh">
-    <div class="titlebar"><div class="title">Upcoming Shows</div></div>
-    <div class="window-body">
-      <div id="shows-wrap" class="listview-95" aria-live="polite"></div>
-    </div>
-  </section>
-
-  <footer class="taskbar bottom">
-    <button class="start"><span class="flag">🪟</span> Start</button>
-    <nav class="menu">
-      <a href="index.html" class="menu-item">Desktop</a>
-      <a href="#" class="menu-item">Shows</a>
-      <a href="media.html" class="menu-item">Media</a>
+<body class="win95 shows-page">
+  <!-- Top taskbar-style nav (same as index) -->
+  <header class="navbar win95-taskbar">
+    <button class="win95-button start-btn" aria-label="Start">Start</button>
+    <h1 class="site-title">Squash</h1>
+    <nav class="primary-nav">
+      <a class="win95-button" href="index.html#music">Music</a>
+      <a class="win95-button" href="index.html#about">About</a>
+      <a class="win95-button" href="media.html">Media</a>
+      <a class="win95-button" href="shows.html" aria-current="page">Shows</a>
+      <a class="win95-button" href="index.html#contact">Contact</a>
     </nav>
-    <div class="tray">Show List</div>
-  </footer>
+  </header>
+
+  <main class="section shows-section">
+    <section class="win95-window">
+      <div class="win95-titlebar"><span class="win95-title">Upcoming Shows</span></div>
+      <div class="win95-window-body">
+        <div id="shows-wrap" class="listview-95" aria-live="polite"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer / status bar -->
+  <footer class="win95-statusbar"><p>© 2025 Squash. All Rights Reserved.</p></footer>
 
   <script>
     const SHOWS = [
@@ -42,20 +50,34 @@
       const rows=SHOWS.map(s=>({...s,_d:parseISO(s.date)})).filter(s=>s._d && s._d>=today).sort((a,b)=>a._d-b._d);
       if(!rows.length){wrap.appendChild(mk('div','row-95','No upcoming shows — check back soon!'));return;}
       const header=mk('div','row-95 row-head-95');
-      header.append(mk('div','cell-95 w120','Date'), mk('div','cell-95 flex1','Title'), mk('div','cell-95 w260','Location'), mk('div','cell-95 w120','Action'));
+      header.append(
+        mk('div','cell-95 w120','Date'),
+        mk('div','cell-95 flex1','Title'),
+        mk('div','cell-95 w260','Location'),
+        mk('div','cell-95 w120','Action')
+      );
       wrap.appendChild(header);
+
       rows.forEach(s=>{
         const r=mk('div','row-95');
-        const d=s._d; const date=`${MONTHS[d.getMonth()]} ${String(d.getDate()).padStart(2,'0')}, ${d.getFullYear()}`;
+        const d=s._d;
+        const date=`${MONTHS[d.getMonth()]} ${String(d.getDate()).padStart(2,'0')}, ${d.getFullYear()}`;
         r.append(
           mk('div','cell-95 w120',date),
           mk('div','cell-95 flex1',s.title),
           mk('div','cell-95 w260',s.location||''),
           (function(){
             const c=mk('div','cell-95 w120');
-            if(s.free){ c.appendChild(mk('span','badge-95','Free')); }
-            else if(s.tickets){ const a=document.createElement('a'); a.href=s.tickets; a.target='_blank'; a.rel='noopener'; a.className='btn-95'; a.textContent='Tickets'; c.appendChild(a); }
-            else { c.appendChild(mk('span','badge-95', 'Info soon')); }
+            if(s.free){
+              c.appendChild(mk('span','badge-95','Free'));
+            } else if(s.tickets){
+              const a=document.createElement('a');
+              a.href=s.tickets; a.target='_blank'; a.rel='noopener';
+              a.className='win95-button'; a.textContent='Tickets';
+              c.appendChild(a);
+            } else {
+              c.appendChild(mk('span','badge-95','Info soon'));
+            }
             return c;
           })()
         );
