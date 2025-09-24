@@ -1,156 +1,105 @@
 /* ==================================================
-   Windows 95 Visual Theme — stacked windows, AA contrast
-   No text or image-path changes
+   SQUASH — WINDOWS 95 EXACT THEME (HIGH CONTRAST)
+   No copy changes. Purely presentational.
 ================================================== */
 :root{
-  --win-bg:#C0C0C0;        /* window */
-  --win-panel:#E5E5E5;     /* inner panel */
-  --win-text:#000;         /* text */
-  --win-title:#000080;     /* active titlebar */
-  --win-title-text:#fff;   /* title text */
-  --win-border-light:#FFFFFF;
-  --win-border-mid:#C0C0C0;
-  --win-border-dark:#808080;
-  --win-border-shadow:#404040;
-  --focus:#000000;
-  --page-bg:#008080;       /* desktop teal */
-  --content-w:max(320px, 1200px);
+  --desk:#008080;                /* Win95 teal desktop */
+  --window:#c0c0c0;              /* window body gray */
+  --mid:#bdbdbd;                 /* inner panel (default) */
+  --mid-soft: rgb(179,179,179);  /* requested softer panel for Listen/About */
+  --text:#000;                   /* high-contrast text */
+  --title:#000080;               /* deep navy titlebar */
+  --title-text:#fff;             /* white title text */
+  --hi:#ffffff;                  /* bevel highlight */
+  --lo:#808080;                  /* bevel shadow */
+  --edge:#9a9a9a;                /* inner edge */
 }
 
-*{box-sizing:border-box}
-html,body{margin:0}
-body.win95{
-  font-family:"MS Sans Serif","Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
-  font-size:14px; line-height:1.5; color:var(--win-text); background:var(--page-bg)
-}
-img{max-width:100%; height:auto; display:block}
-a{color:#0000EE}
-a:focus-visible, button:focus-visible, .win95-button:focus-visible, .win95-input:focus-visible{
-  outline:1px dotted var(--focus); outline-offset:0
-}
+/* Desktop background — uniform across all pages */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body.win95{font-family: Tahoma, "MS Sans Serif", system-ui, sans-serif; font-size:18px; line-height:1.5; color:var(--text); background:var(--desk); min-height:100dvh}
+.desktop{position:relative; padding-bottom:40px}
+.icons{position:fixed; left:10px; top:10px; list-style:none; display:grid; gap:10px; color:#fff}
+.icons .icon{display:block; width:28px; height:28px; background:#fff; border:1px solid #000; margin:0 auto}
+.icons span{display:block; text-shadow:1px 1px 0 #000}
 
-/* Shared bevels */
-.win95-raised,
-.navbar, .win95-statusbar, .win95-panel, .win95-window, .win95-button, .win95-input{
-  border-top:1px solid var(--win-border-light);
-  border-left:1px solid var(--win-border-light);
-  border-bottom:1px solid var(--win-border-shadow);
-  border-right:1px solid var(--win-border-shadow);
-}
-.win95-inset{
-  border-top:1px solid var(--win-border-shadow);
-  border-left:1px solid var(--win-border-shadow);
-  border-bottom:1px solid var(--win-border-light);
-  border-right:1px solid var(--win-border-light);
-}
+/* Windows */
+.window{position:absolute; width:min(1200px, 86vw); background:var(--window); border-top:2px solid var(--hi); border-left:2px solid var(--hi); border-right:2px solid var(--lo); border-bottom:2px solid var(--lo); box-shadow: inset 1px 1px 0 var(--edge), inset -1px -1px 0 var(--edge)}
+.titlebar{display:flex; align-items:center; justify-content:space-between; background:var(--title); color:var(--title-text); padding:5px 6px; font-weight:700}
+.titlebar .title{white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.controls{display:flex; gap:4px}
+.ctrl{min-width:20px; height:18px; padding:0 4px; border-top:2px solid var(--hi); border-left:2px solid var(--hi); border-right:2px solid var(--lo); border-bottom:2px solid var(--lo); background:#c0c0c0; color:#000; font-weight:700; line-height:14px}
+.ctrl:active{border-top:2px solid var(--lo); border-left:2px solid var(--lo); border-right:2px solid var(--hi); border-bottom:2px solid var(--hi)}
+.toolbar{display:flex; align-items:center; gap:6px; padding:4px; background:var(--window); border-top:1px solid var(--edge)}
+.tbtn{padding:2px 6px; border-top:2px solid var(--hi); border-left:2px solid var(--hi); border-right:2px solid var(--lo); border-bottom:2px solid var(--lo); background:#dcdcdc}
+.address{width:min(520px,40vw); border-top:2px solid var(--hi); border-left:2px solid var(--hi); border-right:2px solid var(--lo); border-bottom:2px solid var(--lo); padding:3px; background:#fff; color:#000}
+.window-body{padding:10px; background:var(--mid)}
+.card-95{background:#fff; border-top:2px solid var(--hi); border-left:2px solid var(--hi); border-right:2px solid var(--lo); border-bottom:2px solid var(--lo)}
+.card-95 img{display:block; width:100%; height:auto}
+.hero-body img{width:100%; height:60vh; object-fit:cover; display:block}
 
-/* Taskbar-like top nav */
-.navbar{
-  position:sticky; top:0; z-index:5; display:flex; align-items:center; gap:.5rem;
-  padding:6px 8px; background:var(--win-bg)
-}
-.site-title{margin:0 8px 0 0; font-size:14px; font-weight:700}
-.primary-nav{margin-left:auto; display:flex; gap:6px; flex-wrap:wrap}
-.start-btn{margin-right:.5rem}
-
-/* Buttons */
-.win95-button{background:var(--win-bg); color:var(--win-text); padding:6px 10px; text-decoration:none; display:inline-block}
-.win95-button:active{
-  border-top:1px solid var(--win-border-shadow);
-  border-left:1px solid var(--win-border-shadow);
-  border-bottom:1px solid var(--win-border-light);
-  border-right:1px solid var(--win-border-light);
-  background:#DCDCDC
-}
-
-/* Inputs */
-.win95-input{background:#fff; color:#000; padding:4px}
-.address{min-width:240px; width:40%}
-
-/* Windows (stacked; no absolute positioning) */
-.win95-window{
-  width:min(var(--content-w), 92vw); margin:16px auto; background:var(--win-bg)
-}
-.win95-titlebar{
-  display:flex; align-items:center; justify-content:space-between;
-  padding:6px 8px; background:var(--win-title); color:var(--win-title-text); font-weight:700
-}
-.win95-title{white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-.win95-controls .ctrl{display:inline-block; min-width:18px; text-align:center; padding:2px 4px; background:var(--win-bg); color:#000}
-.win95-toolbar{display:flex; gap:6px; align-items:center; padding:6px; background:var(--win-bg); border-top:1px solid var(--win-border-dark)}
-@media (max-width:640px){ .win95-toolbar{display:none} }
-.win95-window-body{padding:12px; background:var(--win-panel)}
-
-/* Panels */
-.win95-panel{background:#fff; position:relative}
-
-/* HERO — less crop & centered caption */
-.hero-media{margin:0; overflow:hidden}
-.hero-media img{
-  width:100%;
-  height:85vh;                 /* was 75vh — show more image */
-  object-fit:cover;
-  object-position:center 70%;  /* was 85% — less top crop */
-}
-.hero-caption{
-  position:absolute;
-  top:50%; left:50%;
-  transform:translate(-50%,-50%);
-  display:inline-block; padding:6px 10px; background:#fff; color:#000;
-  border-top:1px solid var(--win-border-light);
-  border-left:1px solid var(--win-border-light);
-  border-bottom:1px solid var(--win-border-shadow);
-  border-right:1px solid var(--win-border-shadow);
-}
-.hero-caption__chrome{font-weight:700}
-
-/* Sections / grids (preserve structure) */
-.section{padding:0}
-.listen-grid,.about-grid{display:grid; grid-template-columns:1.1fr 1fr; gap:16px; align-items:start}
-.listen-left,.about-left,.album-blurb{color:#000}
-
-/* About readability tweaks */
-.about-left{max-width:65ch}
-.about-grid{align-items:center}
-
-/* Buttons row */
+/* Layout helpers */
+.grid-95{display:grid; grid-template-columns:1.1fr 1fr; gap:12px; align-items:start}
+.stack-95{display:grid; gap:10px}
 .btn-row{display:flex; gap:8px; flex-wrap:wrap}
 
-/* Footer status bar */
-.win95-statusbar{width:min(var(--content-w), 92vw); margin:16px auto; padding:6px 10px; background:var(--win-bg)}
+/* Buttons */
+.btn-95{display:inline-block; text-decoration:none; color:#000; background:var(--window); padding:6px 12px; border-top:2px solid var(--hi); border-left:2px solid var(--hi); border-right:2px solid var(--lo); border-bottom:2px solid var(--lo)}
+.btn-95:active{border-top:2px solid var(--lo); border-left:2px solid var(--lo); border-right:2px solid var(--hi); border-bottom:2px solid var(--hi)}
+.badge-95{display:inline-block; padding:4px 8px; background:#e5e5e5; border-top:2px solid var(--hi); border-left:2px solid var(--hi); border-right:2px solid var(--lo); border-bottom:2px solid var(--lo); color:#000}
 
-/* Media page helpers */
-.media-gallery, .media-gallery.media-gallery--wide{width:min(var(--content-w), 92vw); margin:0 auto; display:grid; grid-template-columns:repeat(3, minmax(260px, 1fr)); gap:12px}
-.media-item{background:#fff}
-.media-item p{margin:8px 10px 10px}
-.photo-collage .media-collage{width:min(var(--content-w), 92vw)}
-.media-collage{column-count:3; column-gap:12px}
-.media-collage figure{break-inside:avoid; margin:0 0 12px 0; background:#fff; border-top:1px solid var(--win-border-light); border-left:1px solid var(--win-border-light); border-bottom:1px solid var(--win-border-shadow); border-right:1px solid var(--win-border-shadow)}
+/* Media */
+.media-grid-95{display:grid; grid-template-columns:repeat(3, minmax(240px, 1fr)); gap:10px}
+.media-card-95{background:#fff; border-top:2px solid var(--hi); border-left:2px solid var(--hi); border-right:2px solid var(--lo); border-bottom:2px solid var(--lo); padding:6px}
+.media-card-95 iframe{width:100%; aspect-ratio:16/9; border:none}
+.collage-95{columns:3; column-gap:10px}
+.collage-95 figure{break-inside:avoid; margin:0 0 10px 0; background:#fff; border-top:2px solid var(--hi); border-left:2px solid var(--hi); border-right:2px solid var(--lo); border-bottom:2px solid var(--lo)}
+.collage-95 img{width:100%; display:block}
 
-/* Shows page — Explorer-like list */
+/* Shows — ListView */
 .listview-95{display:block}
-.row-95{display:flex; align-items:center; background:#fff; border-top:1px solid var(--win-border-dark); color:#000}
+.row-95{display:flex; align-items:center; gap:0; background:#fff; border-top:1px solid var(--edge); color:#000}
 .row-95:nth-child(even){background:#f2f2f2}
-.row-head-95{background:#dcdcdc; font-weight:700; border-top:1px solid var(--win-border-shadow); border-bottom:1px solid var(--win-border-light)}
+.row-head-95{background:#dcdcdc; font-weight:700; border-top:2px solid var(--lo); border-bottom:2px solid var(--hi)}
 .cell-95{padding:8px 10px; border-right:1px solid #bcbcbc}
 .cell-95.w120{width:120px}
 .cell-95.w260{width:260px}
 .cell-95.flex1{flex:1 1 auto}
 
-/* Match background color across all pages */
-body.win95.media-page,
-body.win95.shows-page {
-  background: var(--desk); /* or copy the exact gradient/definition used on index */
+/* Bottom Taskbar (fixed) */
+.taskbar.bottom{position:fixed; left:0; right:0; bottom:0; display:flex; align-items:center; gap:8px; padding:4px; background:var(--window); border-top:2px solid var(--hi); border-left:2px solid var(--hi); border-right:2px solid var(--lo); border-bottom:2px solid var(--lo); box-shadow: inset 1px 1px 0 var(--edge), inset -1px -1px 0 var(--edge)}
+.start{padding:4px 10px; background:#dcdcdc; border-top:2px solid var(--hi); border-left:2px solid var(--hi); border-right:2px solid var(--lo); border-bottom:2px solid var(--lo); font-weight:700}
+.taskbar .menu{display:flex; gap:6px}
+.menu-item{padding:4px 8px; background:var(--window); border-top:2px solid var(--hi); border-left:2px solid var(--hi); border-right:2px solid var(--lo); border-bottom:2px solid var(--lo); text-decoration:none; color:#000}
+.menu-item:active{border-top:2px solid var(--lo); border-left:2px solid var(--lo); border-right:2px solid var(--hi); border-bottom:2px solid var(--hi); background:#eaeaea}
+.tray{margin-left:auto; padding:0 10px}
+
+/* ---------- YOUR NEW REQUESTS ---------- */
+/* 1) Uniform background: done via body.win95 (applies to all pages using class 'win95') */
+
+/* 2) About & Listen panels use rgb(179,179,179) instead of bright white */
+.desktop section.window:nth-of-type(2) .window-body,
+.desktop section.window:nth-of-type(3) .window-body{
+  background: var(--mid-soft);
+}
+.desktop section.window:nth-of-type(2) .card-95,
+.desktop section.window:nth-of-type(3) .card-95{
+  background: var(--mid-soft);
+}
+
+/* 3) Make the Listen section shorter; crop album art */
+.desktop section.window:nth-of-type(2) .grid-95{gap:10px}
+.desktop section.window:nth-of-type(2) .window-body{padding:8px}
+.desktop section.window:nth-of-type(2) .card-95 img{
+  height:260px;           /* tighter */
+  object-fit:cover;       /* crop without changing path */
+  object-position:center; /* balanced crop */
+}
+@media (max-width:640px){
+  .desktop section.window:nth-of-type(2) .card-95 img{height:200px}
 }
 
 /* Responsive */
-@media (max-width:980px){
-  .listen-grid,.about-grid{grid-template-columns:1fr}
-  .address{width:60%}
-}
-@media (max-width:640px){
-  .primary-nav{gap:4px}
-  .address{display:none}
-  .media-gallery{grid-template-columns:1fr}
-  .media-collage{column-count:1}
-}
+@media (max-width:980px){.grid-95{grid-template-columns:1fr}.media-grid-95{grid-template-columns:repeat(2,minmax(200px,1fr))}.window{width:92vw}}
+@media (max-width:640px){.media-grid-95{grid-template-columns:1fr}.collage-95{columns:1}.cell-95.w260{width:150px}.cell-95.w120{width:96px}}
