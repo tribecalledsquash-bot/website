@@ -94,8 +94,14 @@ a:focus-visible, button:focus-visible, .win95-button:focus-visible, .win95-input
 .about-grid{display:grid; grid-template-columns:1.1fr 1fr; gap:16px; align-items:center}
 .about-left{max-width:65ch}
 
-/* Buttons row */
+
+/* Layout helpers */
+.grid-95{display:grid; grid-template-columns:1.1fr 1fr; gap:12px; align-items:start}
+.stack-95{display:grid; gap:10px; font-size:20px; line-height:1.7} /* increased text size for About */
 .btn-row{display:flex; gap:8px; flex-wrap:wrap}
+
+/* Listen photo bigger */
+.grid-95 .card-95 img{height:400px; object-fit:cover; object-position:center}
 
 /* Footer status bar */
 .win95-statusbar{width:min(var(--content-w), 92vw); margin:16px auto; padding:6px 10px; background:var(--window)}
