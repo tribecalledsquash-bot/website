@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Squash | Indie-Jam Band in Boulder, CO – Live Shows & Music</title>
   <meta name="description" content="Squash is a Boulder, Colorado indie rock band playing high-energy live shows across the Front Range. Listen to our music, see upcoming shows, and grab tickets." />
   <link rel="canonical" href="https://www.squashband.com/" />
@@ -14,8 +14,8 @@
   <meta property="og:locale" content="en_US" />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <!-- Win95 Taskbar-style top nav (visual only; text unchanged) -->
+<body class="win95">
+  <!-- Win95 taskbar-style nav -->
   <header class="navbar win95-taskbar" role="banner">
     <button class="win95-button start-btn" aria-label="Start">Start</button>
     <h1 class="site-title">Squash – Boulder Indie Rock Band</h1>
@@ -28,8 +28,8 @@
     </nav>
   </header>
 
-  <!-- HERO as a Win95 window: title bar + toolbar + image panel -->
-  <section class="hero win95-window" aria-label="Hero">
+  <!-- HERO window (stacked, no overlapping) -->
+  <section class="win95-window hero" aria-label="Hero">
     <div class="win95-titlebar" role="heading" aria-level="2">
       <span class="win95-title">Welcome to the Squnction</span>
       <div class="win95-controls" aria-hidden="true">
@@ -38,6 +38,7 @@
         <span class="ctrl" aria-label="Close">×</span>
       </div>
     </div>
+
     <div class="win95-toolbar">
       <button class="win95-button" type="button">Back</button>
       <button class="win95-button" type="button">Forward</button>
@@ -46,13 +47,19 @@
       <button class="win95-button" type="button">Home</button>
       <input class="win95-input address" value="https://www.squashband.com/" aria-label="Address" />
     </div>
+
     <figure class="hero-media win95-panel">
+      <!-- same path; cropped via CSS -->
       <img src="images/0E7620E5-2ED8-4A22-A47A-F951CBDEC398.JPG" alt="Squash, a Boulder indie rock band, performing live on stage" />
+      <!-- Requested overlay text box (Win95 inset panel) -->
+      <figcaption class="hero-caption" aria-label="Welcome overlay">
+        <span class="hero-caption__chrome">Welcome to the Squnction</span>
+      </figcaption>
     </figure>
   </section>
 
-  <!-- Music (Listen) -->
-  <section id="music" class="section listen-section win95-window" aria-labelledby="music-heading">
+  <!-- Listen -->
+  <section id="music" class="section win95-window" aria-labelledby="music-heading">
     <div class="win95-titlebar"><span class="win95-title" id="music-heading">Listen</span></div>
     <div class="win95-window-body">
       <div class="listen-grid">
@@ -76,7 +83,7 @@
   </section>
 
   <!-- About -->
-  <section id="about" class="section about-section win95-window" aria-labelledby="about-heading">
+  <section id="about" class="section win95-window" aria-labelledby="about-heading">
     <div class="win95-titlebar"><span class="win95-title" id="about-heading">About Us</span></div>
     <div class="win95-window-body">
       <div class="about-grid">
