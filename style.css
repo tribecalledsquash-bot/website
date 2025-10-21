@@ -102,6 +102,7 @@ a:focus-visible, button:focus-visible, .win95-button:focus-visible, .win95-input
 .listen-artwork.win95-panel{ background: var(--panel-soft); }
 .listen-grid{display:grid; grid-template-columns:1.1fr 1fr; gap:16px; align-items:start}
 .listen-artwork img{
+  width:120%;
   height:400px;
   object-fit:cover;
   object-position:center;
