@@ -130,14 +130,23 @@
   </section>
 
   <!-- Photos / Gallery placeholders -->
-  <section class="win95-window photo-collage" aria-labelledby="photos-title">
+  <<section class="win95-window photo-collage" aria-labelledby="photos-title">
     <div class="win95-titlebar"><span id="photos-title" class="win95-title">Photos</span><div class="win95-controls"><span class="ctrl">—</span><span class="ctrl">☐</span><span class="ctrl">✕</span></div></div>
     <div class="win95-window-body">
-      <div class="photos-grid">
-        <figure class="win95-panel"><img src="images/Fox_October65.jpg" alt="EPK photo placeholder 1" width="500" height = "500"></figure>
-        <figure class="win95-panel"><img src="images/Fox_October53.jpg" alt="EPK photo placeholder 2" height = "300"></figure>
-        <figure class="win95-panel"><img src="images/donkeyjesus.jpg" alt="EPK photo placeholder 3"></figure>
-        <figure class="win95-panel"><img src="images/jcpennypyramid.JPG" alt="EPK photo placeholder 4" height="800"></figure>
+      <!-- Masonry columns: add as many figures as you like; they’ll pack vertically -->
+      <div class="photos-masonry">
+        <figure><img src="images/Fox_October65.jpg" alt="EPK photo placeholder 1"></figure>
+        <figure><img src="images/Fox_October53.jpg" alt="EPK photo placeholder 2"></figure>
+
+        <!-- This one looked perfect — unchanged -->
+        <figure><img src="images/donkeyjesus.jpg" alt="EPK photo placeholder 3"></figure>
+
+        <!-- Make this portrait fill more vertically using the helper class -->
+        <figure><img class="portrait-fill" src="images/jcpennypyramid.JPG" alt="EPK photo placeholder 4"></figure>
+
+        <!-- Extra placeholders to stack beneath the first two (swap paths later) -->
+        <figure><img src="images/epk-photo-5.jpg" alt="EPK photo placeholder 5"></figure>
+        <figure><img src="images/epk-photo-6.jpg" alt="EPK photo placeholder 6"></figure>
       </div>
     </div>
   </section>
