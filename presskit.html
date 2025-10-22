@@ -13,12 +13,43 @@
     .press-columns{display:grid;grid-template-columns:1.1fr 1fr;gap:16px;align-items:start}
     .quote{margin:0 0 12px 0;padding:10px;background:#fff}
     .quote p{margin:0 0 6px 0}
-    .photos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
     .kbd{font-family:monospace;background:#fff;padding:2px 4px;border-top:1px solid var(--hi);border-left:1px solid var(--hi);border-bottom:1px solid var(--lo);border-right:1px solid var(--lo)}
     .big-download{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-    @media (max-width:980px){.press-columns{grid-template-columns:1fr}}
+
+    /* --- Photos: switch to a masonry column layout so shorter images don't leave white gaps --- */
+    .photos-masonry{
+      column-count: 4;           /* desktop */
+      column-gap: 12px;
+    }
+    .photos-masonry figure{
+      break-inside: avoid;
+      -webkit-column-break-inside: avoid;
+      margin: 0 0 12px 0;
+      background:#fff;
+      border-top:1px solid var(--hi);
+      border-left:1px solid var(--hi);
+      border-bottom:1px solid var(--lo);
+      border-right:1px solid var(--lo);
+    }
+    .photos-masonry img{width:100%;height:auto;display:block}
+
+    /* Make a portrait image fill more vertical space cleanly */
+    .portrait-fill{
+      height: 560px;             /* tune as you like */
+      width: 100%;
+      object-fit: cover;         /* crops to fill the box vertically */
+      object-position: center;
+    }
+
+    /* Responsive columns for photos */
+    @media (max-width:1200px){ .photos-masonry{column-count:3} }
+    @media (max-width:800px){ .photos-masonry{column-count:2} }
+    @media (max-width:520px){ .photos-masonry{column-count:1} }
+
+    @media (max-width:980px){ .press-columns{grid-template-columns:1fr} }
   </style>
 </head>
+
 <body class="win95">
   <!-- Top nav (keeps site continuity; adjust hrefs to match your routes) -->
   <div class="navbar">
