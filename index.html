@@ -56,7 +56,7 @@
   <button class="win95-button" type="button" onclick="history.forward()">Forward</button>
   <button class="win95-button" type="button" onclick="window.stop()">Stop</button>
   <button class="win95-button" type="button" onclick="location.reload()">Refresh</button>
-  <button class="win95-button" type="button" onclick="openSquashGame()">Home 🥒</button>
+  <button class="win95-button" type="button" onclick="openSquashGame()">Squash Game! 🥒</button>
   <input class="win95-input address" value="https://www.squashband.com/" aria-label="Address" readonly />
 </div>
 
@@ -97,8 +97,8 @@
     paddleX = (canvas.width - paddleWidth) / 2;
     ballX = canvas.width / 2;
     ballY = canvas.height - 30;
-    ballDX = 8;
-    ballDY = -8;
+    ballDX = 5;
+    ballDY = -5;
 
     document.addEventListener("keydown", keyDownHandler);
     document.addEventListener("keyup", keyUpHandler);
@@ -132,7 +132,7 @@
       ctx.moveTo(x, y - squashH / 2);
       ctx.lineTo(x, y - squashH / 2 - 4);
       ctx.strokeStyle = "#2D4B1F";
-      ctx.lineWidth = 2;
+      ctx.lineWidth = 4;
       ctx.stroke();
       ctx.closePath();
     }
