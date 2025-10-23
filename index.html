@@ -113,11 +113,27 @@
       else if (e.key === "Left" || e.key === "ArrowLeft") leftPressed = false;
     }
 
-    function drawBall() {
+    function drawSquash(x, y) {
+      // Body (yellow-green gourd)
+      const gradient = ctx.createLinearGradient(x - squashW/2, y - squashH/2, x + squashW/2, y + squashH/2);
+      gradient.addColorStop(0, "#F9E97A");
+      gradient.addColorStop(1, "#C2D861");
+      ctx.fillStyle = gradient;
       ctx.beginPath();
-      ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
-      ctx.fillStyle = "#FFF";
+      ctx.ellipse(x, y, squashW / 2, squashH / 2, 0, 0, Math.PI * 2);
       ctx.fill();
+      ctx.strokeStyle = "#3A5E28";
+      ctx.lineWidth = 1;
+      ctx.stroke();
+      ctx.closePath();
+
+      // Stem
+      ctx.beginPath();
+      ctx.moveTo(x, y - squashH / 2);
+      ctx.lineTo(x, y - squashH / 2 - 4);
+      ctx.strokeStyle = "#2D4B1F";
+      ctx.lineWidth = 2;
+      ctx.stroke();
       ctx.closePath();
     }
 
