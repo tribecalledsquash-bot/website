@@ -113,7 +113,7 @@
       else if (e.key === "Left" || e.key === "ArrowLeft") leftPressed = false;
     }
 
-    function drawBall(x, y) {
+    function drawSquash(x, y) {
       // Body (yellow-green gourd)
       const gradient = ctx.createLinearGradient(x - squashW/2, y - squashH/2, x + squashW/2, y + squashH/2);
       gradient.addColorStop(0, "#F9E97A");
