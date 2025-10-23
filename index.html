@@ -50,15 +50,120 @@
       </div>
     </div>
 
-    <div class="win95-toolbar">
-      <button class="win95-button" href = "media.html" >Squash Game!</button>
-      
-      <button class="win95-button" type="button">Forward</button>
-      <button class="win95-button" type="button">Stop</button>
-      <button class="win95-button" type="button">Refresh</button>
-      <button class="win95-button" type="button">Home</button>
-      <input class="win95-input address" value="https://www.squashband.com/" aria-label="Address" />
+    <!-- Windows 95 Toolbar -->
+<div class="win95-toolbar">
+  <button class="win95-button" type="button" onclick="history.back()">Back</button>
+  <button class="win95-button" type="button" onclick="history.forward()">Forward</button>
+  <button class="win95-button" type="button" onclick="window.stop()">Stop</button>
+  <button class="win95-button" type="button" onclick="location.reload()">Refresh</button>
+  <button class="win95-button" type="button" onclick="openSquashGame()">Play Squash! 🏓</button>
+  <input class="win95-input address" value="https://www.squashband.com/" aria-label="Address" readonly />
+</div>
+
+<!-- Squash Mini-Game Modal -->
+<div id="squashGameModal" class="win95-window" style="display:none; position:fixed; top:10%; left:50%; transform:translateX(-50%); width:400px; background:#C0C0C0; z-index:9999;">
+  <div class="win95-titlebar">
+    <span class="win95-title">Squash Mini-Game</span>
+    <div class="win95-controls">
+      <span class="ctrl" onclick="closeSquashGame()">✕</span>
     </div>
+  </div>
+  <div class="win95-window-body" style="text-align:center; padding:10px;">
+    <canvas id="squashCanvas" width="380" height="300" style="border:2px inset #808080; background:#004400;"></canvas>
+    <p style="margin-top:5px; font-family:'MS Sans Serif', sans-serif; font-size:12px;">Use ← → to move. Don't miss the ball!</p>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById("squashGameModal");
+  const canvas = document.getElementById("squashCanvas");
+  const ctx = canvas.getContext("2d");
+
+  let paddleX, ballX, ballY, ballDX, ballDY, gameLoop;
+
+  function openSquashGame() {
+    modal.style.display = "block";
+    startSquashGame();
+  }
+
+  function closeSquashGame() {
+    modal.style.display = "none";
+    cancelAnimationFrame(gameLoop);
+  }
+
+  function startSquashGame() {
+    const paddleWidth = 80, paddleHeight = 10;
+    const ballRadius = 8;
+    paddleX = (canvas.width - paddleWidth) / 2;
+    ballX = canvas.width / 2;
+    ballY = canvas.height - 30;
+    ballDX = 2;
+    ballDY = -2;
+
+    document.addEventListener("keydown", keyDownHandler);
+    document.addEventListener("keyup", keyUpHandler);
+    let rightPressed = false, leftPressed = false;
+
+    function keyDownHandler(e) {
+      if (e.key === "Right" || e.key === "ArrowRight") rightPressed = true;
+      else if (e.key === "Left" || e.key === "ArrowLeft") leftPressed = true;
+    }
+    function keyUpHandler(e) {
+      if (e.key === "Right" || e.key === "ArrowRight") rightPressed = false;
+      else if (e.key === "Left" || e.key === "ArrowLeft") leftPressed = false;
+    }
+
+    function drawBall() {
+      ctx.beginPath();
+      ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
+      ctx.fillStyle = "#FFF";
+      ctx.fill();
+      ctx.closePath();
+    }
+
+    function drawPaddle() {
+      ctx.beginPath();
+      ctx.rect(paddleX, canvas.height - paddleHeight - 5, paddleWidth, paddleHeight);
+      ctx.fillStyle = "#E0E0E0";
+      ctx.fill();
+      ctx.strokeStyle = "#000";
+      ctx.strokeRect(paddleX, canvas.height - paddleHeight - 5, paddleWidth, paddleHeight);
+      ctx.closePath();
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawBall();
+      drawPaddle();
+
+      if (ballX + ballDX > canvas.width - ballRadius || ballX + ballDX < ballRadius) ballDX = -ballDX;
+      if (ballY + ballDY < ballRadius) ballDY = -ballDY;
+      else if (ballY + ballDY > canvas.height - ballRadius - paddleHeight - 5) {
+        if (ballX > paddleX && ballX < paddleX + paddleWidth) ballDY = -ballDY;
+        else {
+          // Missed
+          ctx.font = "14px 'MS Sans Serif'";
+          ctx.fillStyle = "#FFF";
+          ctx.fillText("Game Over!", canvas.width/2 - 40, canvas.height/2);
+          cancelAnimationFrame(gameLoop);
+          return;
+        }
+      }
+
+      if (rightPressed && paddleX < canvas.width - paddleWidth) paddleX += 5;
+      else if (leftPressed && paddleX > 0) paddleX -= 5;
+
+      ballX += ballDX;
+      ballY += ballDY;
+
+      gameLoop = requestAnimationFrame(draw);
+    }
+    draw();
+  }
+</script>
+
+
+<!-- END GAME CODE-->
 
     <figure class="hero-media win95-panel">
       <img src="images/Squnction.jpg" alt="Squash, a Boulder indie rock band, performing live on stage" />
