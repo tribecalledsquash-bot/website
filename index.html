@@ -50,13 +50,13 @@
       </div>
     </div>
 
-    <!-- Windows 95 Toolbar -->
+ <!-- Windows 95 Toolbar -->
 <div class="win95-toolbar">
   <button class="win95-button" type="button" onclick="history.back()">Back</button>
   <button class="win95-button" type="button" onclick="history.forward()">Forward</button>
   <button class="win95-button" type="button" onclick="window.stop()">Stop</button>
   <button class="win95-button" type="button" onclick="location.reload()">Refresh</button>
-  <button class="win95-button" type="button" onclick="openSquashGame()">Play Squash! 🏓</button>
+  <button class="win95-button" type="button" onclick="openSquashGame()">Home 🥒</button>
   <input class="win95-input address" value="https://www.squashband.com/" aria-label="Address" readonly />
 </div>
 
@@ -70,7 +70,7 @@
   </div>
   <div class="win95-window-body" style="text-align:center; padding:10px;">
     <canvas id="squashCanvas" width="380" height="300" style="border:2px inset #808080; background:#004400;"></canvas>
-    <p style="margin-top:5px; font-family:'MS Sans Serif', sans-serif; font-size:12px;">Use ← → to move. Don't miss the ball!</p>
+    <p style="margin-top:5px; font-family:'MS Sans Serif', sans-serif; font-size:12px;">Use ← → to move. Don’t drop the squash!</p>
   </div>
 </div>
 
@@ -93,12 +93,12 @@
 
   function startSquashGame() {
     const paddleWidth = 80, paddleHeight = 10;
-    const ballRadius = 8;
+    const squashW = 12, squashH = 16;
     paddleX = (canvas.width - paddleWidth) / 2;
     ballX = canvas.width / 2;
     ballY = canvas.height - 30;
-    ballDX = 10;
-    ballDY = -10;
+    ballDX = 8;
+    ballDY = -8;
 
     document.addEventListener("keydown", keyDownHandler);
     document.addEventListener("keyup", keyUpHandler);
@@ -149,18 +149,17 @@
 
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      drawBall();
+      drawSquash(ballX, ballY);
       drawPaddle();
 
-      if (ballX + ballDX > canvas.width - ballRadius || ballX + ballDX < ballRadius) ballDX = -ballDX;
-      if (ballY + ballDY < ballRadius) ballDY = -ballDY;
-      else if (ballY + ballDY > canvas.height - ballRadius - paddleHeight - 5) {
+      if (ballX + ballDX > canvas.width - squashW/2 || ballX + ballDX < squashW/2) ballDX = -ballDX;
+      if (ballY + ballDY < squashH/2) ballDY = -ballDY;
+      else if (ballY + ballDY > canvas.height - squashH/2 - paddleHeight - 5) {
         if (ballX > paddleX && ballX < paddleX + paddleWidth) ballDY = -ballDY;
         else {
-          // Missed
           ctx.font = "14px 'MS Sans Serif'";
           ctx.fillStyle = "#FFF";
-          ctx.fillText("Game Over!", canvas.width/2 - 40, canvas.height/2);
+          ctx.fillText("The squash hit the floor!", canvas.width/2 - 80, canvas.height/2);
           cancelAnimationFrame(gameLoop);
           return;
         }
