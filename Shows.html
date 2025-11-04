@@ -72,112 +72,119 @@
   <footer class="win95-statusbar"><p>© 2025 Squash. All Rights Reserved.</p></footer>
 
   <script>
-    const SHOWS = [
-      { date: "2025-09-13", title: "Lolita's", location: "Boulder, CO – Lolita's on West Pearl St.", free: true },
-      { date: "2025-10-09T20:00", title: "Fox Theatre! — Use code SQUASH for discount", location: "Boulder, CO", tickets: "https://tix.axs.com/DrsuCQAAAABFMp%2bUAAAAAABw%2fv%2f%2f%2fwD%2f%2f%2f%2f%2fBXRoZW1lAP%2f%2f%2f%2f%2f%2f%2f%2f%2f%2f/shop/restrictions?axssid=token_e2b9ebddde2b&locale=en-US&originalReferringURL=https%253A%252F%252Fwww.z2ent.com%252F&skin=foxtheatre&axsEventId=1114689&_gl=1*9brwdd*_gcl_au*MTY3Nzk5OTIxNi4xNzU4Njc1Mjkw*FPAU*MTY3Nzk5OTIxNi4xNzU4Njc1Mjkw*_ga*MzA3NjA3MzE3LjE3NTg2NzUyOTA.*_ga_5B364S9DNL*czE3NTg2ODk5MDgkbzIkZzEkdDE3NTg2ODk5NzUkajYwJGwwJGgw*_fplc*V2tiU0J2WklrUGZRNm1Md0RsTEJNMjloN3pDckcyVk0waHdlMjFKa3Q3M0RJeEFBNHlJOVNZVyUyQmNWTGxPN0loJTJCUDRhanY0SGQ4YVVZS2JscVhuUzlVcjl4UXJOJTJCQkJMMzF1ZG5sQVYzZ0wwdU9YWVNqSlR3M3BlaWolMkJrb0ElM0QlM0Q.*_ga_D0FS4F37VT*czE3NTg2ODk5NzUkbzEkZzAkdDE3NTg2ODk5NzUkajYwJGwwJGgxNzUyNDA3NzI." },
-      { date: "2025-10-17T19:00", title: "Roots Music Festival", location: "1904 Pearl Street – 7:00 pm", free: true },
-      { date: "2025-10-30", title: "Halloweekend House Show", location: "2002 Baseline Rd., Boulder, CO", free: true }
-    ];
+  const SHOWS = [
+    { date: "2025-09-13", title: "Lolita's", location: "Boulder, CO – Lolita's on West Pearl St.", free: true },
+    { date: "2025-10-09T20:00", title: "Fox Theatre! — Use code SQUASH for discount", location: "Boulder, CO", tickets: "https://tix.axs.com/DrsuCQAAAABFMp%2bUAAAAAABw%2fv%2f%2f%2fwD%2f%2f%2f%2f%2fBXRoZW1lAP%2f%2f%2f%2f%2f%2f%2f%2f%2f%2f/shop/restrictions?axssid=token_e2b9ebddde2b&locale=en-US&originalReferringURL=https%253A%252F%252Fwww.z2ent.com%252F&skin=foxtheatre&axsEventId=1114689&_gl=1*9brwdd*_gcl_au*MTY3Nzk5OTIxNi4xNzU4Njc1Mjkw*FPAU*MTY3Nzk5OTIxNi4xNzU4Njc1Mjkw*_ga*MzA3NjA3MzE3LjE3NTg2NzUyOTA.*_ga_5B364S9DNL*czE3NTg2ODk5MDgkbzIkZzEkdDE3NTg2ODk5NzUkajYwJGwwJGgw*_fplc*V2tiU0J2WklrUGZRNm1Md0RsTEJNMjloN3pDckcyVk0waHdlMjFKa3Q3M0RJeEFBNHlJOVNZVyUyQmNWTGxPN0loJTJCUDRhanY0SGQ4YVVZS2JscVhuUzlVcjl4UXJOJTJCQkJMMzF1ZG5sQVYzZ0wwdU9YWVNqSlR3M3BlaWolMkJrb0ElM0QlM0Q.*_ga_D0FS4F37VT*czE3NTg2ODk5NzUkbzEkZzAkdDE3NTg2ODk5NzUkajYwJGwwJGgxNzUyNDA3NzI." },
+    { date: "2025-10-17T19:00", title: "Roots Music Festival", location: "1904 Pearl Street", free: true },
+    { date: "2025-10-30T20:00", title: "Halloweekend House Show", location: "2002 Baseline Rd., Boulder, CO", free: true }
+  ];
 
-    const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-    const mk = (t,c,tx)=>{ const e=document.createElement(t); if(c) e.className=c; if(tx!=null) e.textContent=tx; return e; };
-    const parseISO = v => { const d = v.includes('T') ? new Date(v) : new Date(v+'T00:00'); return isNaN(d)?null:d; };
+  const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const mk = (t,c,tx)=>{ const e=document.createElement(t); if(c) e.className=c; if(tx!=null) e.textContent=tx; return e; };
+  const parseISO = v => { const d = v.includes('T') ? new Date(v) : new Date(v+'T00:00'); return isNaN(d)?null:d; };
 
-    function fmtDate(d){
-      return `${MONTHS[d.getMonth()]} ${String(d.getDate()).padStart(2,'0')}, ${d.getFullYear()}`;
+  function fmtTime(d){
+    let h = d.getHours();
+    const m = d.getMinutes();
+    const ampm = h >= 12 ? 'PM' : 'AM';
+    h = h % 12; if(h === 0) h = 12;
+    return `${h}:${String(m).padStart(2,'0')} ${ampm}`;
+  }
+
+  function fmtDate(d, showTime=false){
+    const base = `${MONTHS[d.getMonth()]} ${String(d.getDate()).padStart(2,'0')}, ${d.getFullYear()}`;
+    return showTime ? `${base} · ${fmtTime(d)}` : base;
+  }
+
+  function renderTables(){
+    const today = new Date(); today.setHours(0,0,0,0);
+
+    const rows = SHOWS
+      .map(s => ({...s, _d: parseISO(s.date), _hasTime: s.date.includes('T')}))
+      .filter(s => s._d) // valid date only
+      .sort((a,b) => a._d - b._d);
+
+    const upcoming = rows.filter(s => s._d >= today);
+    const past     = rows.filter(s => s._d <  today).reverse(); // newest past first
+
+    renderUpcoming(upcoming);
+    renderPast(past);
+  }
+
+  function renderUpcoming(list){
+    const wrap = document.getElementById('shows-wrap-upcoming');
+    wrap.innerHTML = '';
+
+    if(!list.length){
+      wrap.appendChild(mk('div','row-95','No upcoming shows — check back soon!'));
+      return;
     }
 
-    function renderTables(){
-      const today = new Date(); today.setHours(0,0,0,0);
+    const header = mk('div','row-95 row-head-95');
+    header.append(
+      mk('div','cell-95 w120','Date / Time'),
+      mk('div','cell-95 flex1','Title'),
+      mk('div','cell-95 w260','Location'),
+      mk('div','cell-95 w120','Action')
+    );
+    wrap.appendChild(header);
 
-      const rows = SHOWS
-        .map(s => ({...s, _d: parseISO(s.date)}))
-        .filter(s => s._d) // valid date only
-        .sort((a,b) => a._d - b._d);
-
-      const upcoming = rows.filter(s => s._d >= today);
-      const past     = rows.filter(s => s._d <  today).reverse(); // newest past first
-
-      renderUpcoming(upcoming);
-      renderPast(past);
-    }
-
-    function renderUpcoming(list){
-      const wrap = document.getElementById('shows-wrap-upcoming');
-      wrap.innerHTML = '';
-
-      if(!list.length){
-        wrap.appendChild(mk('div','row-95','No upcoming shows — check back soon!'));
-        return;
-      }
-
-      const header = mk('div','row-95 row-head-95');
-      header.append(
-        mk('div','cell-95 w120','Date'),
-        mk('div','cell-95 flex1','Title'),
-        mk('div','cell-95 w260','Location'),
-        mk('div','cell-95 w120','Action')
+    list.forEach(s=>{
+      const r = mk('div','row-95');
+      const d = s._d;
+      r.append(
+        mk('div','cell-95 w120', fmtDate(d, s._hasTime)),
+        mk('div','cell-95 flex1', s.title),
+        mk('div','cell-95 w260', s.location || ''),
+        (function(){
+          const c = mk('div','cell-95 w120');
+          if(s.free){
+            c.appendChild(mk('span','badge-95','Free'));
+          } else if(s.tickets){
+            const a = document.createElement('a');
+            a.href = s.tickets; a.target = '_blank'; a.rel = 'noopener';
+            a.className = 'win95-button'; a.textContent = 'Tickets';
+            c.appendChild(a);
+          } else {
+            c.appendChild(mk('span','badge-95','Info soon'));
+          }
+          return c;
+        })()
       );
-      wrap.appendChild(header);
+      wrap.appendChild(r);
+    });
+  }
 
-      list.forEach(s=>{
-        const r = mk('div','row-95');
-        const d = s._d;
-        r.append(
-          mk('div','cell-95 w120',fmtDate(d)),
-          mk('div','cell-95 flex1',s.title),
-          mk('div','cell-95 w260',s.location || ''),
-          (function(){
-            const c = mk('div','cell-95 w120');
-            if(s.free){
-              c.appendChild(mk('span','badge-95','Free'));
-            } else if(s.tickets){
-              const a = document.createElement('a');
-              a.href = s.tickets; a.target = '_blank'; a.rel = 'noopener';
-              a.className = 'win95-button'; a.textContent = 'Tickets';
-              c.appendChild(a);
-            } else {
-              c.appendChild(mk('span','badge-95','Info soon'));
-            }
-            return c;
-          })()
-        );
-        wrap.appendChild(r);
-      });
+  function renderPast(list){
+    const wrap = document.getElementById('shows-wrap-past');
+    wrap.innerHTML = '';
+
+    if(!list.length){
+      wrap.appendChild(mk('div','row-95','No past shows yet.'));
+      return;
     }
 
-    function renderPast(list){
-      const wrap = document.getElementById('shows-wrap-past');
-      wrap.innerHTML = '';
+    // 3-column header (no Action)
+    const header = mk('div','row-95 row-head-95 row-head-3col');
+    header.append(
+      mk('div','cell-95 w120','Date / Time'),
+      mk('div','cell-95 flex1','Title'),
+      mk('div','cell-95 w260','Location')
+    );
+    wrap.appendChild(header);
 
-      if(!list.length){
-        wrap.appendChild(mk('div','row-95','No past shows yet.'));
-        return;
-      }
-
-      // 3-column header (no Action)
-      const header = mk('div','row-95 row-head-95 row-head-3col');
-      header.append(
-        mk('div','cell-95 w120','Date'),
-        mk('div','cell-95 flex1','Title'),
-        mk('div','cell-95 w260','Location')
+    list.forEach(s=>{
+      const r = mk('div','row-95 row-3col'); // 3 columns
+      const d = s._d;
+      r.append(
+        mk('div','cell-95 w120', fmtDate(d, s._hasTime)),
+        mk('div','cell-95 flex1', s.title),
+        mk('div','cell-95 w260', s.location || '')
       );
-      wrap.appendChild(header);
+      // NOTE: No Action column, no links — even if the original item had tickets/free
+      wrap.appendChild(r);
+    });
+  }
 
-      list.forEach(s=>{
-        const r = mk('div','row-95 row-3col'); // 3 columns
-        const d = s._d;
-        r.append(
-          mk('div','cell-95 w120',fmtDate(d)),
-          mk('div','cell-95 flex1',s.title),
-          mk('div','cell-95 w260',s.location || '')
-        );
-        // NOTE: No Action column, no links — even if the original item had tickets/free
-        wrap.appendChild(r);
-      });
-    }
-
-    renderTables();
-  </script>
-</body>
-</html>
+  renderTables();
+</script>
