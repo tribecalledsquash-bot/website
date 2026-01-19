@@ -6,9 +6,59 @@
   <title>Shows – Squash | Indie-Jam Band Live in Boulder, CO</title>
   <link rel="stylesheet" href="style.css" />
 
-  <!-- Page-local helpers for a 3-col past-shows table (no Action column) -->
+  <!-- Page-local mobile/responsive improvements (safe even without style.css changes) -->
   <style>
-    /* 3-col variant for past shows */
+    /* Prevent accidental horizontal scrolling on mobile */
+    html, body { max-width: 100%; overflow-x: hidden; }
+
+    /* Taskbar/nav: make it work on narrow screens */
+    .win95-taskbar{
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .site-title{
+      line-height: 1;
+      margin: 0;
+    }
+    .primary-nav{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+
+    /* Optional: collapse nav into a toggle on small screens */
+    .nav-toggle{
+      display: none;
+      margin-left: auto;
+    }
+    @media (max-width: 720px){
+      .site-title{ order: 2; width: 100%; }
+      .start-btn{ order: 1; }
+      .nav-toggle{ display: inline-block; order: 3; margin-left: 0; }
+      .primary-nav{
+        width: 100%;
+        order: 4;
+        display: none; /* toggled open via JS */
+        padding-top: 6px;
+      }
+      .primary-nav.is-open{ display: flex; }
+      .primary-nav a.win95-button{
+        flex: 1 1 auto;
+        text-align: center;
+      }
+    }
+
+    /* Listview rows: keep desktop grid, add overflow safety */
+    .listview-95{
+      width: 100%;
+    }
+    .row-95, .row-head-95{
+      max-width: 100%;
+    }
+
+    /* Your original 3-col past-shows variant (no Action column) */
     .row-head-95.row-head-3col{
       grid-template-columns: 140px 1fr 320px;
     }
@@ -23,7 +73,58 @@
         grid-template-columns: 120px 1fr 1fr;
       }
     }
-    /* On small screens, your global CSS switches to 2-up cards automatically */
+
+    /* Mobile: switch "table rows" to stacked cards with labels */
+    @media (max-width: 720px){
+      /* Hide headers on mobile; cards will include their own labels */
+      .row-head-95{ display: none !important; }
+
+      /* Make each row a card */
+      .row-95{
+        display: block !important;   /* override grid */
+        padding: 10px;
+        margin: 10px 0;
+        border: 2px solid #000;
+        box-shadow: 2px 2px 0 #808080;
+        background: #c0c0c0;
+      }
+
+      /* Each cell becomes a labeled line */
+      .row-95 .cell-95{
+        display: flex;
+        width: 100% !important;
+        max-width: 100%;
+        gap: 10px;
+        padding: 6px 0;
+        border: 0 !important;
+      }
+
+      .row-95 .cell-95::before{
+        content: attr(data-label);
+        flex: 0 0 92px;
+        font-weight: 700;
+      }
+
+      /* Tickets button full-width and easy to tap */
+      .row-95 a.win95-button{
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        padding: 10px 12px;
+      }
+
+      /* Badges readable on mobile */
+      .badge-95{
+        display: inline-block;
+        padding: 6px 10px;
+      }
+    }
+
+    /* Slightly tighter section padding on phones (if style.css is roomy) */
+    @media (max-width: 720px){
+      main.shows-section{ padding-left: 12px; padding-right: 12px; }
+      .win95-window-body{ padding: 10px; }
+    }
   </style>
 
   <!-- Google tag (gtag.js) -->
@@ -37,11 +138,17 @@
 </head>
 
 <body class="win95 shows-page">
-  <!-- Top taskbar-style nav (same as index) -->
+  <!-- Top taskbar-style nav -->
   <header class="navbar win95-taskbar">
     <button class="win95-button start-btn" aria-label="Start">Start</button>
     <h1 class="site-title">Squash</h1>
-    <nav class="primary-nav">
+
+    <!-- Mobile nav toggle (only visible <= 720px due to CSS above) -->
+    <button class="win95-button nav-toggle" id="navToggle" aria-controls="primaryNav" aria-expanded="false">
+      Menu
+    </button>
+
+    <nav class="primary-nav" id="primaryNav">
       <a class="win95-button" href="index.html#music">Music</a>
       <a class="win95-button" href="index.html#about">About</a>
       <a class="win95-button" href="media.html">Media</a>
@@ -72,122 +179,17 @@
   <footer class="win95-statusbar"><p>© 2025 Squash. All Rights Reserved.</p></footer>
 
   <script>
+  // --- Mobile nav toggle ---
+  (function(){
+    const btn = document.getElementById('navToggle');
+    const nav = document.getElementById('primaryNav');
+    if(!btn || !nav) return;
+
+    btn.addEventListener('click', () => {
+      const open = nav.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  })();
+
   const SHOWS = [
-    { date: "2026-04-9", title: "Fox Theatre (Use code SQUASH) ", location: "Boulder, CO", tickets: "https://tix.axs.com/DrsuCQAAAACgc1SXAAAAAAAn%2fv%2f%2f%2fwD%2f%2f%2f%2f%2fBXRoZW1lAP%2f%2f%2f%2f%2f%2f%2f%2f%2f%2f/shop/restrictions?axssid=token_9bf32f90662a&locale=en-US&originalReferringURL=https%253A%252F%252Fwww.z2ent.com%252F&skin=foxtheatre&axsEventId=1286666"},
-    { date: "2026-02-12", title: "Fox Theatre w/ The Galentines (Use code SQUASH)", location: "Boulder, CO", tickets: "https://tix.axs.com/DrsuCQAAAAD4auyWAAAAAAC2%2fv%2f%2f%2fwD%2f%2f%2f%2f%2fBXRoZW1lAP%2f%2f%2f%2f%2f%2f%2f%2f%2f%2f/shop/restrictions?axssid=token_800c2d2823a6&locale=en-US&originalReferringURL=https%253A%252F%252Fwww.z2ent.com%252F&skin=foxtheatre&axsEventId=1259256"},
-    { date: "2025-11-07T19:00", title: "The Spot (Climbing)", location: "Boulder, CO", free: true},
-    { date: "2025-09-13", title: "Lolita's", location: "Boulder, CO – Lolita's on West Pearl St.", free: true },
-    { date: "2025-10-09T20:00", title: "Fox Theatre! — Use code SQUASH for discount", location: "Boulder, CO", tickets: "https://tix.axs.com/DrsuCQAAAABFMp%2bUAAAAAABw%2fv%2f%2f%2fwD%2f%2f%2f%2f%2fBXRoZW1lAP%2f%2f%2f%2f%2f%2f%2f%2f%2f%2f/shop/restrictions?axssid=token_e2b9ebddde2b&locale=en-US&originalReferringURL=https%253A%252F%252Fwww.z2ent.com%252F&skin=foxtheatre&axsEventId=1114689&_gl=1*9brwdd*_gcl_au*MTY3Nzk5OTIxNi4xNzU4Njc1Mjkw*FPAU*MTY3Nzk5OTIxNi4xNzU4Njc1Mjkw*_ga*MzA3NjA3MzE3LjE3NTg2NzUyOTA.*_ga_5B364S9DNL*czE3NTg2ODk5MDgkbzIkZzEkdDE3NTg2ODk5NzUkajYwJGwwJGgw*_fplc*V2tiU0J2WklrUGZRNm1Md0RsTEJNMjloN3pDckcyVk0waHdlMjFKa3Q3M0RJeEFBNHlJOVNZVyUyQmNWTGxPN0loJTJCUDRhanY0SGQ4YVVZS2JscVhuUzlVcjl4UXJOJTJCQkJMMzF1ZG5sQVYzZ0wwdU9YWVNqSlR3M3BlaWolMkJrb0ElM0QlM0Q.*_ga_D0FS4F37VT*czE3NTg2ODk5NzUkbzEkZzAkdDE3NTg2ODk5NzUkajYwJGwwJGgxNzUyNDA3NzI." },
-    { date: "2025-10-17T19:00", title: "Roots Music Festival", location: "1904 Pearl Street", free: true },
-    { date: "2025-10-30T20:00", title: "Halloweekend House Show", location: "2002 Baseline Rd., Boulder, CO", free: true }
-  ];
-
-  const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-  const mk = (t,c,tx)=>{ const e=document.createElement(t); if(c) e.className=c; if(tx!=null) e.textContent=tx; return e; };
-  const parseISO = v => { const d = v.includes('T') ? new Date(v) : new Date(v+'T00:00'); return isNaN(d)?null:d; };
-
-  function fmtTime(d){
-    let h = d.getHours();
-    const m = d.getMinutes();
-    const ampm = h >= 12 ? 'PM' : 'AM';
-    h = h % 12; if(h === 0) h = 12;
-    return `${h}:${String(m).padStart(2,'0')} ${ampm}`;
-  }
-
-  function fmtDate(d, showTime=false){
-    const base = `${MONTHS[d.getMonth()]} ${String(d.getDate()).padStart(2,'0')}, ${d.getFullYear()}`;
-    return showTime ? `${base} · ${fmtTime(d)}` : base;
-  }
-
-  function renderTables(){
-    const today = new Date(); today.setHours(0,0,0,0);
-
-    const rows = SHOWS
-      .map(s => ({...s, _d: parseISO(s.date), _hasTime: s.date.includes('T')}))
-      .filter(s => s._d) // valid date only
-      .sort((a,b) => a._d - b._d);
-
-    const upcoming = rows.filter(s => s._d >= today);
-    const past     = rows.filter(s => s._d <  today).reverse(); // newest past first
-
-    renderUpcoming(upcoming);
-    renderPast(past);
-  }
-
-  function renderUpcoming(list){
-    const wrap = document.getElementById('shows-wrap-upcoming');
-    wrap.innerHTML = '';
-
-    if(!list.length){
-      wrap.appendChild(mk('div','row-95','No upcoming shows — check back soon!'));
-      return;
-    }
-
-    const header = mk('div','row-95 row-head-95');
-    header.append(
-      mk('div','cell-95 w120','Date / Time'),
-      mk('div','cell-95 flex1','Title'),
-      mk('div','cell-95 w260','Location'),
-      mk('div','cell-95 w120','Tickets')
-    );
-    wrap.appendChild(header);
-
-    list.forEach(s=>{
-      const r = mk('div','row-95');
-      const d = s._d;
-      r.append(
-        mk('div','cell-95 w120', fmtDate(d, s._hasTime)),
-        mk('div','cell-95 flex1', s.title),
-        mk('div','cell-95 w260', s.location || ''),
-        (function(){
-          const c = mk('div','cell-95 w120');
-          if(s.free){
-            c.appendChild(mk('span','badge-95','Free'));
-          } else if(s.tickets){
-            const a = document.createElement('a');
-            a.href = s.tickets; a.target = '_blank'; a.rel = 'noopener';
-            a.className = 'win95-button'; a.textContent = 'Tickets';
-            c.appendChild(a);
-          } else {
-            c.appendChild(mk('span','badge-95','Info soon'));
-          }
-          return c;
-        })()
-      );
-      wrap.appendChild(r);
-    });
-  }
-
-  function renderPast(list){
-    const wrap = document.getElementById('shows-wrap-past');
-    wrap.innerHTML = '';
-
-    if(!list.length){
-      wrap.appendChild(mk('div','row-95','No past shows yet.'));
-      return;
-    }
-
-    // 3-column header (no Action)
-    const header = mk('div','row-95 row-head-95 row-head-3col');
-    header.append(
-      mk('div','cell-95 w120','Date / Time'),
-      mk('div','cell-95 flex1','Title'),
-      mk('div','cell-95 w260','Location')
-    );
-    wrap.appendChild(header);
-
-    list.forEach(s=>{
-      const r = mk('div','row-95 row-3col'); // 3 columns
-      const d = s._d;
-      r.append(
-        mk('div','cell-95 w120', fmtDate(d, s._hasTime)),
-        mk('div','cell-95 flex1', s.title),
-        mk('div','cell-95 w260', s.location || '')
-      );
-      // NOTE: No Action column, no links — even if the original item had tickets/free
-      wrap.appendChild(r);
-    });
-  }
-
-  renderTables();
-</script>
+    { date: "2026-04-09", title: "Fox Theatre (Use code SQUASH) ", location: "Boulder, CO", tickets: "https://tix.axs.com/DrsuCQAAAACgc1SXAAAAAAAn%2fv%2f%2f%2fwD%2f%2f%2f%2f%2fBXRoZW1lAP%2f%2f%2f%2f%2f%2f%2f
