@@ -192,4 +192,158 @@
   })();
 
   const SHOWS = [
-    { date: "2026-04-09", title: "Fox Theatre (Use code SQUASH) ", location: "Boulder, CO", tickets: "https://tix.axs.com/DrsuCQAAAACgc1SXAAAAAAAn%2fv%2f%2f%2fwD%2f%2f%2f%2f%2fBXRoZW1lAP%2f%2f%2f%2f%2f%2f%2f
+    { date: "2026-04-09", title: "Fox Theatre (Use code SQUASH) ", location: "Boulder, CO", tickets: "https://tix.axs.com/DrsuCQAAAACgc1SXAAAAAAAn%2fv%2f%2f%2fwD%2f%2f%2f%2f%2fBXRoZW1lAP%2f%2f%2f%2f%2f%2f%2f%2f%2f%2f/shop/restrictions?axssid=token_9bf32f90662a&locale=en-US&originalReferringURL=https%253A%252F%252Fwww.z2ent.com%252F&skin=foxtheatre&axsEventId=1286666"},
+    { date: "2026-02-12", title: "Fox Theatre w/ The Galentines (Use code SQUASH)", location: "Boulder, CO", tickets: "https://tix.axs.com/DrsuCQAAAAD4auyWAAAAAAC2%2fv%2f%2f%2fwD%2f%2f%2f%2f%2fBXRoZW1lAP%2f%2f%2f%2f%2f%2f%2f%2f%2f%2f/shop/restrictions?axssid=token_800c2d2823a6&locale=en-US&originalReferringURL=https%253A%252F%252Fwww.z2ent.com%252F&skin=foxtheatre&axsEventId=1259256"},
+    { date: "2025-11-07T19:00", title: "The Spot (Climbing)", location: "Boulder, CO", free: true},
+    { date: "2025-09-13", title: "Lolita's", location: "Boulder, CO – Lolita's on West Pearl St.", free: true },
+    { date: "2025-10-09T20:00", title: "Fox Theatre! — Use code SQUASH for discount", location: "Boulder, CO", tickets: "https://tix.axs.com/DrsuCQAAAABFMp%2bUAAAAAABw%2fv%2f%2f%2fwD%2f%2f%2f%2f%2fBXRoZW1lAP%2f%2f%2f%2f%2f%2f%2f%2f%2f%2f/shop/restrictions?axssid=token_e2b9ebddde2b&locale=en-US&originalReferringURL=https%253A%252F%252Fwww.z2ent.com%252F&skin=foxtheatre&axsEventId=1114689&_gl=1*9brwdd*_gcl_au*MTY3Nzk5OTIxNi4xNzU4Njc1Mjkw*FPAU*MTY3Nzk5OTIxNi4xNzU4Njc1Mjkw*_ga*MzA3NjA3MzE3LjE3NTg2NzUyOTA.*_ga_5B364S9DNL*czE3NTg2ODk5MDgkbzIkZzEkdDE3NTg2ODk5NzUkajYwJGwwJGgw*_fplc*V2tiU0J2WklrUGZRNm1Md0RsTEJNMjloN3pDckcyVk0waHdlMjFKa3Q3M0RJeEFBNHlJOVNZVyUyQmNWTGxPN0loJTJCUDRhanY0SGQ4YVVZS2JscVhuUzlVcjl4UXJOJTJCQkJMMzF1ZG5sQVYzZ0wwdU9YWVNqSlR3M3BlaWolMkJrb0ElM0QlM0Q.*_ga_D0FS4F37VT*czE3NTg2ODk5NzUkbzEkZzAkdDE3NTg2ODk5NzUkajYwJGwwJGgxNzUyNDA3NzI." },
+    { date: "2025-10-17T19:00", title: "Roots Music Festival", location: "1904 Pearl Street", free: true },
+    { date: "2025-10-30T20:00", title: "Halloweekend House Show", location: "2002 Baseline Rd., Boulder, CO", free: true }
+  ];
+
+  const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const mk = (t,c,tx)=>{ const e=document.createElement(t); if(c) e.className=c; if(tx!=null) e.textContent=tx; return e; };
+
+  // Safer ISO parsing:
+  // - Accepts YYYY-MM-DD or YYYY-MM-DDTHH:mm
+  // - Also normalizes single-digit day/month if ever present
+  const normalizeDateString = (s) => {
+    // If already has a T (time), normalize date part only
+    const parts = s.split('T');
+    const d = parts[0].split('-');
+    if(d.length === 3){
+      const y = d[0];
+      const m = String(d[1]).padStart(2,'0');
+      const day = String(d[2]).padStart(2,'0');
+      parts[0] = `${y}-${m}-${day}`;
+    }
+    return parts.join('T');
+  };
+
+  const parseISO = v => {
+    const nv = normalizeDateString(v);
+    const d = nv.includes('T') ? new Date(nv) : new Date(nv+'T00:00');
+    return isNaN(d) ? null : d;
+  };
+
+  function fmtTime(d){
+    let h = d.getHours();
+    const m = d.getMinutes();
+    const ampm = h >= 12 ? 'PM' : 'AM';
+    h = h % 12; if(h === 0) h = 12;
+    return `${h}:${String(m).padStart(2,'0')} ${ampm}`;
+  }
+
+  function fmtDate(d, showTime=false){
+    const base = `${MONTHS[d.getMonth()]} ${String(d.getDate()).padStart(2,'0')}, ${d.getFullYear()}`;
+    return showTime ? `${base} · ${fmtTime(d)}` : base;
+  }
+
+  function renderTables(){
+    const today = new Date(); today.setHours(0,0,0,0);
+
+    const rows = SHOWS
+      .map(s => ({...s, _d: parseISO(s.date), _hasTime: String(s.date).includes('T')}))
+      .filter(s => s._d) // valid date only
+      .sort((a,b) => a._d - b._d);
+
+    const upcoming = rows.filter(s => s._d >= today);
+    const past     = rows.filter(s => s._d <  today).reverse(); // newest past first
+
+    renderUpcoming(upcoming);
+    renderPast(past);
+  }
+
+  function renderUpcoming(list){
+    const wrap = document.getElementById('shows-wrap-upcoming');
+    wrap.innerHTML = '';
+
+    if(!list.length){
+      const msg = mk('div','row-95');
+      msg.appendChild(mk('div','cell-95', 'No upcoming shows — check back soon!'));
+      wrap.appendChild(msg);
+      return;
+    }
+
+    const header = mk('div','row-95 row-head-95');
+    header.append(
+      mk('div','cell-95 w120','Date / Time'),
+      mk('div','cell-95 flex1','Title'),
+      mk('div','cell-95 w260','Location'),
+      mk('div','cell-95 w120','Tickets')
+    );
+    wrap.appendChild(header);
+
+    list.forEach(s=>{
+      const r = mk('div','row-95');
+      const d = s._d;
+
+      const cDate = mk('div','cell-95 w120', fmtDate(d, s._hasTime));
+      cDate.setAttribute('data-label', 'Date');
+
+      const cTitle = mk('div','cell-95 flex1', s.title);
+      cTitle.setAttribute('data-label', 'Title');
+
+      const cLoc = mk('div','cell-95 w260', s.location || '');
+      cLoc.setAttribute('data-label', 'Location');
+
+      const cAct = mk('div','cell-95 w120');
+      cAct.setAttribute('data-label', 'Tickets');
+      if(s.free){
+        cAct.appendChild(mk('span','badge-95','Free'));
+      } else if(s.tickets){
+        const a = document.createElement('a');
+        a.href = s.tickets; a.target = '_blank'; a.rel = 'noopener';
+        a.className = 'win95-button'; a.textContent = 'Tickets';
+        cAct.appendChild(a);
+      } else {
+        cAct.appendChild(mk('span','badge-95','Info soon'));
+      }
+
+      r.append(cDate, cTitle, cLoc, cAct);
+      wrap.appendChild(r);
+    });
+  }
+
+  function renderPast(list){
+    const wrap = document.getElementById('shows-wrap-past');
+    wrap.innerHTML = '';
+
+    if(!list.length){
+      const msg = mk('div','row-95');
+      msg.appendChild(mk('div','cell-95', 'No past shows yet.'));
+      wrap.appendChild(msg);
+      return;
+    }
+
+    // 3-column header (no Action)
+    const header = mk('div','row-95 row-head-95 row-head-3col');
+    header.append(
+      mk('div','cell-95 w120','Date / Time'),
+      mk('div','cell-95 flex1','Title'),
+      mk('div','cell-95 w260','Location')
+    );
+    wrap.appendChild(header);
+
+    list.forEach(s=>{
+      const r = mk('div','row-95 row-3col'); // 3 columns
+      const d = s._d;
+
+      const cDate = mk('div','cell-95 w120', fmtDate(d, s._hasTime));
+      cDate.setAttribute('data-label', 'Date');
+
+      const cTitle = mk('div','cell-95 flex1', s.title);
+      cTitle.setAttribute('data-label', 'Title');
+
+      const cLoc = mk('div','cell-95 w260', s.location || '');
+      cLoc.setAttribute('data-label', 'Location');
+
+      r.append(cDate, cTitle, cLoc);
+      wrap.appendChild(r);
+    });
+  }
+
+  renderTables();
+  </script>
+</body>
+</html>
